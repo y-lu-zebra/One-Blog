@@ -1,0 +1,2 @@
+# requirements for development
+-r common.txt
