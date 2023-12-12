@@ -1,2 +1,4 @@
 # requirements for development
 -r common.txt
+
+black==23.11.0
