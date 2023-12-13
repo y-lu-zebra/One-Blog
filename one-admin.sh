@@ -67,6 +67,12 @@ case $1 in
       pre-commit install > /dev/null
       printResult $?
     fi
+
+    # マイグレーション
+    printf " Running database migrations...\t\t"
+    python backend/manage.py makemigrations > /dev/null
+    python backend/manage.py migrate > /dev/null
+    printResult $?
     ;;
   # 開発環境の起動
   "${process[1]}" )
