@@ -11,3 +11,8 @@ jobs:
 
       - name: Run black
         uses: psf/black@stable
+
+      - name: Run isort
+        uses: isort/isort-action@v1
+        with:
+          requirements-files: "backend/requirements/dev.txt"
