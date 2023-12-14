@@ -30,4 +30,4 @@ jobs:
         run: flake8 .
 
       - name: Run mypy
-        uses: sasanquaneuf/mypy-github-action@releases/v1
+        uses: sasanquaneuf/mypy-github-action@releases/v1.3
