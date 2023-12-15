@@ -17,6 +17,8 @@ function printProcess {
 
 # 処理結果（成功・失敗）を出力する関数
 function printResult {
+  printf " "
+  printf ".%0.s" {0..30}
   if [ "$1" -eq 0 ]; then
     printf "\033[32m Success \033[m\n"
   else
@@ -52,7 +54,7 @@ case $1 in
     fi
 
     # バックエンドの依存パッケージをインストール
-    printf " Installing python requirements...\t"
+    echo " Installing python requirements"
     if [ "$2" = "" ]; then
       file="prod"
     else
@@ -63,15 +65,25 @@ case $1 in
 
     # Git プレコミットをインストール
     if [ "$2" = "${mode[0]}" ]; then
-      printf " Installing pre-commit hook...\t\t"
+      echo " Installing pre-commit hook"
       pre-commit install > /dev/null
       printResult $?
     fi
 
     # マイグレーション
-    printf " Running database migrations...\t\t"
+    echo " Running database migrations"
     python backend/manage.py makemigrations > /dev/null
     python backend/manage.py migrate > /dev/null
+    printResult $?
+
+    # フロントエンドの依存パッケージをインストール
+    echo " Installing npm requirements"
+    cd frontend || exit
+    if [ "$2" = "${mode[1]}" ] || [ "$2" = "" ]; then
+      npm install --production > /dev/null
+    else
+      npm install > /dev/null
+    fi
     printResult $?
     ;;
   # 開発環境の起動
