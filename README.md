@@ -8,3 +8,8 @@
 [![Editor: VS Code](https://img.shields.io/badge/VS_Code-000?logo=visualstudiocode)](https://code.visualstudio.com/docs)
 
 A blog application with Django Rest Framework and Next.js
+
+## Debug Application in Pycharm
+
+- Debugging Backend: Run `Debug 'Backend Server'`
+- Debugging Frontend: Run `Debug 'Frontend Server'` -> `Debug 'Frontend Debugger'`
