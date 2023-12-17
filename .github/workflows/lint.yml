@@ -3,7 +3,7 @@ name: Lint
 on: [push, pull_request]
 
 jobs:
-  lint:
+  lint-backend:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 2
@@ -31,6 +31,12 @@ jobs:
 
       - name: Run mypy
         uses: sasanquaneuf/mypy-github-action@releases/v1.3
+
+  lint-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
 
       - name: Run Prettier
         id: prettier-run
