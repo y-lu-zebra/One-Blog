@@ -57,3 +57,4 @@ jobs:
           reporter: github-pr-review
           eslint_flags: 'frontend/src/**/*.{ts,tsx}'
           fail_on_error: true
+          github_token: ${{ secrets.API_GITHUB_TOKEN }}
