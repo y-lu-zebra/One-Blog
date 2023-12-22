@@ -2,8 +2,8 @@
 # One Blog Management Shell
 # =========================
 
-# 処理名の配列（初期化 開発サーバー起動 リントチェック）
-process=("init" "start" "lint")
+# 処理名の配列（初期化 ユーザー作成 開発サーバー起動 リントチェック）
+process=("init" "create-user" "start" "lint")
 # オプションの配列
 mode=("--dev" "--prod")
 
@@ -86,11 +86,16 @@ case $1 in
     fi
     printResult $?
     ;;
-  # 開発環境の起動
+  # ユーザー作成
   "${process[1]}" )
+    cd backend || exit
+    python manage.py createsuperuser
+    ;;
+  # 開発環境の起動
+  "${process[2]}" )
     ;;
   # リントチェック
-  "${process[2]}" )
+  "${process[3]}" )
     pre-commit run --all-files
     ;;
   * )
