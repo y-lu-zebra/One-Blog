@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 
 export default function Home() {
   useEffect(() => {
-    http.get('http://localhost:8000/users/', (res) => {
+    http.get(`${process.env.API_URL}/users/`, (res) => {
       console.log(res)
     })
   })
@@ -20,7 +20,7 @@ export default function Home() {
         height={48}
         priority
       />
-      <h1>One Blog</h1>
+      <h1>{process.env.APP_NAME}</h1>
     </>
   )
 }

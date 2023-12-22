@@ -4,6 +4,7 @@
 require('dotenv').config({ path: '../.env' })
 
 const nextConfig = {
+  // 環境設定
   env: {
     // アプリ名称
     APP_NAME: process.env.APP_NAME,
