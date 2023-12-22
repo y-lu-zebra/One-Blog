@@ -26,6 +26,7 @@ repos:
           - django-stubs==4.2.7
           - djangorestframework==3.14.0
           - djangorestframework-stubs==3.14.5
+          - psycopg2-binary==2.9.9
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.1.0
