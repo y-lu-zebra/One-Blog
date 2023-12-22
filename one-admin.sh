@@ -2,8 +2,8 @@
 # One Blog Management Shell
 # =========================
 
-# 処理名の配列
-process=("init" "start")
+# 処理名の配列（初期化 開発サーバー起動 リントチェック）
+process=("init" "start" "lint")
 # オプションの配列
 mode=("--dev" "--prod")
 
@@ -88,6 +88,10 @@ case $1 in
     ;;
   # 開発環境の起動
   "${process[1]}" )
+    ;;
+  # リントチェック
+  "${process[2]}" )
+    pre-commit run --all-files
     ;;
   * )
     printError
