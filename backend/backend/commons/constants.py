@@ -1,3 +1,6 @@
+"""
+バックエンドの定数定義
+"""
 import os
 from pathlib import Path
 

@@ -22,6 +22,10 @@
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="$MODULE_DIR$/backend/requirements/dev.txt" />
   </component>
+  <component name="PyDocumentationSettings">
+    <option name="format" value="NUMPY" />
+    <option name="myDocStringFormat" value="NumPy" />
+  </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
   </component>

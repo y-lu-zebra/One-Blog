@@ -1,9 +1,6 @@
 """
 One Blog バックエンドの設定
-
-コマンド `django-admin startproject` により自動生成された。
 """
-
 import sys
 
 import environ
