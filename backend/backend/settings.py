@@ -38,6 +38,7 @@ INSTALLED_APPS: list[str] = [
     "django.contrib.staticfiles",
     "corsheaders",
     "rest_framework",
+    "api.apps.ApiConfig",
 ]
 
 # ミドルウェア
