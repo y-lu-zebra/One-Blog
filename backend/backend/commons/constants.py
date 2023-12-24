@@ -33,3 +33,9 @@ PATH_STATIC = os.path.join(PATH_BACKEND, DIR_APP_BASE, DIR_STATIC)
 """
 # 単体テストモードの文字列
 CODE_MODE_TEST = "test"
+# OS セパレータ
+CODE_SEP_OS = os.sep
+# アンダースコア セパレータ
+CODE_SEP_UNDERSCORE = "_"
+# URL セパレータ
+CODE_SEP_URL = "/"
