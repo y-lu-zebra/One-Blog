@@ -3,7 +3,7 @@ One Blog バックエンドの設定
 """
 import sys
 
-import environ
+import environ  # type: ignore
 
 from .commons import constants
 
