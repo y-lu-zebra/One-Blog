@@ -167,10 +167,14 @@ LOGGING: dict = {
 # ========== Django REST framework 設定 =================================================
 
 REST_FRAMEWORK: dict = {
+    # ページングクラス
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    # 一覧 API の表示件数
+    "PAGE_SIZE": env.int("API_PAGE_SIZE"),
     # デフォルト・パーミッション・チェック・クラス
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
-    ]
+    ],
 }
 
 # ========== CORS 設定 ==================================================================

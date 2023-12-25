@@ -10,6 +10,8 @@ class CategorySerializer(OBSerializer):
     class Meta:
         model = Categories
         fields = [
+            # カテゴリー ID
+            "id",
             # カテゴリー名
             "name",
             # タイプ
