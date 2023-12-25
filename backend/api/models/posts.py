@@ -47,6 +47,7 @@ class Posts(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         blank=True,
         null=True,
         on_delete=models.PROTECT,
+        related_name="post_%(class)s_set",
         verbose_name=_("Category"),
         db_comment=str(_("Category")),
     )

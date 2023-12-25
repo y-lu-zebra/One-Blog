@@ -11,6 +11,13 @@ class Categories(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
     カテゴリーモデル
     """
 
+    # カテゴリータイプの選択肢
+    TYPE_CHOICES = [
+        ("CAT", _("Category")),
+        ("SGL", _("Single Page")),
+        ("EXT", _("External Page")),
+    ]
+
     class Meta:
         db_table = constants.CODE_SEP_UNDERSCORE.join(
             [apps.get_app_config("api").name, "categories"]
@@ -24,6 +31,16 @@ class Categories(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         null=False,
         verbose_name=_("Category Name"),
         db_comment=str(_("Category Name")),
+    )
+    # タイプ
+    type: models.CharField = models.CharField(
+        max_length=3,
+        blank=False,
+        null=False,
+        default=TYPE_CHOICES[0][0],
+        choices=TYPE_CHOICES,
+        verbose_name=_("Category Type"),
+        db_comment=str(_("Category Type")),
     )
     # 親カテゴリー
     parent: models.ForeignKey = models.ForeignKey(
