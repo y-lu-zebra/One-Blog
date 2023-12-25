@@ -24,6 +24,7 @@ jobs:
       - name: Run isort
         uses: isort/isort-action@v1
         with:
+          args: --setting-file backend/pyproject.toml
           requirements-files: 'backend/requirements/dev.txt'
 
       - name: Run Flake8
