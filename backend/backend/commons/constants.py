@@ -5,6 +5,11 @@ import os
 from pathlib import Path
 
 """
+アプリ設定
+"""
+VERSION = "0.1.0"
+
+"""
 ファイル・ディレクトリ関連
 """
 # 設定ファイル（本番用）の名称
@@ -39,3 +44,8 @@ CODE_SEP_OS = os.sep
 CODE_SEP_UNDERSCORE = "_"
 # URL セパレータ
 CODE_SEP_URL = "/"
+# ログファイル拡張子
+CODE_EXT_LOG = ".log"
+
+# バイト - メガ 換算
+HEX_BYTE = 1024 * 1024

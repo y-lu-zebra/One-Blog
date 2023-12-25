@@ -1,11 +1,13 @@
 """
 One Blog バックエンドの設定
 """
+import os
 import sys
 
 import environ  # type: ignore
 
 from .commons import constants
+from .utils import files
 
 env = environ.Env(DEBUG=(bool, False))
 
@@ -121,10 +123,46 @@ USE_TZ: bool = True
 STATICFILES_DIRS: list[str] = [constants.PATH_STATIC]
 
 # 静的ファイルの URL
-STATIC_URL: str = f"{env('API_STATIC_URL')}/"
+STATIC_URL: str = f"{env('API_STATIC_URL')}{constants.CODE_SEP_URL}"
 
 # 主キーフィールドのデフォルトタイプ
 DEFAULT_AUTO_FIELD: str = "django.db.models.BigAutoField"
+
+# ログ出力ディレクトリ作成
+files.make_dir(env("LOG_DIR"))
+
+# ロギング
+LOGGING: dict = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "default": {"format": env("LOG_FORMAT")},
+    },
+    "handlers": {
+        "console": {
+            "level": env("LOG_LEVEL"),
+            "class": "logging.StreamHandler",
+            "formatter": "default",
+        },
+        "file": {
+            "level": env("LOG_LEVEL"),
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": os.path.join(
+                env("LOG_DIR"), f"{env('LOG_NAME')}{constants.CODE_EXT_LOG}"
+            ),
+            "maxBytes": env.int("LOG_MAX_SIZE") * constants.HEX_BYTE,
+            "backupCount": env.int("LOG_BACKUP_COUNT"),
+            "formatter": "default",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console", "file"],
+            "propagate": True,
+            "level": env("LOG_LEVEL"),
+        },
+    },
+}
 
 # ========== Django REST framework 設定 =================================================
 
