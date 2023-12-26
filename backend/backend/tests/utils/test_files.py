@@ -114,7 +114,7 @@ class FilesTests(TestCase):
                 RECURSION_DIR,
                 False,
                 True,
-                "再起的に作成",
+                "再帰的に作成",
             ),
         ]
     )

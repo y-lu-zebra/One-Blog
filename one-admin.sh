@@ -101,7 +101,9 @@ case $1 in
   # 単体試験
   "${process[4]}" )
     cd backend || exit
-    coverage run manage.py test;coverage report;coverage html
+    if coverage run manage.py test; then
+      coverage report
+    fi
     ;;
   * )
     printError
