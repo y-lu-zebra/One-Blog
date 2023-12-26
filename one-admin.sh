@@ -102,7 +102,7 @@ case $1 in
   "${process[4]}" )
     cd backend || exit
     if coverage run manage.py test; then
-      coverage report
+      coverage report;coverage html
     fi
     ;;
   * )
