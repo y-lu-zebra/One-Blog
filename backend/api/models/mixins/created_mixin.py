@@ -19,10 +19,8 @@ class CreatedMixin(models.Model):
         on_delete=models.PROTECT,
         related_name="created_%(class)s_set",
         verbose_name=_("Created User"),
-        db_comment=str(_("Created User")),
     )
     # 作成日時
     created_at: models.DateTimeField = models.DateTimeField(
         auto_now_add=True,
-        db_comment=str(_("Created At")),
     )

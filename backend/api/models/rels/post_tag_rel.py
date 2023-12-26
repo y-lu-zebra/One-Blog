@@ -24,12 +24,10 @@ class PostTagRel(CreatedMixin):
         Posts,
         on_delete=models.PROTECT,
         verbose_name=_("Posts"),
-        db_comment=str(_("Posts")),
     )
     # タグ
     tag: models.ForeignKey = models.ForeignKey(
         Tags,
         on_delete=models.PROTECT,
         verbose_name=_("Tags"),
-        db_comment=str(_("Tags")),
     )

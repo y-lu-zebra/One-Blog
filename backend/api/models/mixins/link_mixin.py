@@ -16,7 +16,6 @@ class LinkMixin(models.Model):
         blank=False,
         null=False,
         verbose_name=_("Alias"),
-        db_comment=str(_("Alias")),
     )
     # URL
     url: models.CharField = models.CharField(
@@ -24,12 +23,10 @@ class LinkMixin(models.Model):
         blank=True,
         null=True,
         verbose_name=_("URL"),
-        db_comment=str(_("URL")),
     )
     # 並び順
     sort_order: models.PositiveIntegerField = models.PositiveIntegerField(
         blank=True,
         null=True,
         verbose_name=_("Sort Order"),
-        db_comment=str(_("Sort Order")),
     )

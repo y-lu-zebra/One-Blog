@@ -23,5 +23,4 @@ class Tags(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         blank=False,
         null=False,
         verbose_name=_("Tag Name"),
-        db_comment=str(_("Tag Name")),
     )

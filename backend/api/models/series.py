@@ -23,7 +23,6 @@ class Series(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         blank=False,
         null=False,
         verbose_name=_("Series Name"),
-        db_comment=str(_("Series Name")),
     )
     # 親シリーズ
     parent: models.ForeignKey = models.ForeignKey(
@@ -32,5 +31,4 @@ class Series(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         null=True,
         on_delete=models.CASCADE,
         verbose_name=_("Parent Series"),
-        db_comment=str(_("Parent Series")),
     )

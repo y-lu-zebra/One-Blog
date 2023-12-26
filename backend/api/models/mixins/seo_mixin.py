@@ -16,19 +16,16 @@ class SEOMixin(models.Model):
         blank=True,
         null=True,
         verbose_name=_("Meta Title"),
-        db_comment=str(_("Meta Title")),
     )
     # メタディスクリプション
     meta_description: models.TextField = models.TextField(
         blank=True,
         null=True,
         verbose_name=_("Meta Description"),
-        db_comment=str(_("Meta Description")),
     )
     # メタキーワード
     meta_keywords: models.TextField = models.TextField(
         blank=True,
         null=True,
         verbose_name=_("Meta Keywords"),
-        db_comment=str(_("Meta Keywords")),
     )

@@ -25,21 +25,18 @@ class Posts(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         blank=False,
         null=False,
         verbose_name=_("Post Title"),
-        db_comment=str(_("Post Title")),
     )
     # 概要
     overview: models.TextField = models.TextField(
         blank=True,
         null=True,
         verbose_name=_("Post Overview"),
-        db_comment=str(_("Post Overview")),
     )
     # 内容
     content: models.TextField = models.TextField(
         blank=True,
         null=True,
         verbose_name=_("Post Content"),
-        db_comment=str(_("Post Content")),
     )
     # カテゴリー
     category: models.ForeignKey = models.ForeignKey(
@@ -49,7 +46,6 @@ class Posts(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         on_delete=models.PROTECT,
         related_name="post_%(class)s_set",
         verbose_name=_("Category"),
-        db_comment=str(_("Category")),
     )
     # タグ
     tags: models.ManyToManyField = models.ManyToManyField(
