@@ -14,8 +14,8 @@ class CreatedMixin(models.Model):
     # 作成者
     created_user: models.ForeignKey = models.ForeignKey(
         User,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         on_delete=models.PROTECT,
         related_name="created_%(class)s_set",
         verbose_name=_("Created User"),

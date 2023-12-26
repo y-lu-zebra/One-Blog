@@ -14,8 +14,8 @@ class UpdatedMixin(models.Model):
     # 最終更新者
     updated_user: models.ForeignKey = models.ForeignKey(
         User,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         on_delete=models.PROTECT,
         related_name="updated_%(class)s_set",
         verbose_name=_("Updated User"),
