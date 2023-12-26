@@ -13,8 +13,8 @@ class LinkMixin(models.Model):
     # カテゴリー別名
     alias: models.CharField = models.CharField(
         max_length=100,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         verbose_name=_("Alias"),
     )
     # URL
