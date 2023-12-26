@@ -48,6 +48,8 @@ repos:
       - id: test
         name: test
         entry: bash one-admin.sh ut
+        stages:
+          - push
         language: system
         pass_filenames: false
         always_run: true
