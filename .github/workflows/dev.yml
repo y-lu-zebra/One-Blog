@@ -87,6 +87,7 @@ jobs:
 
       - name: Database Migration
         run: |
+          cp .env.test .env
           cd backend
           python manage.py makemigrations
           python manage.py migrate
