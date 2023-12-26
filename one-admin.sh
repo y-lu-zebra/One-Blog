@@ -2,8 +2,8 @@
 # One Blog Management Shell
 # =========================
 
-# 処理名の配列（初期化 ユーザー作成 開発サーバー起動 リントチェック）
-process=("init" "create-user" "start" "lint")
+# 処理名の配列（初期化 ユーザー作成 開発サーバー起動 リントチェック 単体試験）
+process=("init" "create-user" "start" "lint" "ut")
 # オプションの配列
 mode=("--dev" "--prod")
 
@@ -97,6 +97,11 @@ case $1 in
   # リントチェック
   "${process[3]}" )
     pre-commit run --all-files
+    ;;
+  # 単体試験
+  "${process[4]}" )
+    cd backend || exit
+    coverage run manage.py test;coverage report;coverage html
     ;;
   * )
     printError
