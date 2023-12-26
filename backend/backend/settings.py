@@ -181,3 +181,8 @@ REST_FRAMEWORK: dict = {
 
 # CORS 許可ホスト
 CORS_ALLOWED_ORIGINS: list[str] = [env("APP_URL")]
+
+# ========== One Blog 設定 ==============================================================
+
+# API の管理画面の URL
+APP_URL_ADMIN = env("APP_URL_ADMIN")
