@@ -41,6 +41,7 @@ INSTALLED_APPS: list[str] = [
     "django.contrib.staticfiles",
     "corsheaders",
     "rest_framework",
+    "django_filters",
     "api.apps.ApiConfig",
 ]
 
@@ -174,7 +175,11 @@ REST_FRAMEWORK: dict = {
     "PAGE_SIZE": env.int("API_PAGE_SIZE"),
     # デフォルト・パーミッション・チェック・クラス
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
+    ],
+    # フィルター設定
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
     ],
     # テストリクエストフォーマット
     "TEST_REQUEST_DEFAULT_FORMAT": "json",

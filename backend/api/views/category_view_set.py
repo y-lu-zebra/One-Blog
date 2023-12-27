@@ -1,3 +1,4 @@
+from api.filters import CategoryFilter
 from api.models import Categories
 from api.serializers import CategorySerializer
 from api.views.ob_view_set import OBViewSet
@@ -10,3 +11,4 @@ class CategoryViewSet(OBViewSet):
 
     queryset = Categories.objects.order_by("-sort_order")
     serializer_class = CategorySerializer
+    filterset_class = CategoryFilter
