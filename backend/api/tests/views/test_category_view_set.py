@@ -21,7 +21,6 @@ class CategoryViewSetTests(APITestCase):
             なし
         """
 
-        # self.client = APIClient()
         self.user = User.objects.create_superuser(**data.TEST_USERS_DATA)
         categories: list[Categories] = list(
             map(
