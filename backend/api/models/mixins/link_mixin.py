@@ -23,10 +23,16 @@ class LinkMixin(models.Model):
         blank=True,
         null=True,
         verbose_name=_("URL"),
+        help_text=_(
+            "When you click on a post with a URL set, "
+            "you will be redirected to this URL."
+        ),
     )
     # 並び順
     sort_order: models.PositiveIntegerField = models.PositiveIntegerField(
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
+        default=0,
         verbose_name=_("Sort Order"),
+        help_text=_("Posts with a larger value will be displayed at the top."),
     )

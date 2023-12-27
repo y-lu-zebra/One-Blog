@@ -176,6 +176,8 @@ REST_FRAMEWORK: dict = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ],
+    # テストリクエストフォーマット
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
 
 # ========== CORS 設定 ==================================================================

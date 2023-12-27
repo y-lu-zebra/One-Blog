@@ -2,23 +2,13 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 
 from api.models import Categories
+from api.tests import data
 
 
 class CategoriesTests(TestCase):
     """
     カテゴリーモデルのテストケース
     """
-
-    # ユーザーのテストデータ
-    TEST_USERS_DATA = {
-        "email": "test@test.test",
-        "password": "<PASSWORD>",
-    }
-    # カテゴリーのテストデータ
-    TEST_CATEGORIES_DATA = {
-        "name": "テストカテゴリーその１",
-        "type": "CAT",
-    }
 
     def setUp(self) -> None:
         """
@@ -30,11 +20,11 @@ class CategoriesTests(TestCase):
             なし
         """
 
-        self.user = User.objects.create(**self.TEST_USERS_DATA)
+        self.user = User.objects.create_superuser(**data.TEST_USERS_DATA)
         self.category = Categories.objects.create(
-            created_user=self.user,
-            updated_user=self.user,
-            **self.TEST_CATEGORIES_DATA,
+            user_created=self.user,
+            user_updated=self.user,
+            **data.TEST_CATEGORIES_DATA_LIST[0],
         )
 
     def test_str(self) -> None:
@@ -48,6 +38,6 @@ class CategoriesTests(TestCase):
 
         self.assertEqual(
             str(self.category),
-            self.TEST_CATEGORIES_DATA["name"],
+            data.TEST_CATEGORIES_DATA_LIST[0]["name"],
             "文字列変換",
         )
