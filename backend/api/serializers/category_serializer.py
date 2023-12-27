@@ -1,5 +1,6 @@
 from api.models import Categories
 from api.serializers.ob_serializer import OBSerializer
+from api.serializers.user_serializer import UserSerializer
 
 
 class CategorySerializer(OBSerializer):
@@ -7,8 +8,14 @@ class CategorySerializer(OBSerializer):
     カテゴリーシリアライザー
     """
 
+    # 作成者
+    created_user = UserSerializer(many=False, read_only=True)
+    # 最終更新者
+    updated_user = UserSerializer(many=False, read_only=True)
+
     class Meta:
         model = Categories
+        depth = 1
         fields = [
             # カテゴリー ID
             "id",
@@ -30,6 +37,16 @@ class CategorySerializer(OBSerializer):
             "meta_description",
             # メタキーワード
             "meta_keywords",
+            # 作成者
+            "created_user",
+            # 作成日時
+            "created_at",
+            # 最終更新者
+            "updated_user",
+            # 最終更新日時
+            "updated_at",
+        ]
+        read_only_fields = [
             # 作成者
             "created_user",
             # 作成日時
