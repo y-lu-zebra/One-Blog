@@ -8,5 +8,5 @@ class CategoryViewSet(OBViewSet):
     カテゴリービューセット
     """
 
-    queryset = Categories.objects.order_by("sort_order")
+    queryset = Categories.objects.order_by("-sort_order")
     serializer_class = CategorySerializer
