@@ -12,7 +12,7 @@ class CreatedMixin(models.Model):
         abstract = True
 
     # 作成者
-    created_user: models.ForeignKey = models.ForeignKey(
+    user_created: models.ForeignKey = models.ForeignKey(
         User,
         blank=False,
         null=False,
@@ -21,6 +21,6 @@ class CreatedMixin(models.Model):
         verbose_name=_("Created User"),
     )
     # 作成日時
-    created_at: models.DateTimeField = models.DateTimeField(
+    date_created: models.DateTimeField = models.DateTimeField(
         auto_now_add=True,
     )

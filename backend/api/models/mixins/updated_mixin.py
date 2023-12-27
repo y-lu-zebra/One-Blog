@@ -12,7 +12,7 @@ class UpdatedMixin(models.Model):
         abstract = True
 
     # 最終更新者
-    updated_user: models.ForeignKey = models.ForeignKey(
+    user_updated: models.ForeignKey = models.ForeignKey(
         User,
         blank=False,
         null=False,
@@ -21,6 +21,6 @@ class UpdatedMixin(models.Model):
         verbose_name=_("Updated User"),
     )
     # 最終更新日時
-    updated_at: models.DateTimeField = models.DateTimeField(
+    date_updated: models.DateTimeField = models.DateTimeField(
         auto_now=True,
     )

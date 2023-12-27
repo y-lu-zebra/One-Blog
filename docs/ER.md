@@ -2,11 +2,11 @@
 
 ```mermaid
 erDiagram
-    auth_user       ||--o{ api_series : "created_user_id,updated_user_id"
-    auth_user       ||--o{ api_categories : "created_user_id,updated_user_id"
-    auth_user       ||--o{ api_posts : "created_user_id,updated_user_id"
-    auth_user       ||--o{ api_tags : "created_user_id,updated_user_id"
-    auth_user       ||--o{ api_post_tag_rel : "created_user_id"
+    auth_user       ||--o{ api_series : "user_created_id,user_updated_id"
+    auth_user       ||--o{ api_categories : "user_created_id,user_updated_id"
+    auth_user       ||--o{ api_posts : "user_created_id,user_updated_id"
+    auth_user       ||--o{ api_tags : "user_created_id,user_updated_id"
+    auth_user       ||--o{ api_post_tag_rel : "user_created_id"
     api_series      |o--o{ api_posts : "series_id"
     api_categories  |o--o{ api_posts : "category_id"
     api_posts       ||--o{ api_post_tag_rel : "post_id"
@@ -30,30 +30,30 @@ erDiagram
 
     api_series {
         bigint id
-        timestamp created_at
+        timestamp date_created
         varchar(100) alias
         varchar(255) url
         integer sort_order
         varchar(255) meta_title
         text meta_description
         text meta_keywords
-        timestamp updated_at
+        timestamp date_updated
         varchar(100) name
-        integer created_user_id
+        integer user_created_id
         bigint parent_id
-        integer updated_user_id
+        integer user_updated_id
     }
 
     api_categories {
         bigint id
-        timestamp created_at
+        timestamp date_created
         varchar(255) url
         integer sort_order
-        timestamp updated_at
+        timestamp date_updated
         varchar(100) name
         varchar(100) alias
-        integer created_user_id
-        integer updated_user_id
+        integer user_created_id
+        integer user_updated_id
         text meta_description
         text meta_keywords
         varchar(255) meta_title
@@ -62,41 +62,41 @@ erDiagram
 
     api_posts {
         bigint id
-        timestamp created_at
+        timestamp date_created
         varchar(100) alias
         varchar(255) url
         integer sort_order
         varchar(255) meta_title
         text meta_description
         text meta_keywords
-        timestamp updated_at
+        timestamp date_updated
         varchar(255) title
         text overview
         text content
-        integer created_user_id
-        integer updated_user_id
+        integer user_created_id
+        integer user_updated_id
         bigint category_id
     }
 
     api_tags {
         bigint id
-        timestamp created_at
+        timestamp date_created
         varchar(100) alias
         varchar(255) url
         integer sort_order
         varchar(255) meta_title
         text meta_description
         text meta_keywords
-        timestamp updated_at
+        timestamp date_updated
         varchar(100) name
-        integer created_user_id
-        integer updated_user_id
+        integer user_created_id
+        integer user_updated_id
     }
 
     api_post_tag_rel {
         bigint id
-        timestamp created_at
-        integer created_user_id
+        timestamp date_created
+        integer user_created_id
         bigint post_id
         bigint tag_id
     }

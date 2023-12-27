@@ -11,9 +11,9 @@ class UserSerializer(OBSerializer):
     class Meta:
         model = User
         fields = [
-            # 名
+            # 名前
             "first_name",
-            # 姓
+            # 苗字
             "last_name",
             # メールアドレス
             "email",

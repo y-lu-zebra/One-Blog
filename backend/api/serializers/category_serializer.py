@@ -9,9 +9,9 @@ class CategorySerializer(OBSerializer):
     """
 
     # 作成者
-    created_user = UserSerializer(many=False, read_only=True)
+    user_created = UserSerializer(many=False, read_only=True)
     # 最終更新者
-    updated_user = UserSerializer(many=False, read_only=True)
+    user_updated = UserSerializer(many=False, read_only=True)
 
     class Meta:
         model = Categories
@@ -38,21 +38,21 @@ class CategorySerializer(OBSerializer):
             # メタキーワード
             "meta_keywords",
             # 作成者
-            "created_user",
+            "user_created",
             # 作成日時
-            "created_at",
+            "date_created",
             # 最終更新者
-            "updated_user",
+            "user_updated",
             # 最終更新日時
-            "updated_at",
+            "date_updated",
         ]
         read_only_fields = [
             # 作成者
-            "created_user",
+            "user_created",
             # 作成日時
-            "created_at",
+            "date_created",
             # 最終更新者
-            "updated_user",
+            "user_updated",
             # 最終更新日時
-            "updated_at",
+            "date_updated",
         ]
