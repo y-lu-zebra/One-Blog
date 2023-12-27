@@ -1,21 +1,19 @@
 from django.contrib import admin
 
 from api.admin.ob_admin import OBAdmin
-from api.models import Categories
+from api.models import Series
 
 
-@admin.register(Categories)
-class CategoryAdmin(OBAdmin):
+@admin.register(Series)
+class SeriesAdmin(OBAdmin):
     """
-    カテゴリー ADMIN
+    シリーズ ADMIN
     """
 
     # 一覧画面に表示するフィールド
     list_display = [
         # カテゴリー名
         "name",
-        # タイプ
-        "type",
         # カテゴリー別名
         "alias",
         # 最終更新日時
@@ -34,8 +32,6 @@ class CategoryAdmin(OBAdmin):
                 "fields": [
                     # カテゴリー名
                     "name",
-                    # タイプ
-                    "type",
                     # 親カテゴリー
                     "parent",
                     # 並び順

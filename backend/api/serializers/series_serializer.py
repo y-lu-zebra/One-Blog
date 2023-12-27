@@ -1,11 +1,11 @@
-from api.models import Categories
+from api.models import Series
 from api.serializers.ob_serializer import OBSerializer
 from api.serializers.user_serializer import UserSerializer
 
 
-class CategorySerializer(OBSerializer):
+class SeriesSerializer(OBSerializer):
     """
-    カテゴリーシリアライザー
+    シリーズシリアライザー
     """
 
     # 作成者
@@ -14,14 +14,13 @@ class CategorySerializer(OBSerializer):
     user_updated = UserSerializer(many=False, read_only=True)
 
     class Meta:
-        model = Categories
+        model = Series
         depth = 1
+        # 表示フィールド
         fields = [
-            # カテゴリー名
+            # シリーズ名
             "name",
-            # タイプ
-            "type",
-            # 親カテゴリー
+            # 親シリーズ
             "parent",
         ] + OBSerializer.MIXIN_FIELDS
         # 読み取り専用フィールド

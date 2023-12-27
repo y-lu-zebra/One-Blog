@@ -21,3 +21,17 @@ TEST_CATEGORIES_DATA_LIST: list[dict] = [
         "sort_order": 2,
     },
 ]
+# シリーズのテストデータ
+TEST_SERIES_DATA_LIST: list[dict] = [
+    {
+        "name": "テストシリーズその１",
+        "sort_order": 1,
+    },
+    {
+        "name": "テストシリーズその２",
+    },
+    {
+        "name": "テストシリーズその３",
+        "sort_order": 2,
+    },
+]

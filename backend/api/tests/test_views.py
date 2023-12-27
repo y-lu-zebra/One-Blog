@@ -3,11 +3,11 @@ from parameterized import parameterized  # type: ignore
 from rest_framework.test import APITestCase
 from rest_framework.utils import json
 
-from api.models import Categories
+from api.models import Categories, Series
 from api.tests import data
 
 
-class CategoryViewSetTests(APITestCase):
+class ViewSetTests(APITestCase):
     """
     カテゴリービューセットのテストケース
     """
@@ -23,20 +23,40 @@ class CategoryViewSetTests(APITestCase):
         """
 
         self.user = User.objects.create_superuser(**data.TEST_USERS_DATA)
-        categories: list[Categories] = list(
+        Categories.objects.bulk_create(
+            self.__dict_to_model(data.TEST_CATEGORIES_DATA_LIST, Categories)
+        )
+        Series.objects.bulk_create(
+            self.__dict_to_model(data.TEST_SERIES_DATA_LIST, Series)
+        )
+
+    def __dict_to_model(self, test_data: list, model) -> list:
+        """
+        辞書からモデルに変換する。
+
+        Parameters
+        ----------
+        test_data   変換元のデータ
+        model       変換先のモデルクラス
+
+        Returns
+        -------
+            モデルに変換済みのオブジェクトのリスト
+        """
+
+        return list(
             map(
-                lambda cat: Categories(
-                    user_created=self.user, user_updated=self.user, **cat
+                lambda item: model(
+                    user_created=self.user, user_updated=self.user, **item
                 ),
-                data.TEST_CATEGORIES_DATA_LIST,
+                test_data,
             )
         )
-        Categories.objects.bulk_create(categories)
 
     @parameterized.expand(
         [
             (
-                "order",
+                "categories order",
                 "/categories/",
                 200,
                 len(data.TEST_CATEGORIES_DATA_LIST),
@@ -47,7 +67,7 @@ class CategoryViewSetTests(APITestCase):
                 ],
             ),
             (
-                "name filter",
+                "categories name filter",
                 "/categories/?name=カテゴリー",
                 200,
                 2,
@@ -57,7 +77,7 @@ class CategoryViewSetTests(APITestCase):
                 ],
             ),
             (
-                "type filter",
+                "categories type filter",
                 "/categories/?type=SGL",
                 200,
                 1,
@@ -66,12 +86,23 @@ class CategoryViewSetTests(APITestCase):
                 ],
             ),
             (
-                "all filters",
+                "categories all filters",
                 "/categories/?type=CAT&name=その３",
                 200,
                 1,
                 [
                     data.TEST_CATEGORIES_DATA_LIST[2]["name"],
+                ],
+            ),
+            (
+                "series order",
+                "/series/",
+                200,
+                len(data.TEST_SERIES_DATA_LIST),
+                [
+                    data.TEST_SERIES_DATA_LIST[2]["name"],
+                    data.TEST_SERIES_DATA_LIST[0]["name"],
+                    data.TEST_SERIES_DATA_LIST[1]["name"],
                 ],
             ),
         ]
@@ -85,7 +116,7 @@ class CategoryViewSetTests(APITestCase):
         excepted_content,
     ) -> None:
         """
-        カテゴリー一覧取得 API ビューのテスト
+        一覧取得 API ビューのテスト
 
         Parameters
         ----------
@@ -118,7 +149,7 @@ class CategoryViewSetTests(APITestCase):
             "データ数",
         )
         self.assertEqual(
-            [cat["name"] for cat in content["results"]],
+            [item["name"] for item in content["results"]],
             excepted_content,
             "結果データ",
         )

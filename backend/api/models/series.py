@@ -32,3 +32,6 @@ class Series(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         on_delete=models.CASCADE,
         verbose_name=_("Parent Series"),
     )
+
+    def __str__(self) -> str:
+        return str(self.name)
