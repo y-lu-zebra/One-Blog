@@ -11,8 +11,8 @@ TEST_CATEGORIES_DATA_LIST: list[dict] = [
         "type": "CAT",
     },
     {
-        "name": "テストカテゴリーその２",
-        "type": "CAT",
+        "name": "テストシングルページその２",
+        "type": "SGL",
         "sort_order": 3,
     },
     {

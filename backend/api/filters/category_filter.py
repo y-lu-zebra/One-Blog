@@ -8,7 +8,7 @@ class CategoryFilter(filters.FilterSet):
     カテゴリーフィルター
     """
 
-    # カテゴリー名
+    # カテゴリー名（あいまい検索）
     name = filters.CharFilter(field_name="name", lookup_expr="icontains")
 
     class Meta:
