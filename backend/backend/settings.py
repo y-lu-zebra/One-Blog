@@ -32,6 +32,7 @@ ALLOWED_HOSTS: list[str] = env.list("API_ALLOWED_HOSTS")
 
 # インストール済みのアプリケーション
 INSTALLED_APPS: list[str] = [
+    "django.contrib.admindocs",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
