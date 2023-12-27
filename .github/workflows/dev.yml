@@ -118,10 +118,10 @@ jobs:
         if: github.event_name == 'pull_request'
         with:
           recreate: true
-          path: code-coverage-results.md
+          path: backend/code-coverage-results.md
 
       - name: Write to Job Summary
-        run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
+        run: cat backend/code-coverage-results.md >> $GITHUB_STEP_SUMMARY
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v3
