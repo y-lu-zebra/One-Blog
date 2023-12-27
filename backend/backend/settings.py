@@ -32,6 +32,7 @@ ALLOWED_HOSTS: list[str] = env.list("API_ALLOWED_HOSTS")
 
 # インストール済みのアプリケーション
 INSTALLED_APPS: list[str] = [
+    "django.contrib.admindocs",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -40,6 +41,7 @@ INSTALLED_APPS: list[str] = [
     "django.contrib.staticfiles",
     "corsheaders",
     "rest_framework",
+    "django_filters",
     "api.apps.ApiConfig",
 ]
 
@@ -167,13 +169,28 @@ LOGGING: dict = {
 # ========== Django REST framework 設定 =================================================
 
 REST_FRAMEWORK: dict = {
+    # ページングクラス
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    # 一覧 API の表示件数
+    "PAGE_SIZE": env.int("API_PAGE_SIZE"),
     # デフォルト・パーミッション・チェック・クラス
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
-    ]
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
+    ],
+    # フィルター設定
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ],
+    # テストリクエストフォーマット
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
 
 # ========== CORS 設定 ==================================================================
 
 # CORS 許可ホスト
 CORS_ALLOWED_ORIGINS: list[str] = [env("APP_URL")]
+
+# ========== One Blog 設定 ==============================================================
+
+# API の管理画面の URL
+APP_URL_ADMIN = env("APP_URL_ADMIN")

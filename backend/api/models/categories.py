@@ -30,7 +30,6 @@ class Categories(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         blank=False,
         null=False,
         verbose_name=_("Category Name"),
-        db_comment=str(_("Category Name")),
     )
     # タイプ
     type: models.CharField = models.CharField(
@@ -40,7 +39,6 @@ class Categories(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         default=TYPE_CHOICES[0][0],
         choices=TYPE_CHOICES,
         verbose_name=_("Category Type"),
-        db_comment=str(_("Category Type")),
     )
     # 親カテゴリー
     parent: models.ForeignKey = models.ForeignKey(
@@ -49,5 +47,7 @@ class Categories(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         null=True,
         on_delete=models.CASCADE,
         verbose_name=_("Parent Category"),
-        db_comment=str(_("Parent Category")),
     )
+
+    def __str__(self) -> str:
+        return str(self.name)

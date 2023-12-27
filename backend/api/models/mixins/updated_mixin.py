@@ -12,17 +12,15 @@ class UpdatedMixin(models.Model):
         abstract = True
 
     # 最終更新者
-    updated_user: models.ForeignKey = models.ForeignKey(
+    user_updated: models.ForeignKey = models.ForeignKey(
         User,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         on_delete=models.PROTECT,
         related_name="updated_%(class)s_set",
         verbose_name=_("Updated User"),
-        db_comment=str(_("Updated User")),
     )
     # 最終更新日時
-    updated_at: models.DateTimeField = models.DateTimeField(
+    date_updated: models.DateTimeField = models.DateTimeField(
         auto_now=True,
-        db_comment=str(_("Updated At")),
     )
