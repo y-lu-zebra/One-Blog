@@ -16,6 +16,12 @@ class SeriesAdmin(OBAdmin):
         "name",
         # カテゴリー別名
         "alias",
+        # 作成者
+        "user_created",
+        # 作成日時
+        "date_created",
+        # 最終更新者
+        "user_updated",
         # 最終更新日時
         "date_updated",
     ]
@@ -32,14 +38,10 @@ class SeriesAdmin(OBAdmin):
                 "fields": [
                     # カテゴリー名
                     "name",
-                    # 親カテゴリー
-                    "parent",
                     # 並び順
                     "sort_order",
-                    # 作成者
-                    "user_created",
-                    # 最終更新者
-                    "user_updated",
+                    # 親カテゴリー
+                    "parent",
                 ],
             },
         ),

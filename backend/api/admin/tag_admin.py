@@ -1,21 +1,19 @@
 from django.contrib import admin
 
 from api.admin.ob_admin import OBAdmin
-from api.models import Categories
+from api.models import Tags
 
 
-@admin.register(Categories)
-class CategoryAdmin(OBAdmin):
+@admin.register(Tags)
+class TagAdmin(OBAdmin):
     """
-    カテゴリー ADMIN
+    タグ ADMIN
     """
 
     # 一覧画面に表示するフィールド
     list_display = [
         # カテゴリー名
         "name",
-        # タイプ
-        "type",
         # カテゴリー別名
         "alias",
         # 作成者
@@ -40,12 +38,8 @@ class CategoryAdmin(OBAdmin):
                 "fields": [
                     # カテゴリー名
                     "name",
-                    # タイプ
-                    "type",
                     # 並び順
                     "sort_order",
-                    # 親カテゴリー
-                    "parent",
                 ],
             },
         ),

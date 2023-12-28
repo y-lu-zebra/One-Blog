@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from parameterized import parameterized  # type: ignore
 
-from api.models import Categories, Series
+from api.models import Categories, Series, Tags
 from api.tests import data
 
 
@@ -32,6 +32,11 @@ class ModelsTests(TestCase):
             user_updated=self.user,
             **data.TEST_SERIES_DATA_LIST[0],
         )
+        self.tags = Tags.objects.create(
+            user_created=self.user,
+            user_updated=self.user,
+            **data.TEST_TAGS_DATA_LIST[0],
+        )
 
     @parameterized.expand(
         [
@@ -47,6 +52,12 @@ class ModelsTests(TestCase):
                 data.TEST_SERIES_DATA_LIST[0]["name"],
                 "シリーズモデルの文字列変換",
             ),
+            (
+                "Tags.__str__()",
+                "Tags",
+                data.TEST_TAGS_DATA_LIST[0]["name"],
+                "タグモデルの文字列変換",
+            ),
         ]
     )
     def test_str(
@@ -59,15 +70,24 @@ class ModelsTests(TestCase):
         """
         モデルのメソッド __str__ のテスト
 
+        Parameters
+        ----------
+        _           実行時一覧表示用のパターン名
+        model       モデルクラス
+        excepted    期待値
+        msg         説明メッセージ
+
         Returns
         -------
             なし
         """
 
-        model_obj: Categories | Series
+        model_obj: Categories | Series | Tags
         if model == "Categories":
             model_obj = self.category
-        else:
+        elif model == "Series":
             model_obj = self.series
+        else:
+            model_obj = self.tags
 
         self.assertEqual(str(model_obj), excepted, msg)

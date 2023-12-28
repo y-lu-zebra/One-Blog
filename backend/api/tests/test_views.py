@@ -3,7 +3,7 @@ from parameterized import parameterized  # type: ignore
 from rest_framework.test import APITestCase
 from rest_framework.utils import json
 
-from api.models import Categories, Series
+from api.models import Categories, Series, Tags
 from api.tests import data
 
 
@@ -24,10 +24,13 @@ class ViewSetTests(APITestCase):
 
         self.user = User.objects.create_superuser(**data.TEST_USERS_DATA)
         Categories.objects.bulk_create(
-            self.__dict_to_model(data.TEST_CATEGORIES_DATA_LIST, Categories)
+            self.__dict_to_model(data.TEST_CATEGORIES_DATA_LIST, Categories),
         )
         Series.objects.bulk_create(
-            self.__dict_to_model(data.TEST_SERIES_DATA_LIST, Series)
+            self.__dict_to_model(data.TEST_SERIES_DATA_LIST, Series),
+        )
+        Tags.objects.bulk_create(
+            self.__dict_to_model(data.TEST_TAGS_DATA_LIST, Tags),
         )
 
     def __dict_to_model(self, test_data: list, model) -> list:
@@ -105,6 +108,17 @@ class ViewSetTests(APITestCase):
                     data.TEST_SERIES_DATA_LIST[1]["name"],
                 ],
             ),
+            (
+                "tags order",
+                "/tags/",
+                200,
+                len(data.TEST_TAGS_DATA_LIST),
+                [
+                    data.TEST_TAGS_DATA_LIST[0]["name"],
+                    data.TEST_TAGS_DATA_LIST[2]["name"],
+                    data.TEST_TAGS_DATA_LIST[1]["name"],
+                ],
+            ),
         ]
     )
     def test_get(
@@ -121,7 +135,7 @@ class ViewSetTests(APITestCase):
         Parameters
         ----------
         _                   実行時一覧表示用のパターン名
-        url                 対象 API の　URL
+        url                 対象 API の URL
         excepted_status     レスポンスステータスの期待値
         excepted_count      一致したデータ数の期待値
         excepted_content    結果データの期待値

@@ -24,3 +24,6 @@ class Tags(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         null=False,
         verbose_name=_("Tag Name"),
     )
+
+    def __str__(self) -> str:
+        return str(self.name)
