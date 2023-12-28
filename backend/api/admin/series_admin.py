@@ -3,6 +3,7 @@ from typing import Any
 from django.contrib import admin
 
 from api.admin.ob_admin import OBAdmin
+from api.admin.post_series_rel_inline import PostSeriesRelInline
 from api.models import Series
 
 
@@ -38,3 +39,5 @@ class SeriesAdmin(OBAdmin):
             },
         ),
     ] + OBAdmin.COMMON_FIELDSETS
+    # 中間モデルを利用
+    inlines = [PostSeriesRelInline]

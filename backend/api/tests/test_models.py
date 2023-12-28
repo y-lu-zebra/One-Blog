@@ -3,7 +3,7 @@ from django.test import TestCase
 from parameterized import parameterized  # type: ignore
 
 from api.models import Categories, Posts, Series, Tags
-from api.models.rels import PostTagRel
+from api.models.rels import PostSeriesRel, PostTagRel
 from api.tests import data
 
 
@@ -47,6 +47,10 @@ class ModelsTests(TestCase):
             post=self.posts,
             tag=self.tags,
         )
+        self.post_series_rel = PostSeriesRel.objects.create(
+            post=self.posts,
+            series=self.series,
+        )
 
     @parameterized.expand(
         [
@@ -82,6 +86,14 @@ class ModelsTests(TestCase):
                 + data.TEST_TAGS_DATA_LIST[0]["name"],
                 "「投稿・タグ」リレーション（中間）モデルの文字列変換",
             ),
+            (
+                "PostSeriesRel.__str__()",
+                "PostSeriesRel",
+                data.TEST_POSTS_DATA_LIST[0]["title"]
+                + "-"
+                + data.TEST_SERIES_DATA_LIST[0]["name"],
+                "「投稿・シリーズ」リレーション（中間）モデルの文字列変換",
+            ),
         ]
     )
     def test_str(
@@ -115,7 +127,9 @@ class ModelsTests(TestCase):
             model_obj = self.tags
         elif model == "Posts":
             model_obj = self.posts
-        else:
+        elif model == "PostTagRel":
             model_obj = self.post_tag_rel
+        else:
+            model_obj = self.post_series_rel
 
         self.assertEqual(str(model_obj), excepted, msg)

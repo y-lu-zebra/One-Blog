@@ -49,13 +49,10 @@ class Posts(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         verbose_name=_("Category"),
     )
     # シリーズ
-    series: models.ForeignKey = models.ForeignKey(
+    series: models.ManyToManyField = models.ManyToManyField(
         Series,
-        blank=True,
-        null=True,
-        on_delete=models.PROTECT,
-        related_name="post_%(class)s_set",
-        verbose_name=_("Series"),
+        through="PostSeriesRel",
+        related_name="posts",
     )
     # タグ
     tags: models.ManyToManyField = models.ManyToManyField(
