@@ -2,7 +2,8 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from parameterized import parameterized  # type: ignore
 
-from api.models import Categories, Series, Tags
+from api.models import Categories, Posts, Series, Tags
+from api.models.rels import PostTagRel
 from api.tests import data
 
 
@@ -21,7 +22,7 @@ class ModelsTests(TestCase):
             なし
         """
 
-        self.user = User.objects.create_superuser(**data.TEST_USERS_DATA)
+        self.user = User.objects.create_superuser(**data.TEST_USERS_DATA[0])
         self.category = Categories.objects.create(
             user_created=self.user,
             user_updated=self.user,
@@ -36,6 +37,15 @@ class ModelsTests(TestCase):
             user_created=self.user,
             user_updated=self.user,
             **data.TEST_TAGS_DATA_LIST[0],
+        )
+        self.posts = Posts.objects.create(
+            user_created=self.user,
+            user_updated=self.user,
+            **data.TEST_POSTS_DATA_LIST[0],
+        )
+        self.post_tag_rel = PostTagRel.objects.create(
+            post=self.posts,
+            tag=self.tags,
         )
 
     @parameterized.expand(
@@ -57,6 +67,20 @@ class ModelsTests(TestCase):
                 "Tags",
                 data.TEST_TAGS_DATA_LIST[0]["name"],
                 "タグモデルの文字列変換",
+            ),
+            (
+                "Posts.__str__()",
+                "Posts",
+                data.TEST_POSTS_DATA_LIST[0]["title"],
+                "投稿モデルの文字列変換",
+            ),
+            (
+                "PostTagRel.__str__()",
+                "PostTagRel",
+                data.TEST_POSTS_DATA_LIST[0]["title"]
+                + "-"
+                + data.TEST_TAGS_DATA_LIST[0]["name"],
+                "「投稿・タグ」リレーション（中間）モデルの文字列変換",
             ),
         ]
     )
@@ -87,7 +111,11 @@ class ModelsTests(TestCase):
             model_obj = self.category
         elif model == "Series":
             model_obj = self.series
-        else:
+        elif model == "Tags":
             model_obj = self.tags
+        elif model == "Posts":
+            model_obj = self.posts
+        else:
+            model_obj = self.post_tag_rel
 
         self.assertEqual(str(model_obj), excepted, msg)

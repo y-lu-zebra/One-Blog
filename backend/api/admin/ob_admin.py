@@ -69,7 +69,5 @@ class OBAdmin(admin.ModelAdmin):
             instance.user_created = request.user
         instance.user_updated = request.user
         instance.save()
-        if form:
-            form.save_m2m()
 
         return instance

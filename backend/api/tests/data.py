@@ -1,9 +1,16 @@
 # ユーザーのテストデータ
-TEST_USERS_DATA = {
-    "username": "test",
-    "email": "test@test.test",
-    "password": "test",
-}
+TEST_USERS_DATA = [
+    {
+        "username": "test1",
+        "email": "test1@test.test",
+        "password": "test1",
+    },
+    {
+        "username": "test2",
+        "email": "test2@test.test",
+        "password": "test2",
+    },
+]
 # カテゴリーのテストデータ
 TEST_CATEGORIES_DATA_LIST: list[dict] = [
     {
@@ -46,6 +53,20 @@ TEST_TAGS_DATA_LIST: list[dict] = [
     },
     {
         "name": "タグその３",
+        "sort_order": 2,
+    },
+]
+# 投稿のテストデータ
+TEST_POSTS_DATA_LIST: list[dict] = [
+    {
+        "title": "投稿その１",
+        "sort_order": 1,
+    },
+    {
+        "title": "投稿その２",
+    },
+    {
+        "title": "投稿その３",
         "sort_order": 2,
     },
 ]

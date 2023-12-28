@@ -3,7 +3,7 @@ from parameterized import parameterized  # type: ignore
 from rest_framework.test import APITestCase
 from rest_framework.utils import json
 
-from api.models import Categories, Series, Tags
+from api.models import Categories, Posts, Series, Tags
 from api.tests import data
 
 
@@ -22,7 +22,7 @@ class ViewSetTests(APITestCase):
             なし
         """
 
-        self.user = User.objects.create_superuser(**data.TEST_USERS_DATA)
+        self.user = User.objects.create_superuser(**data.TEST_USERS_DATA[0])
         Categories.objects.bulk_create(
             self.__dict_to_model(data.TEST_CATEGORIES_DATA_LIST, Categories),
         )
@@ -31,6 +31,9 @@ class ViewSetTests(APITestCase):
         )
         Tags.objects.bulk_create(
             self.__dict_to_model(data.TEST_TAGS_DATA_LIST, Tags),
+        )
+        Posts.objects.bulk_create(
+            self.__dict_to_model(data.TEST_POSTS_DATA_LIST, Posts),
         )
 
     def __dict_to_model(self, test_data: list, model) -> list:
@@ -61,6 +64,7 @@ class ViewSetTests(APITestCase):
             (
                 "categories order",
                 "/categories/",
+                "name",
                 200,
                 len(data.TEST_CATEGORIES_DATA_LIST),
                 [
@@ -72,6 +76,7 @@ class ViewSetTests(APITestCase):
             (
                 "categories name filter",
                 "/categories/?name=カテゴリー",
+                "name",
                 200,
                 2,
                 [
@@ -82,6 +87,7 @@ class ViewSetTests(APITestCase):
             (
                 "categories type filter",
                 "/categories/?type=SGL",
+                "name",
                 200,
                 1,
                 [
@@ -91,6 +97,7 @@ class ViewSetTests(APITestCase):
             (
                 "categories all filters",
                 "/categories/?type=CAT&name=その３",
+                "name",
                 200,
                 1,
                 [
@@ -100,6 +107,7 @@ class ViewSetTests(APITestCase):
             (
                 "series order",
                 "/series/",
+                "name",
                 200,
                 len(data.TEST_SERIES_DATA_LIST),
                 [
@@ -111,6 +119,7 @@ class ViewSetTests(APITestCase):
             (
                 "tags order",
                 "/tags/",
+                "name",
                 200,
                 len(data.TEST_TAGS_DATA_LIST),
                 [
@@ -119,12 +128,25 @@ class ViewSetTests(APITestCase):
                     data.TEST_TAGS_DATA_LIST[1]["name"],
                 ],
             ),
+            (
+                "posts order",
+                "/posts/",
+                "title",
+                200,
+                len(data.TEST_POSTS_DATA_LIST),
+                [
+                    data.TEST_POSTS_DATA_LIST[2]["title"],
+                    data.TEST_POSTS_DATA_LIST[0]["title"],
+                    data.TEST_POSTS_DATA_LIST[1]["title"],
+                ],
+            ),
         ]
     )
     def test_get(
         self,
         _: str,
         url: str,
+        field_key: str,
         excepted_status: int,
         excepted_count: int,
         excepted_content,
@@ -136,6 +158,7 @@ class ViewSetTests(APITestCase):
         ----------
         _                   実行時一覧表示用のパターン名
         url                 対象 API の URL
+        field_key           検証用のフィールドのキー
         excepted_status     レスポンスステータスの期待値
         excepted_count      一致したデータ数の期待値
         excepted_content    結果データの期待値
@@ -163,7 +186,7 @@ class ViewSetTests(APITestCase):
             "データ数",
         )
         self.assertEqual(
-            [item["name"] for item in content["results"]],
+            [item[field_key] for item in content["results"]],
             excepted_content,
             "結果データ",
         )
