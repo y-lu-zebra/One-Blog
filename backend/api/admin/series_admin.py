@@ -14,17 +14,7 @@ class SeriesAdmin(OBAdmin):
     list_display = [
         # カテゴリー名
         "name",
-        # カテゴリー別名
-        "alias",
-        # 作成者
-        "user_created",
-        # 作成日時
-        "date_created",
-        # 最終更新者
-        "user_updated",
-        # 最終更新日時
-        "date_updated",
-    ]
+    ] + OBAdmin.COMMON_LIST_DISPLAY_FIELDS
     # 一覧画面にリンクで表示するフィールド
     list_display_links = [
         # カテゴリー名

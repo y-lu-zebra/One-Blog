@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from api.models.categories import Categories
 from api.models.mixins import CreatedMixin, LinkMixin, SEOMixin, UpdatedMixin
+from api.models.series import Series
 from api.models.tags import Tags
 from backend.commons import constants
 
@@ -47,8 +48,21 @@ class Posts(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         related_name="post_%(class)s_set",
         verbose_name=_("Category"),
     )
+    # シリーズ
+    series: models.ForeignKey = models.ForeignKey(
+        Series,
+        blank=True,
+        null=True,
+        on_delete=models.PROTECT,
+        related_name="post_%(class)s_set",
+        verbose_name=_("Series"),
+    )
     # タグ
     tags: models.ManyToManyField = models.ManyToManyField(
         Tags,
         through="PostTagRel",
+        related_name="posts",
     )
+
+    def __str__(self) -> str:
+        return str(self.title)

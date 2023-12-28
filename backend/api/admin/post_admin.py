@@ -2,24 +2,24 @@ from django.contrib import admin
 
 from api.admin.ob_admin import OBAdmin
 from api.admin.post_tag_rel_inline import PostTagRelInline
-from api.models import Tags
+from api.models import Posts
 
 
-@admin.register(Tags)
-class TagAdmin(OBAdmin):
+@admin.register(Posts)
+class PostAdmin(OBAdmin):
     """
-    タグ ADMIN
+    投稿 ADMIN
     """
 
     # 一覧画面に表示するフィールド
     list_display = [
-        # カテゴリー名
-        "name",
+        # タイトル
+        "title",
     ] + OBAdmin.COMMON_LIST_DISPLAY_FIELDS
     # 一覧画面にリンクで表示するフィールド
     list_display_links = [
-        # カテゴリー名
-        "name",
+        # タイトル
+        "title",
     ]
     # 新規作成画面に表示するフィールド構成
     fieldsets: list[tuple] = [
@@ -27,8 +27,16 @@ class TagAdmin(OBAdmin):
             None,
             {
                 "fields": [
-                    # カテゴリー名
-                    "name",
+                    # タイトル
+                    "title",
+                    # 概要
+                    "overview",
+                    # 内容
+                    "content",
+                    # タグ
+                    # "tags",
+                    # カテゴリー, シリーズ
+                    ("category", "series"),
                     # 並び順
                     "sort_order",
                 ],
