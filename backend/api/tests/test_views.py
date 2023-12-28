@@ -135,7 +135,7 @@ class ViewSetTests(APITestCase):
         Parameters
         ----------
         _                   実行時一覧表示用のパターン名
-        url                 対象 API の　URL
+        url                 対象 API の URL
         excepted_status     レスポンスステータスの期待値
         excepted_count      一致したデータ数の期待値
         excepted_content    結果データの期待値

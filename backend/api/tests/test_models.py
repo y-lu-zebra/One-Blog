@@ -70,6 +70,13 @@ class ModelsTests(TestCase):
         """
         モデルのメソッド __str__ のテスト
 
+        Parameters
+        ----------
+        _           実行時一覧表示用のパターン名
+        model       モデルクラス
+        excepted    期待値
+        msg         説明メッセージ
+
         Returns
         -------
             なし
