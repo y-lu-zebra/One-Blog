@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from parameterized import parameterized  # type: ignore
 
-from api.models import Categories, Series
+from api.models import Categories, Series, Tags
 from api.tests import data
 
 
@@ -32,7 +32,7 @@ class ModelsTests(TestCase):
             user_updated=self.user,
             **data.TEST_SERIES_DATA_LIST[0],
         )
-        self.tags = Series.objects.create(
+        self.tags = Tags.objects.create(
             user_created=self.user,
             user_updated=self.user,
             **data.TEST_TAGS_DATA_LIST[0],
