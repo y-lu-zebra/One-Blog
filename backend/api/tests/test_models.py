@@ -82,7 +82,7 @@ class ModelsTests(TestCase):
             なし
         """
 
-        model_obj: Categories | Series
+        model_obj: Categories | Series | Tags
         if model == "Categories":
             model_obj = self.category
         elif model == "Series":
