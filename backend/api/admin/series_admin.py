@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.contrib import admin
 
 from api.admin.ob_admin import OBAdmin
@@ -11,7 +13,7 @@ class SeriesAdmin(OBAdmin):
     """
 
     # 一覧画面に表示するフィールド
-    list_display = [
+    list_display: list[Any] = [
         # カテゴリー名
         "name",
     ] + OBAdmin.COMMON_LIST_DISPLAY_FIELDS
