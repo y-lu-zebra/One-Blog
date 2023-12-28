@@ -32,6 +32,11 @@ class ModelsTests(TestCase):
             user_updated=self.user,
             **data.TEST_SERIES_DATA_LIST[0],
         )
+        self.tags = Series.objects.create(
+            user_created=self.user,
+            user_updated=self.user,
+            **data.TEST_TAGS_DATA_LIST[0],
+        )
 
     @parameterized.expand(
         [
@@ -46,6 +51,12 @@ class ModelsTests(TestCase):
                 "Series",
                 data.TEST_SERIES_DATA_LIST[0]["name"],
                 "シリーズモデルの文字列変換",
+            ),
+            (
+                "Tags.__str__()",
+                "Tags",
+                data.TEST_TAGS_DATA_LIST[0]["name"],
+                "タグモデルの文字列変換",
             ),
         ]
     )
@@ -67,7 +78,9 @@ class ModelsTests(TestCase):
         model_obj: Categories | Series
         if model == "Categories":
             model_obj = self.category
-        else:
+        elif model == "Series":
             model_obj = self.series
+        else:
+            model_obj = self.tags
 
         self.assertEqual(str(model_obj), excepted, msg)

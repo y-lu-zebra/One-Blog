@@ -35,3 +35,17 @@ TEST_SERIES_DATA_LIST: list[dict] = [
         "sort_order": 2,
     },
 ]
+# タグのテストデータ
+TEST_TAGS_DATA_LIST: list[dict] = [
+    {
+        "name": "タグその１",
+        "sort_order": 5,
+    },
+    {
+        "name": "タグその２",
+    },
+    {
+        "name": "タグその３",
+        "sort_order": 2,
+    },
+]
