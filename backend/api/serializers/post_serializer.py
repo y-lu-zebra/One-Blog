@@ -1,11 +1,11 @@
-from api.models import Tags
+from api.models import Posts
 from api.serializers.ob_serializer import OBSerializer
 from api.serializers.user_serializer import UserSerializer
 
 
-class TagSerializer(OBSerializer):
+class PostSerializer(OBSerializer):
     """
-    タグシリアライザー
+    投稿シリアライザー
     """
 
     # 作成者
@@ -14,14 +14,21 @@ class TagSerializer(OBSerializer):
     user_updated = UserSerializer(many=False, read_only=True)
 
     class Meta:
-        model = Tags
+        model = Posts
         depth = 1
-        # 表示フィールド
         fields = [
-            # シリーズ名
-            "name",
-            # 投稿
-            "posts",  # noqa
+            # タイトル
+            "title",
+            # 概要
+            "overview",
+            # 内容
+            "content",
+            # カテゴリー
+            "category",
+            # シリーズ
+            "series",
+            # タグ
+            "tags",
         ] + OBSerializer.MIXIN_FIELDS
         # 読み取り専用フィールド
         read_only_fields = OBSerializer.READ_ONLY_FIELDS

@@ -18,6 +18,8 @@ class OBSerializer(serializers.ModelSerializer):
         "url",
         # 並び順
         "sort_order",
+        # ヒット数
+        "hits_count",
         # メタタイトル
         "meta_title",
         # メタディスクリプション
@@ -35,6 +37,8 @@ class OBSerializer(serializers.ModelSerializer):
     ]
     # 読み取り専用フィールド
     READ_ONLY_FIELDS = [
+        # ヒット数
+        "hits_count",
         # 作成者
         "user_created",
         # 作成日時
