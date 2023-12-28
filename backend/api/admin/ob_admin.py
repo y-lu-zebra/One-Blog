@@ -29,3 +29,27 @@ class OBAdmin(admin.ModelAdmin):
             },
         ),
     ]
+
+    def save_model(self, request, instance, form, change):
+        """
+        作成者と最終更新者の自動追加
+
+        Parameters
+        ----------
+        request     リクエスト
+        instance    インスタンス
+        form        フォーム
+        change      変更
+
+        Returns
+        -------
+            加工済みのインスタンス
+        """
+
+        if not change or not instance.user_created:
+            instance.user_created = request.user
+        instance.user_updated = request.user
+        instance.save()
+        form.save_m2m()
+
+        return instance
