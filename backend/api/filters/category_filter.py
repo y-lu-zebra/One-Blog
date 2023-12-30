@@ -18,4 +18,6 @@ class CategoryFilter(filters.FilterSet):
             "name",
             # タイプ
             "type",
+            # 親カテゴリー
+            "parent",
         ]

@@ -2,11 +2,17 @@ from django.apps import apps
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from api.models.mixins import CreatedMixin, LinkMixin, SEOMixin, UpdatedMixin
+from api.models.mixins import (
+    CreatedMixin,
+    LinkMixin,
+    SEOMixin,
+    StatusMixin,
+    UpdatedMixin,
+)
 from backend.commons import constants
 
 
-class Categories(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
+class Categories(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
     """
     カテゴリーモデル
     """
@@ -23,6 +29,7 @@ class Categories(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
             [apps.get_app_config("api").name, "categories"]
         )
         verbose_name = verbose_name_plural = _("Categories")
+        ordering = ["-sort_order", "-date_updated"]
 
     # カテゴリー名
     name: models.CharField = models.CharField(

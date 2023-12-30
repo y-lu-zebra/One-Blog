@@ -3,13 +3,19 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from api.models.categories import Categories
-from api.models.mixins import CreatedMixin, LinkMixin, SEOMixin, UpdatedMixin
+from api.models.mixins import (
+    CreatedMixin,
+    LinkMixin,
+    SEOMixin,
+    StatusMixin,
+    UpdatedMixin,
+)
 from api.models.series import Series
 from api.models.tags import Tags
 from backend.commons import constants
 
 
-class Posts(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
+class Posts(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
     """
     投稿モデル
     """
@@ -19,6 +25,7 @@ class Posts(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
             [apps.get_app_config("api").name, "posts"]
         )
         verbose_name = verbose_name_plural = _("Posts")
+        ordering = ["-sort_order", "-date_updated"]
 
     # タイトル
     title: models.CharField = models.CharField(
@@ -45,14 +52,12 @@ class Posts(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
         blank=True,
         null=True,
         on_delete=models.PROTECT,
-        related_name="post_%(class)s_set",
         verbose_name=_("Category"),
     )
     # シリーズ
     series: models.ManyToManyField = models.ManyToManyField(
         Series,
         through="PostSeriesRel",
-        related_name="posts",
     )
     # タグ
     tags: models.ManyToManyField = models.ManyToManyField(

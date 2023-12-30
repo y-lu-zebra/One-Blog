@@ -33,6 +33,8 @@ class TagAdmin(OBAdmin):
                     "name",
                     # 並び順
                     "sort_order",
+                    # 公開フラグ
+                    "is_published",
                 ],
             },
         ),

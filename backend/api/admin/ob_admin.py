@@ -13,6 +13,8 @@ class OBAdmin(admin.ModelAdmin):
         "hits_count",
         # 並び順
         "sort_order",
+        # 公開フラグ
+        "is_published",
         # 作成者
         "user_created",
         # 作成日時

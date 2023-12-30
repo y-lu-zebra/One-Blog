@@ -40,6 +40,8 @@ class PostAdmin(OBAdmin):
                     "category",
                     # 並び順
                     "sort_order",
+                    # 公開フラグ
+                    "is_published",
                 ],
             },
         ),

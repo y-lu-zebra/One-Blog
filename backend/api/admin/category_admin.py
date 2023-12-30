@@ -38,6 +38,8 @@ class CategoryAdmin(OBAdmin):
                     "sort_order",
                     # 親カテゴリー
                     "parent",
+                    # 公開フラグ
+                    "is_published",
                 ],
             },
         ),

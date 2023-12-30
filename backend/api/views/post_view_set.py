@@ -10,7 +10,7 @@ class PostViewSet(OBViewSet):
     投稿ビューセット
     """
 
-    queryset = Posts.objects.order_by("-sort_order")
+    queryset = Posts.objects.filter(is_published=True).all()
     serializer_class = PostSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ["title", "overview", "content"]

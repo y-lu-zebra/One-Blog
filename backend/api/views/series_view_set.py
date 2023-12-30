@@ -8,5 +8,5 @@ class SeriesViewSet(OBViewSet):
     シリーズビューセット
     """
 
-    queryset = Series.objects.order_by("-sort_order")
+    queryset = Series.objects.filter(is_published=True).all()
     serializer_class = SeriesSerializer
