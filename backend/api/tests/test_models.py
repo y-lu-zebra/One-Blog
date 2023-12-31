@@ -26,12 +26,12 @@ class ModelsTests(TestCase):
         self.category = Categories.objects.create(
             user_created=self.user,
             user_updated=self.user,
-            **data.TEST_CATEGORIES_DATA_LIST[0],
+            **data.TEST_CATEGORIES_DATA_LIST_1[0],
         )
         self.series = Series.objects.create(
             user_created=self.user,
             user_updated=self.user,
-            **data.TEST_SERIES_DATA_LIST[0],
+            **data.TEST_SERIES_DATA_LIST_1[0],
         )
         self.tags = Tags.objects.create(
             user_created=self.user,
@@ -57,13 +57,13 @@ class ModelsTests(TestCase):
             (
                 "Categories.__str__()",
                 "Categories",
-                data.TEST_CATEGORIES_DATA_LIST[0]["name"],
+                data.TEST_CATEGORIES_DATA_LIST_1[0]["name"],
                 "カテゴリーモデルの文字列変換",
             ),
             (
                 "Series.__str__()",
                 "Series",
-                data.TEST_SERIES_DATA_LIST[0]["name"],
+                data.TEST_SERIES_DATA_LIST_1[0]["name"],
                 "シリーズモデルの文字列変換",
             ),
             (
@@ -91,7 +91,7 @@ class ModelsTests(TestCase):
                 "PostSeriesRel",
                 data.TEST_POSTS_DATA_LIST[0]["title"]
                 + "-"
-                + data.TEST_SERIES_DATA_LIST[0]["name"],
+                + data.TEST_SERIES_DATA_LIST_1[0]["name"],
                 "「投稿・シリーズ」リレーション（中間）モデルの文字列変換",
             ),
         ]

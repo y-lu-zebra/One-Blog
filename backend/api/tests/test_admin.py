@@ -35,12 +35,12 @@ class AdminTests(TestCase):
             (
                 "CategoryAdmin.save_model()",
                 Categories,
-                data.TEST_CATEGORIES_DATA_LIST[0],
+                data.TEST_CATEGORIES_DATA_LIST_1[0],
             ),
             (
                 "SeriesAdmin.save_model()",
                 Series,
-                data.TEST_SERIES_DATA_LIST[0],
+                data.TEST_SERIES_DATA_LIST_1[0],
             ),
             (
                 "TagAdmin.save_model()",
@@ -89,12 +89,12 @@ class AdminTests(TestCase):
             (
                 "CategoryAdmin.save_model()",
                 Categories,
-                data.TEST_CATEGORIES_DATA_LIST[0],
+                data.TEST_CATEGORIES_DATA_LIST_1[0],
             ),
             (
                 "SeriesAdmin.save_model()",
                 Series,
-                data.TEST_SERIES_DATA_LIST[0],
+                data.TEST_SERIES_DATA_LIST_1[0],
             ),
             (
                 "TagAdmin.save_model()",
