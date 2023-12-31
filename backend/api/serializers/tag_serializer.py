@@ -20,8 +20,6 @@ class TagSerializer(OBSerializer):
         fields = [
             # シリーズ名
             "name",
-            # 投稿
-            "posts",  # noqa
         ] + OBSerializer.MIXIN_FIELDS
         # 読み取り専用フィールド
         read_only_fields = OBSerializer.READ_ONLY_FIELDS

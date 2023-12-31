@@ -63,7 +63,6 @@ class Posts(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
     tags: models.ManyToManyField = models.ManyToManyField(
         Tags,
         through="PostTagRel",
-        related_name="posts",
     )
 
     def __str__(self) -> str:
