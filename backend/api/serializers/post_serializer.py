@@ -58,6 +58,7 @@ class PostSerializer(OBSerializer):
         -------
             投稿と紐付きのカテゴリー
         """
+
         rst: dict[Any, Any] = {}
         if obj.category and obj.category.is_published:
             rst = SeriesSerializer(instance=obj.category, context=self.context).data

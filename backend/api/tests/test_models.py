@@ -1,10 +1,10 @@
-from django.contrib.auth.models import User
 from django.test import TestCase
 from parameterized import parameterized  # type: ignore
 
 from api.models import Categories, Posts, Series, Tags
 from api.models.rels import PostSeriesRel, PostTagRel
 from api.tests import data
+from api.tests.functions import init_data
 
 
 class ModelsTests(TestCase):
@@ -22,35 +22,7 @@ class ModelsTests(TestCase):
             なし
         """
 
-        self.user = User.objects.create_superuser(**data.TEST_USERS_DATA[0])
-        self.category = Categories.objects.create(
-            user_created=self.user,
-            user_updated=self.user,
-            **data.TEST_CATEGORIES_DATA_LIST_1[0],
-        )
-        self.series = Series.objects.create(
-            user_created=self.user,
-            user_updated=self.user,
-            **data.TEST_SERIES_DATA_LIST_1[0],
-        )
-        self.tags = Tags.objects.create(
-            user_created=self.user,
-            user_updated=self.user,
-            **data.TEST_TAGS_DATA_LIST[0],
-        )
-        self.posts = Posts.objects.create(
-            user_created=self.user,
-            user_updated=self.user,
-            **data.TEST_POSTS_DATA_LIST[0],
-        )
-        self.post_tag_rel = PostTagRel.objects.create(
-            post=self.posts,
-            tag=self.tags,
-        )
-        self.post_series_rel = PostSeriesRel.objects.create(
-            post=self.posts,
-            series=self.series,
-        )
+        init_data()
 
     @parameterized.expand(
         [
@@ -118,18 +90,18 @@ class ModelsTests(TestCase):
             なし
         """
 
-        model_obj: Categories | Series | Tags
+        model_obj: Categories | Series | Tags | Posts | PostTagRel | PostSeriesRel
         if model == "Categories":
-            model_obj = self.category
+            model_obj = Categories.objects.get(pk=1)
         elif model == "Series":
-            model_obj = self.series
+            model_obj = Series.objects.get(pk=1)
         elif model == "Tags":
-            model_obj = self.tags
+            model_obj = Tags.objects.get(pk=1)
         elif model == "Posts":
-            model_obj = self.posts
+            model_obj = Posts.objects.get(pk=1)
         elif model == "PostTagRel":
-            model_obj = self.post_tag_rel
+            model_obj = PostTagRel.objects.get(pk=1)
         else:
-            model_obj = self.post_series_rel
+            model_obj = PostSeriesRel.objects.get(pk=1)
 
         self.assertEqual(str(model_obj), excepted, msg)
