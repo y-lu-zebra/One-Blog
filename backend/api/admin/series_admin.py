@@ -1,6 +1,9 @@
+from typing import Any
+
 from django.contrib import admin
 
 from api.admin.ob_admin import OBAdmin
+from api.admin.post_series_rel_inline import PostSeriesRelInline
 from api.models import Series
 
 
@@ -11,20 +14,10 @@ class SeriesAdmin(OBAdmin):
     """
 
     # 一覧画面に表示するフィールド
-    list_display = [
+    list_display: list[Any] = [
         # カテゴリー名
         "name",
-        # カテゴリー別名
-        "alias",
-        # 作成者
-        "user_created",
-        # 作成日時
-        "date_created",
-        # 最終更新者
-        "user_updated",
-        # 最終更新日時
-        "date_updated",
-    ]
+    ] + OBAdmin.COMMON_LIST_DISPLAY_FIELDS
     # 一覧画面にリンクで表示するフィールド
     list_display_links = [
         # カテゴリー名
@@ -42,7 +35,11 @@ class SeriesAdmin(OBAdmin):
                     "sort_order",
                     # 親カテゴリー
                     "parent",
+                    # 公開フラグ
+                    "is_published",
                 ],
             },
         ),
     ] + OBAdmin.COMMON_FIELDSETS
+    # 中間モデルを利用
+    inlines = [PostSeriesRelInline]

@@ -3,21 +3,21 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from api.models.posts import Posts
-from api.models.tags import Tags
+from api.models.series import Series
 from backend.commons import constants
 
 
-class PostTagRel(models.Model):
+class PostSeriesRel(models.Model):
     """
-    「投稿・タグ」リレーション（中間）モデル
+    「投稿・シリーズ」リレーション（中間）モデル
     """
 
     class Meta:
         db_table = constants.CODE_SEP_UNDERSCORE.join(
-            [apps.get_app_config("api").name, "post_tag_rel"]
+            [apps.get_app_config("api").name, "post_series_rel"]
         )
-        verbose_name = verbose_name_plural = _("Post Tag Relationship")
-        unique_together = ("post", "tag")
+        verbose_name = verbose_name_plural = _("Post Series Relationship")
+        unique_together = ("post", "series")
 
     # 投稿
     post: models.ForeignKey = models.ForeignKey(
@@ -25,12 +25,12 @@ class PostTagRel(models.Model):
         on_delete=models.PROTECT,
         verbose_name=_("Posts"),
     )
-    # タグ
-    tag: models.ForeignKey = models.ForeignKey(
-        Tags,
+    # シリーズ
+    series: models.ForeignKey = models.ForeignKey(
+        Series,
         on_delete=models.PROTECT,
-        verbose_name=_("Tags"),
+        verbose_name=_("Series"),
     )
 
     def __str__(self) -> str:
-        return f"{self.post}-{self.tag}"
+        return f"{self.post}-{self.series}"

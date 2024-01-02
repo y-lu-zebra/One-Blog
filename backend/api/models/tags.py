@@ -2,11 +2,17 @@ from django.apps import apps
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from api.models.mixins import CreatedMixin, LinkMixin, SEOMixin, UpdatedMixin
+from api.models.mixins import (
+    CreatedMixin,
+    LinkMixin,
+    SEOMixin,
+    StatusMixin,
+    UpdatedMixin,
+)
 from backend.commons import constants
 
 
-class Tags(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
+class Tags(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
     """
     タグモデル
     """
@@ -16,6 +22,7 @@ class Tags(LinkMixin, SEOMixin, CreatedMixin, UpdatedMixin):
             [apps.get_app_config("api").name, "tags"]
         )
         verbose_name = verbose_name_plural = _("Tags")
+        ordering = ["-sort_order", "-date_updated"]
 
     # タグ名
     name: models.CharField = models.CharField(

@@ -36,3 +36,10 @@ class LinkMixin(models.Model):
         verbose_name=_("Sort Order"),
         help_text=_("Posts with a larger value will be displayed at the top."),
     )
+    # ヒット数
+    hits_count: models.PositiveIntegerField = models.PositiveIntegerField(
+        blank=False,
+        null=False,
+        default=0,
+        verbose_name=_("Hits Count"),
+    )

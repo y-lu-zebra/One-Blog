@@ -8,5 +8,5 @@ class TagViewSet(OBViewSet):
     タグビューセット
     """
 
-    queryset = Tags.objects.order_by("-sort_order")
+    queryset = Tags.objects.filter(is_published=True).all()
     serializer_class = TagSerializer
