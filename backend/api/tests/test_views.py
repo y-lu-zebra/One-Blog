@@ -269,8 +269,8 @@ class ViewSetTests(APITestCase):
                 data.TEST_CATEGORIES_DATA_LIST_1[0],
                 201,
                 {
-                    "user_created": {"email": data.TEST_USERS_DATA[0]["email"]},
-                    "user_updated": {"email": data.TEST_USERS_DATA[0]["email"]},
+                    "userCreated": {"email": data.TEST_USERS_DATA[0]["email"]},
+                    "userUpdated": {"email": data.TEST_USERS_DATA[0]["email"]},
                 },
             ),
             (
@@ -279,8 +279,8 @@ class ViewSetTests(APITestCase):
                 data.TEST_SERIES_DATA_LIST_1[0],
                 201,
                 {
-                    "user_created": {"email": data.TEST_USERS_DATA[0]["email"]},
-                    "user_updated": {"email": data.TEST_USERS_DATA[0]["email"]},
+                    "userCreated": {"email": data.TEST_USERS_DATA[0]["email"]},
+                    "userUpdated": {"email": data.TEST_USERS_DATA[0]["email"]},
                 },
             ),
             (
@@ -289,8 +289,8 @@ class ViewSetTests(APITestCase):
                 data.TEST_TAGS_DATA_LIST[0],
                 201,
                 {
-                    "user_created": {"email": data.TEST_USERS_DATA[0]["email"]},
-                    "user_updated": {"email": data.TEST_USERS_DATA[0]["email"]},
+                    "userCreated": {"email": data.TEST_USERS_DATA[0]["email"]},
+                    "userUpdated": {"email": data.TEST_USERS_DATA[0]["email"]},
                 },
             ),
             (
@@ -299,8 +299,8 @@ class ViewSetTests(APITestCase):
                 data.TEST_POSTS_DATA_LIST[0],
                 201,
                 {
-                    "user_created": {"email": data.TEST_USERS_DATA[0]["email"]},
-                    "user_updated": {"email": data.TEST_USERS_DATA[0]["email"]},
+                    "userCreated": {"email": data.TEST_USERS_DATA[0]["email"]},
+                    "userUpdated": {"email": data.TEST_USERS_DATA[0]["email"]},
                 },
             ),
         ]
@@ -358,8 +358,8 @@ class ViewSetTests(APITestCase):
                 data.TEST_CATEGORIES_DATA_LIST_1[0],
                 200,
                 {
-                    "user_created": {"email": data.TEST_USERS_DATA[0]["email"]},
-                    "user_updated": {"email": data.TEST_USERS_DATA[1]["email"]},
+                    "userCreated": {"email": data.TEST_USERS_DATA[0]["email"]},
+                    "userUpdated": {"email": data.TEST_USERS_DATA[1]["email"]},
                 },
             ),
             (
@@ -368,8 +368,8 @@ class ViewSetTests(APITestCase):
                 data.TEST_SERIES_DATA_LIST_1[0],
                 200,
                 {
-                    "user_created": {"email": data.TEST_USERS_DATA[0]["email"]},
-                    "user_updated": {"email": data.TEST_USERS_DATA[1]["email"]},
+                    "userCreated": {"email": data.TEST_USERS_DATA[0]["email"]},
+                    "userUpdated": {"email": data.TEST_USERS_DATA[1]["email"]},
                 },
             ),
             (
@@ -378,8 +378,8 @@ class ViewSetTests(APITestCase):
                 data.TEST_TAGS_DATA_LIST[0],
                 200,
                 {
-                    "user_created": {"email": data.TEST_USERS_DATA[0]["email"]},
-                    "user_updated": {"email": data.TEST_USERS_DATA[1]["email"]},
+                    "userCreated": {"email": data.TEST_USERS_DATA[0]["email"]},
+                    "userUpdated": {"email": data.TEST_USERS_DATA[1]["email"]},
                 },
             ),
             (
@@ -388,8 +388,8 @@ class ViewSetTests(APITestCase):
                 data.TEST_POSTS_DATA_LIST[0],
                 200,
                 {
-                    "user_created": {"email": data.TEST_USERS_DATA[0]["email"]},
-                    "user_updated": {"email": data.TEST_USERS_DATA[1]["email"]},
+                    "userCreated": {"email": data.TEST_USERS_DATA[0]["email"]},
+                    "userUpdated": {"email": data.TEST_USERS_DATA[1]["email"]},
                 },
             ),
         ]

@@ -21,6 +21,8 @@ FILE_ENV_TEST = ".env.test"
 DIR_APP_BASE = "backend"
 # 静的ファイルのフォルダ名
 DIR_STATIC = "static"
+# 翻訳ファイルのフォルダ名
+DIR_LOCALE = "locale"
 
 # プロジェクトのルートパス
 PATH_PROJECT = str(Path(__file__).resolve().parent.parent.parent.parent)
@@ -32,6 +34,8 @@ PATH_ENV = os.path.join(PATH_PROJECT, FILE_ENV)
 PATH_ENV_TEST = os.path.join(PATH_PROJECT, FILE_ENV_TEST)
 # 静的ファイルのフォルダの絶対パス
 PATH_STATIC = os.path.join(PATH_BACKEND, DIR_APP_BASE, DIR_STATIC)
+# 翻訳ファイルのフォルダの絶対パス
+PATH_LOCALE = os.path.join(PATH_BACKEND, DIR_LOCALE)
 
 """
 各種コード関連
