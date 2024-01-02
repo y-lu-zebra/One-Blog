@@ -2,8 +2,8 @@
 # One Blog Management Shell
 # =========================
 
-# 処理名の配列（初期化 ユーザー作成 開発サーバー起動 リントチェック 単体試験）
-process=("init" "create-user" "start" "lint" "ut")
+# 処理名の配列（初期化 ユーザー作成 開発サーバー起動 リントチェック 単体試験 言語メッセージ更新 ビルド）
+process=("init" "create-user" "start" "lint" "ut" "message" "build")
 # オプションの配列
 mode=("--dev" "--prod")
 
@@ -104,6 +104,16 @@ case $1 in
     if coverage run manage.py test; then
       coverage report;coverage html
     fi
+    ;;
+  # 言語メッセージ更新
+  "${process[5]}" )
+    cd backend || exit
+    python manage.py makemessages -l ja
+    ;;
+  # ビルド
+  "${process[6]}" )
+    cd backend || exit
+    python manage.py compilemessages
     ;;
   * )
     printError

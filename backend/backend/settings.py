@@ -55,6 +55,7 @@ MIDDLEWARE: list[str] = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 # ルート URLconf
@@ -120,6 +121,9 @@ USE_I18N: bool = True
 
 # 時刻自動変換（タイムゾーンに合わせ）
 USE_TZ: bool = True
+
+# 翻訳ファイルの絶対パス
+LOCALE_PATHS = [constants.PATH_LOCALE]
 
 # 静的ファイルの場所（CSS, JavaScript, Images）
 STATICFILES_DIRS: list[str] = [constants.PATH_STATIC]
