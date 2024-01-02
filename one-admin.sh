@@ -76,6 +76,11 @@ case $1 in
     python backend/manage.py migrate > /dev/null
     printResult $?
 
+    # 言語パッケージをコンパイル
+    echo " Compiling messages"
+    python backend/manage.py compilemessages > /dev/null
+    printResult $?
+
     # フロントエンドの依存パッケージをインストール
     echo " Installing npm requirements"
     cd frontend || exit
