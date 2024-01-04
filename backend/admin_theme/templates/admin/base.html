@@ -1,4 +1,4 @@
-{% load i18n static tailwind_tags %}<!DOCTYPE html>
+{% load i18n static %}<!DOCTYPE html>
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -7,7 +7,6 @@
     dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
 <head>
     <title>{% block title %}{% endblock %}</title>
-    {% tailwind_css %}
     <link
         rel="stylesheet"
         href="{% block stylesheet %}{% static "css/base.css" %}{% endblock %}">
