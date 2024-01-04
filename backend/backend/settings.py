@@ -43,6 +43,8 @@ INSTALLED_APPS: list[str] = [
     "rest_framework",
     "django_filters",
     "api.apps.ApiConfig",
+    "tailwind",
+    "admin_theme",
 ]
 
 # ミドルウェア
@@ -66,7 +68,7 @@ ROOT_URLCONF: str = "backend.urls"
 TEMPLATES: list[dict] = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [constants.PATH_TEMPLATE],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -200,6 +202,13 @@ REST_FRAMEWORK: dict = {
     # テストリクエストフォーマット
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
+
+# ========== Django Tailwind 設定 =======================================================
+
+TAILWIND_APP_NAME = "admin_theme"
+
+if DEBUG:
+    INTERNAL_IPS = ["127.0.0.1"]
 
 # ========== CORS 設定 ==================================================================
 
