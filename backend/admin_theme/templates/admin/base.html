@@ -10,7 +10,7 @@
     {% tailwind_css %}
     <link
         rel="stylesheet"
-        href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+        href="{% block stylesheet %}{% static "css/base.css" %}{% endblock %}">
     {% block dark-mode-vars %}
         <link rel="stylesheet" href="{% static "admin/css/dark_mode.css" %}">
         <script src="{% static "admin/js/theme.js" %}" defer></script>
@@ -46,7 +46,7 @@
 </head>
 
 <body class="
-        bg-gray-50 font-serif leading-normal tracking-normal
+        font-sans
         {% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
     data-admin-utc-offset="{% now "Z" %}">
 <a href="#content-start" class="skip-to-content-link">
