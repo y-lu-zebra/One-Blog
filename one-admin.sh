@@ -63,6 +63,11 @@ case $1 in
     python -m pip install -r "backend/requirements/${file}.txt" > /dev/null
     printResult $?
 
+    # バックエンド Tailwind の依存パッケージをインストール
+    echo " Installing Django-Tailwind requirements"
+    python backend/manage.py tailwind install > /dev/null
+    printResult $?
+
     # Git プレコミットをインストール
     if [ "$2" = "${mode[0]}" ]; then
       echo " Installing pre-commit hook"
@@ -117,8 +122,15 @@ case $1 in
     ;;
   # ビルド
   "${process[6]}" )
-    cd backend || exit
-    python manage.py compilemessages
+    # バックエンド・メッセージをビルド
+    echo " Compile backend messages"
+    python backend/manage.py compilemessages > /dev/null
+    printResult $?
+
+    # バックエンド Tailwind をビルド
+    echo " Compile backend tailwind"
+    python backend/manage.py tailwind build > /dev/null
+    printResult $?
     ;;
   * )
     printError
