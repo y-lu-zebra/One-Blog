@@ -14,7 +14,7 @@ html[data-theme='light'],
   --body-bg: rgba(155, 18, 51, 1);
   --body-bg-dark: rgba(58, 9, 41, 1);
   --body-bg-widget: rgba(0, 0, 0, 0.3);
-  --body-quiet-color: #ddd;
+  --body-quiet-color: rgba(255, 255, 255, 0.4);
   --body-loud-color: #000;
 
   --header-color: #aaa;
@@ -25,22 +25,22 @@ html[data-theme='light'],
   --breadcrumbs-fg: var(--body-fg);
   --breadcrumbs-link-fg: var(--primary);
 
-  --link-fg: #fff;
+  --link-fg: var(--secondary);
   --link-hover-color: #fff;
   --link-selected-fg: #5b80b2;
 
   --hairline-color: rgba(255, 255, 255, 0.2);
-  --border-color: #ccc;
+  --border-color: rgba(255, 255, 255, 0.2);
 
   --error-fg: #ba2121;
 
   --message-success-bg: #dfd;
   --message-warning-bg: #ffc;
-  --message-error-bg: #ffefef;
+  --message-error-bg: #000;
 
-  --darkened-bg: #f8f8f8; /* A bit darker than --body-bg */
+  --darkened-bg: rgba(58, 9, 41, 0); /* A bit darker than --body-bg */
   --selected-bg: #e4e4e4; /* E.g. selected table cells */
-  --selected-row: #ffc;
+  --selected-row: var(--close-button-bg);
 
   --button-fg: #fff;
   --button-bg: var(--primary);
@@ -925,8 +925,8 @@ a.deletelink:hover {
 }
 
 .skip-to-content-link:focus {
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
 }
 
 #content {
