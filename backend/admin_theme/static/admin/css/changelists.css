@@ -49,8 +49,7 @@
 
 #changelist .paginator {
   color: var(--body-quiet-color);
-  border-bottom: 1px solid var(--hairline-color);
-  background: var(--body-bg);
+  background: var(--darkened-bg);
   overflow: hidden;
 }
 
@@ -60,6 +59,7 @@
   padding: 0;
   white-space: nowrap;
   vertical-align: middle;
+  background: var(--close-button-bg);
 }
 
 #changelist table thead th.action-checkbox-column {
@@ -78,9 +78,8 @@
 /* TOOLBAR */
 
 #toolbar {
-  padding: 8px 10px;
+  padding: 8px 10px 16px;
   margin-bottom: 15px;
-  border-top: 1px solid var(--hairline-color);
   border-bottom: 1px solid var(--hairline-color);
   background: var(--darkened-bg);
   color: var(--body-quiet-color);
@@ -97,7 +96,7 @@
   height: 1.1875rem;
   border: 1px solid var(--border-color);
   padding: 2px 5px;
-  margin: 0;
+  margin: 0 0.5rem 0 0;
   vertical-align: top;
   font-size: 0.8125rem;
   max-width: 100%;
@@ -108,25 +107,29 @@
 }
 
 #toolbar form input[type='submit'] {
-  border: 1px solid var(--border-color);
   font-size: 0.8125rem;
+  border-radius: 3px;
+  vertical-align: middle;
+  background: var(--button-bg);
+  cursor: pointer;
+  height: 1.5rem;
+  line-height: 1;
   padding: 4px 8px;
   margin: 0;
-  vertical-align: middle;
-  background: var(--body-bg);
-  box-shadow: 0 -15px 20px -10px rgba(0, 0, 0, 0.15) inset;
-  cursor: pointer;
   color: var(--body-fg);
+  transition: all 0.15s;
 }
 
 #toolbar form input[type='submit']:focus,
 #toolbar form input[type='submit']:hover {
-  border-color: var(--body-quiet-color);
+  background: var(--button-hover-bg);
 }
 
 #changelist-search img {
   vertical-align: middle;
   margin-right: 4px;
+  padding-bottom: 3px;
+  opacity: 0.7;
 }
 
 #changelist-search .help {
@@ -146,7 +149,7 @@
 #changelist-filter h2 {
   font-size: 0.875rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   padding: 5px 15px;
   margin-bottom: 12px;
   border-bottom: none;
@@ -271,8 +274,8 @@
 }
 
 #changelist .actions {
-  padding: 10px;
-  background: var(--body-bg);
+  padding: 1rem 0.5rem 1.5rem;
+  background: var(--darkened-bg);
   border-top: none;
   border-bottom: none;
   line-height: 1.5rem;
@@ -297,18 +300,21 @@
   height: 1.5rem;
   color: var(--body-fg);
   border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border-radius: 3px;
+  background-color: var(--darkened-bg);
   font-size: 0.875rem;
   padding: 0 0 0 4px;
-  margin: 0;
-  margin-left: 10px;
+  margin: 0 0 0 10px;
+  transition: all 0.15s;
 }
 
 #changelist .actions select:focus {
   border-color: var(--body-quiet-color);
+  outline: none;
 }
 
 #changelist .actions label {
+  padding-right: 0.5rem;
   display: inline-block;
   vertical-align: middle;
   font-size: 0.8125rem;
@@ -316,10 +322,8 @@
 
 #changelist .actions .button {
   font-size: 0.8125rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  background: var(--body-bg);
-  box-shadow: 0 -15px 20px -10px rgba(0, 0, 0, 0.15) inset;
+  border-radius: 3px;
+  background: var(--object-tools-bg);
   cursor: pointer;
   height: 1.5rem;
   line-height: 1;
@@ -330,5 +334,6 @@
 
 #changelist .actions .button:focus,
 #changelist .actions .button:hover {
-  border-color: var(--body-quiet-color);
+  color: var(--object-tools-fg);
+  background-color: var(--object-tools-hover-bg);
 }

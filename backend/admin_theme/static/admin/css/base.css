@@ -15,7 +15,7 @@ html[data-theme='light'],
   --body-bg-dark: rgba(58, 9, 41, 1);
   --body-bg-widget: rgba(0, 0, 0, 0.3);
   --body-quiet-color: rgba(255, 255, 255, 0.4);
-  --body-loud-color: #000;
+  --body-loud-color: rgba(255, 255, 255, 0.9);
 
   --header-color: #aaa;
   --header-branding-color: var(--accent);
@@ -26,6 +26,7 @@ html[data-theme='light'],
   --breadcrumbs-link-fg: var(--primary);
 
   --link-fg: var(--secondary);
+  --link-heighlight-fg: #ffc107;
   --link-hover-color: #fff;
   --link-selected-fg: #5b80b2;
 
@@ -40,15 +41,15 @@ html[data-theme='light'],
 
   --darkened-bg: rgba(58, 9, 41, 0); /* A bit darker than --body-bg */
   --selected-bg: #e4e4e4; /* E.g. selected table cells */
-  --selected-row: var(--close-button-bg);
+  --selected-row: rgba(255, 255, 255, 0.2);
 
-  --button-fg: #fff;
-  --button-bg: var(--primary);
-  --button-hover-bg: #609ab6;
-  --default-button-bg: var(--secondary);
-  --default-button-hover-bg: #205067;
-  --close-button-bg: rgba(255, 255, 255, 0.2);
-  --close-button-hover-bg: rgba(255, 255, 255, 0.3);
+  --button-fg: rgba(255, 255, 255, 1);
+  --button-bg: rgba(255, 255, 255, 0.2);
+  --button-hover-bg: rgba(255, 255, 255, 0.3);
+  --default-button-bg: var(--button-bg);
+  --default-button-hover-bg: var(--button-hover-bg);
+  --close-button-bg: var(--button-bg);
+  --close-button-hover-bg: var(--button-hover-bg);
   --delete-button-bg: #ba2121;
   --delete-button-hover-bg: #a41515;
 
@@ -333,7 +334,7 @@ tfoot td {
   font-size: 0.6875rem;
   background: var(--body-bg);
   border: none;
-  border-top: 1px solid var(--hairline-color);
+  /*border-top: 1px solid var(--hairline-color);*/
   border-bottom: 1px solid var(--hairline-color);
 }
 
@@ -397,7 +398,7 @@ table thead th .text a {
 
 table thead th .text a:focus,
 table thead th .text a:hover {
-  background: var(--selected-bg);
+  background: var(--selected-row);
 }
 
 thead th.sorted a.sortremove {
@@ -508,11 +509,12 @@ textarea,
 select,
 .vTextField {
   border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border-radius: 3px;
   padding: 5px 6px;
   margin-top: 0;
   color: var(--body-fg);
-  background-color: var(--body-bg);
+  background-color: var(--darkened-bg);
+  transition: all 0.15s;
 }
 
 input[type='text']:focus,
@@ -525,6 +527,7 @@ textarea:focus,
 select:focus,
 .vTextField:focus {
   border-color: var(--body-quiet-color);
+  outline: none;
 }
 
 select {
@@ -547,7 +550,7 @@ a.button {
   background: var(--button-bg);
   padding: 10px 15px;
   border: none;
-  border-radius: 4px;
+  border-radius: 3px;
   color: var(--button-fg);
   cursor: pointer;
   transition: background 0.15s;
@@ -658,19 +661,24 @@ input[type='button'][disabled].default {
 
 ul.messagelist {
   padding: 0;
-  margin: 0;
+  margin: 8px 40px 20px;
 }
 
 ul.messagelist li {
   display: block;
   font-weight: 400;
   font-size: 0.8125rem;
-  padding: 10px 10px 10px 65px;
+  padding: 10px 10px 10px 3rem;
   margin: 0 0 10px 0;
-  background: var(--message-success-bg) url(../img/icon-yes.svg) 40px 12px no-repeat;
+  background: var(--body-bg-widget) url(../img/icon-yes.svg) 1rem 12px no-repeat;
   background-size: 16px auto;
+  border-radius: 3px;
   color: var(--body-fg);
   word-break: break-word;
+}
+
+ul.messagelist li a {
+  color: var(--link-heighlight-fg);
 }
 
 ul.messagelist li.warning {
@@ -884,8 +892,6 @@ a.deletelink:hover {
 
 #change-history .paginator {
   color: var(--body-quiet-color);
-  border-bottom: 1px solid var(--hairline-color);
-  background: var(--body-bg);
   overflow: hidden;
 }
 
@@ -930,7 +936,7 @@ a.deletelink:hover {
 }
 
 #content {
-  padding: 20px 40px;
+  padding: 8px 40px 20px;
 }
 
 .dashboard #content {
@@ -1174,7 +1180,6 @@ a.deletelink:hover {
   padding-bottom: 10px;
   line-height: 22px;
   margin: 0;
-  border-top: 1px solid var(--hairline-color);
   width: 100%;
 }
 
