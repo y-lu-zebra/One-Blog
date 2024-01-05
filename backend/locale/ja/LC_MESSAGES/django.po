@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-02 14:32+0900\n"
+"POT-Creation-Date: 2024-01-05 11:52+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
 #: api/admin/ob_admin.py:31
 msgid "Advanced options"
 msgstr "アドバンスオプション"
@@ -56,6 +57,10 @@ msgstr "親カテゴリー"
 #: api/models/mixins/created_mixin.py:21
 msgid "Created User"
 msgstr "作成者"
+
+#: api/models/mixins/created_mixin.py:26
+msgid "Created Date"
+msgstr "作成日時"
 
 #: api/models/mixins/link_mixin.py:18
 msgid "Alias"
@@ -101,6 +106,10 @@ msgstr "公開"
 #: api/models/mixins/updated_mixin.py:21
 msgid "Updated User"
 msgstr "最終更新者"
+
+#: api/models/mixins/updated_mixin.py:26
+msgid "Updated Date"
+msgstr "最終更新日時"
 
 #: api/models/posts.py:27 api/models/rels/post_series_rel.py:26
 #: api/models/rels/post_tag_rel.py:26
