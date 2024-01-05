@@ -67,7 +67,7 @@ ROOT_URLCONF: str = "backend.urls"
 TEMPLATES: list[dict] = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [constants.PATH_TEMPLATE],
+        "DIRS": constants.PATH_TEMPLATE_LIST,
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -128,7 +128,7 @@ USE_TZ: bool = True
 LOCALE_PATHS = [constants.PATH_LOCALE]
 
 # 静的ファイルの場所（CSS, JavaScript, Images）
-STATICFILES_DIRS: list[str] = [constants.PATH_STATIC]
+STATICFILES_DIRS: list[str] = constants.PATH_STATIC_LIST
 
 # 静的ファイルの URL
 STATIC_URL: str = f"{env('API_STATIC_URL')}{constants.CODE_SEP_URL}"
