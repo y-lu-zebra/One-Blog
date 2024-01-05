@@ -43,6 +43,7 @@ INSTALLED_APPS: list[str] = [
     "rest_framework",
     "django_filters",
     "api.apps.ApiConfig",
+    "admin_theme",
 ]
 
 # ミドルウェア
@@ -66,7 +67,7 @@ ROOT_URLCONF: str = "backend.urls"
 TEMPLATES: list[dict] = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": constants.PATH_TEMPLATE_LIST,
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -127,7 +128,7 @@ USE_TZ: bool = True
 LOCALE_PATHS = [constants.PATH_LOCALE]
 
 # 静的ファイルの場所（CSS, JavaScript, Images）
-STATICFILES_DIRS: list[str] = [constants.PATH_STATIC]
+STATICFILES_DIRS: list[str] = constants.PATH_STATIC_LIST
 
 # 静的ファイルの URL
 STATIC_URL: str = f"{env('API_STATIC_URL')}{constants.CODE_SEP_URL}"
@@ -207,6 +208,9 @@ REST_FRAMEWORK: dict = {
 CORS_ALLOWED_ORIGINS: list[str] = [env("APP_URL")]
 
 # ========== One Blog 設定 ==============================================================
+
+# アプリ名称
+APP_NAME = env("APP_NAME")
 
 # API の管理画面の URL
 APP_URL_ADMIN = env("APP_URL_ADMIN")

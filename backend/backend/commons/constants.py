@@ -7,6 +7,7 @@ from pathlib import Path
 """
 アプリ設定
 """
+# アプリバージョン
 VERSION = "0.1.0"
 
 """
@@ -23,6 +24,8 @@ DIR_APP_BASE = "backend"
 DIR_STATIC = "static"
 # 翻訳ファイルのフォルダ名
 DIR_LOCALE = "locale"
+# テンプレートのフォルダ名
+DIR_TEMPLATE = "templates"
 
 # プロジェクトのルートパス
 PATH_PROJECT = str(Path(__file__).resolve().parent.parent.parent.parent)
@@ -33,9 +36,11 @@ PATH_ENV = os.path.join(PATH_PROJECT, FILE_ENV)
 # 設定ファイル（テスト用）の絶対パス
 PATH_ENV_TEST = os.path.join(PATH_PROJECT, FILE_ENV_TEST)
 # 静的ファイルのフォルダの絶対パス
-PATH_STATIC = os.path.join(PATH_BACKEND, DIR_APP_BASE, DIR_STATIC)
+PATH_STATIC_LIST = [os.path.join(PATH_BACKEND, "admin_theme", DIR_STATIC)]
 # 翻訳ファイルのフォルダの絶対パス
 PATH_LOCALE = os.path.join(PATH_BACKEND, DIR_LOCALE)
+# テンプレートのフォルダの絶対パス
+PATH_TEMPLATE_LIST = [os.path.join(PATH_BACKEND, "admin_theme", DIR_TEMPLATE)]
 
 """
 各種コード関連

@@ -3,9 +3,15 @@ URL 設定
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import RedirectView
 
 from backend import settings
+
+# 管理サイト名変更
+admin.site.site_header = settings.APP_NAME + " " + _("Admin Site")
+# インデックスページタイトル変更
+admin.site.index_title = _("Dashboard")
 
 urlpatterns = [
     # API アプリ

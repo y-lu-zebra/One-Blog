@@ -23,4 +23,5 @@ class CreatedMixin(models.Model):
     # 作成日時
     date_created: models.DateTimeField = models.DateTimeField(
         auto_now_add=True,
+        verbose_name=_("Created Date"),
     )

@@ -1,0 +1,165 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-05 12:23+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: api/admin/ob_admin.py:31
+msgid "Advanced options"
+msgstr "アドバンスオプション"
+
+#: api/admin/ob_admin.py:42
+msgid "SEO Information"
+msgstr "SEO 情報"
+
+#: api/models/categories.py:22 api/models/posts.py:55
+msgid "Category"
+msgstr "カテゴリー"
+
+#: api/models/categories.py:23
+msgid "Single Page"
+msgstr "単独ページ"
+
+#: api/models/categories.py:24
+msgid "External Page"
+msgstr "外部ページ"
+
+#: api/models/categories.py:31
+msgid "Categories"
+msgstr "カテゴリー"
+
+#: api/models/categories.py:39
+msgid "Category Name"
+msgstr "カテゴリー名"
+
+#: api/models/categories.py:48
+msgid "Category Type"
+msgstr "カテゴリータイプ"
+
+#: api/models/categories.py:56
+msgid "Parent Category"
+msgstr "親カテゴリー"
+
+#: api/models/mixins/created_mixin.py:21
+msgid "Created User"
+msgstr "作成者"
+
+#: api/models/mixins/created_mixin.py:26
+msgid "Created Date"
+msgstr "作成日時"
+
+#: api/models/mixins/link_mixin.py:18
+msgid "Alias"
+msgstr "別名"
+
+#: api/models/mixins/link_mixin.py:25
+msgid "URL"
+msgstr "URL"
+
+#: api/models/mixins/link_mixin.py:27
+msgid ""
+"When you click on a post with a URL set, you will be redirected to this URL."
+msgstr "URL が設定された投稿をクリックすると、この URL の設定値に遷移する。"
+
+#: api/models/mixins/link_mixin.py:36
+msgid "Sort Order"
+msgstr "並び順"
+
+#: api/models/mixins/link_mixin.py:37
+msgid "Posts with a larger value will be displayed at the top."
+msgstr "設定値が大きいほど上位に表示される。"
+
+#: api/models/mixins/link_mixin.py:44
+msgid "Hits Count"
+msgstr "ヒット数"
+
+#: api/models/mixins/seo_mixin.py:18
+msgid "Meta Title"
+msgstr "メタタイトル"
+
+#: api/models/mixins/seo_mixin.py:24
+msgid "Meta Description"
+msgstr "メタデスクリプション"
+
+#: api/models/mixins/seo_mixin.py:30
+msgid "Meta Keywords"
+msgstr "メタキーワード"
+
+#: api/models/mixins/status_mixin.py:18
+msgid "Is Published"
+msgstr "公開"
+
+#: api/models/mixins/updated_mixin.py:21
+msgid "Updated User"
+msgstr "最終更新者"
+
+#: api/models/mixins/updated_mixin.py:26
+msgid "Updated Date"
+msgstr "最終更新日時"
+
+#: api/models/posts.py:27 api/models/rels/post_series_rel.py:26
+#: api/models/rels/post_tag_rel.py:26
+msgid "Posts"
+msgstr "投稿"
+
+#: api/models/posts.py:35
+msgid "Post Title"
+msgstr "タイトル"
+
+#: api/models/posts.py:41
+msgid "Post Overview"
+msgstr "概要"
+
+#: api/models/posts.py:47
+msgid "Post Content"
+msgstr "内容"
+
+#: api/models/rels/post_series_rel.py:19
+msgid "Post Series Relationship"
+msgstr "投稿とシリーズのリレションシップ"
+
+#: api/models/rels/post_series_rel.py:32 api/models/series.py:24
+msgid "Series"
+msgstr "シリーズ"
+
+#: api/models/rels/post_tag_rel.py:19
+msgid "Post Tag Relationship"
+msgstr "投稿とタグのリレションシップ"
+
+#: api/models/rels/post_tag_rel.py:32 api/models/tags.py:24
+msgid "Tags"
+msgstr "タグ"
+
+#: api/models/series.py:32
+msgid "Series Name"
+msgstr "シリーズ名"
+
+#: api/models/series.py:40
+msgid "Parent Series"
+msgstr "親シリーズ"
+
+#: api/models/tags.py:32
+msgid "Tag Name"
+msgstr "タグ名"
+
+#: backend/urls.py:12
+msgid "Admin Site"
+msgstr "管理"
+
+#: backend/urls.py:14
+msgid "Dashboard"
+msgstr "ダッシュボード"

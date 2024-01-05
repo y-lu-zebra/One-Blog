@@ -23,4 +23,5 @@ class UpdatedMixin(models.Model):
     # 最終更新日時
     date_updated: models.DateTimeField = models.DateTimeField(
         auto_now=True,
+        verbose_name=_("Updated Date"),
     )
