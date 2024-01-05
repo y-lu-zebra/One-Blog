@@ -209,5 +209,8 @@ CORS_ALLOWED_ORIGINS: list[str] = [env("APP_URL")]
 
 # ========== One Blog 設定 ==============================================================
 
+# アプリ名称
+APP_NAME = env("APP_NAME")
+
 # API の管理画面の URL
 APP_URL_ADMIN = env("APP_URL_ADMIN")

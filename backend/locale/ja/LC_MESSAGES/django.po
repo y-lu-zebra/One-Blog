@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 11:52+0900\n"
+"POT-Creation-Date: 2024-01-05 12:23+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,3 +155,11 @@ msgstr "親シリーズ"
 #: api/models/tags.py:32
 msgid "Tag Name"
 msgstr "タグ名"
+
+#: backend/urls.py:12
+msgid "Admin Site"
+msgstr "管理"
+
+#: backend/urls.py:14
+msgid "Dashboard"
+msgstr "ダッシュボード"
