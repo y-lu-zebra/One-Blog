@@ -268,7 +268,7 @@ a.active.selector-clearall:hover {
 }
 
 .stacked .active.selector-remove {
-  background-position: 0 0px;
+  background-position: 0 0;
   cursor: pointer;
 }
 

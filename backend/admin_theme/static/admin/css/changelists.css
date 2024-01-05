@@ -201,19 +201,21 @@
 }
 
 #changelist-filter a {
+  padding: 0.5rem;
   display: block;
   color: var(--body-quiet-color);
+  background: var(--button-bg);
   word-break: break-word;
 }
 
 #changelist-filter li.selected {
-  border-left: 5px solid var(--hairline-color);
-  padding-left: 10px;
+  padding-left: 15px;
   margin-left: -15px;
 }
 
 #changelist-filter li.selected a {
   color: var(--link-selected-fg);
+  background: var(--button-hover-bg);
 }
 
 #changelist-filter a:focus,
@@ -221,6 +223,7 @@
 #changelist-filter li.selected a:focus,
 #changelist-filter li.selected a:hover {
   color: var(--link-hover-color);
+  text-decoration: none;
 }
 
 #changelist-filter #changelist-filter-clear a {

@@ -28,12 +28,12 @@ html[data-theme='light'],
   --link-fg: var(--secondary);
   --link-heighlight-fg: #ffc107;
   --link-hover-color: #fff;
-  --link-selected-fg: #5b80b2;
+  --link-selected-fg: #fff;
 
   --hairline-color: rgba(255, 255, 255, 0.2);
   --border-color: rgba(255, 255, 255, 0.2);
 
-  --error-fg: #ba2121;
+  --error-fg: var(--link-heighlight-fg);
 
   --message-success-bg: #dfd;
   --message-warning-bg: #ffc;
@@ -649,7 +649,7 @@ input[type='button'][disabled].default {
 .module caption,
 .inline-group h2 {
   font-size: 0.75rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
@@ -682,12 +682,12 @@ ul.messagelist li a {
 }
 
 ul.messagelist li.warning {
-  background: var(--message-warning-bg) url(../img/icon-alert.svg) 40px 14px no-repeat;
-  background-size: 14px auto;
+  background: var(--body-bg-widget) url(../img/icon-alert.svg) 1rem 12px no-repeat;
+  background-size: 16px auto;
 }
 
 ul.messagelist li.error {
-  background: var(--message-error-bg) url(../img/icon-no.svg) 40px 12px no-repeat;
+  background: var(--body-bg-widget) url(../img/icon-no.svg) 40px 12px no-repeat;
   background-size: 16px auto;
 }
 
@@ -698,9 +698,8 @@ ul.messagelist li.error {
   padding: 10px 12px;
   margin: 0 0 10px 0;
   color: var(--error-fg);
-  border: 1px solid var(--error-fg);
-  border-radius: 4px;
-  background-color: var(--body-bg);
+  border-radius: 3px;
+  background-color: var(--body-bg-widget);
   background-position: 5px 12px;
   overflow-wrap: break-word;
 }
@@ -709,7 +708,6 @@ ul.errorlist {
   margin: 0 0 4px;
   padding: 0;
   color: var(--error-fg);
-  background: var(--body-bg);
 }
 
 ul.errorlist li {
@@ -853,7 +851,7 @@ a.deletelink:hover {
   font-weight: 400;
   font-size: 0.6875rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .object-tools a:focus,
@@ -1061,7 +1059,7 @@ a.deletelink:hover {
   padding: 0;
   font-weight: 300;
   font-size: 0.6875rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
@@ -1130,7 +1128,7 @@ a.deletelink:hover {
 
 .delete-confirmation form input[type='submit'] {
   background: var(--delete-button-bg);
-  border-radius: 4px;
+  border-radius: 3px;
   padding: 10px 15px;
   color: var(--button-fg);
 }
@@ -1146,7 +1144,7 @@ a.deletelink:hover {
   vertical-align: middle;
   height: 0.9375rem;
   line-height: 0.9375rem;
-  border-radius: 4px;
+  border-radius: 3px;
   padding: 10px 15px;
   color: var(--button-fg);
   background: var(--close-button-bg);
