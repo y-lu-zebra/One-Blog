@@ -5,12 +5,11 @@ interface User {
   is_staff: string
 }
 
-const fetchUsers: () => Promise<User[]> = async () => {
-  const res: Response = await fetch(`${process.env.API_URL}/users/`)
-  return (await res.json()) as Promise<User[]>
-}
-
 export default async function Page() {
+  const fetchUsers: () => Promise<User[]> = async () => {
+    const res: Response = await fetch(`${process.env.API_URL}/users/`)
+    return (await res.json()) as Promise<User[]>
+  }
   const users: User[] = await fetchUsers()
   console.log('users: ', users)
   return (
