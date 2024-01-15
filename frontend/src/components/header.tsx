@@ -1,37 +1,57 @@
 import Image from 'next/legacy/image'
+// import Link from 'next/link'
 import React from 'react'
 
-interface HeaderProps {
-  menu: Category[]
-}
+import { constants } from '@/lib/constants'
+import styles from '@/styles/header.module.css'
+// import { Category } from '@/types/category'
 
-export default function Header(props: HeaderProps) {
+// interface HeaderProps {
+//   navItems: Category[]
+// }
+
+/**
+ * ヘッダー・コンポーネント
+ *
+ * @constructor
+ */
+export default function Header() {
   return (
-    <header className="md:container md:mx-auto px-4">
-      <nav className="flex justify-between">
-        <div className="logo-panel">
-          <a className="logo-link" href="">
+    <header className={styles.header}>
+      <nav className={styles.headerContainer}>
+        <menu className={styles.menuPanel}>
+          {/*  <ul className="columns-2">*/}
+          {/*    <li className="py-5">*/}
+          {/*      <Link href={''}>ABC</Link>*/}
+          {/*    </li>*/}
+          {/*    <li className="py-5">*/}
+          {/*      <Link href={''}>DEF</Link>*/}
+          {/*    </li>*/}
+          {/*  </ul>*/}
+        </menu>
+        <div className={styles.logoPanel}>
+          <a className="logoLink" href={constants.UI_URL_ROOT}>
             <Image
-              className="logo-img"
+              className="logoImg"
               src="/logo.svg"
-              alt="One Blog"
+              alt={process.env.APP_NAME}
               width={60}
               height={60}
               priority
             />
           </a>
         </div>
-        <div className="nav-panel">
-          <ul className="nav-list flex justify-normal">
-            {props.menu.map((cat: Category, idx: number) => {
-              return (
-                <li key={idx} className="nav-item">
-                  <button type="button">{cat.name}</button>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
+        <menu className={styles.menuPanel}>
+          {/*  <ul className={`columns-${props.navItems.length}`}>*/}
+          {/*    {props.navItems.map((cat: Category, idx: number) => {*/}
+          {/*      return (*/}
+          {/*        <li key={idx} className="py-5">*/}
+          {/*          <button type="button">{cat.name}</button>*/}
+          {/*        </li>*/}
+          {/*      )*/}
+          {/*    })}*/}
+          {/*  </ul>*/}
+        </menu>
       </nav>
     </header>
   )
