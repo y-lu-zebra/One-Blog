@@ -1,0 +1,4 @@
+.main {
+  @apply m-auto
+  container;
+}

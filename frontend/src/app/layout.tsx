@@ -1,5 +1,5 @@
 import 'tw-elements-react/dist/css/tw-elements-react.min.css'
-import './globals.css'
+import '@/styles/globals.css'
 
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'

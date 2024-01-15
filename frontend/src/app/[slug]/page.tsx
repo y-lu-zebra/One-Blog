@@ -1,4 +1,9 @@
+import React from 'react'
+
+import Footer from '@/components/footer'
+import Header from '@/components/header'
 import { fetchPost } from '@/lib/api'
+import styles from '@/styles/home.module.css'
 
 interface PostProps {
   params: { slug: number }
@@ -9,5 +14,14 @@ export default async function Post(props: PostProps) {
   console.log('slug: ', slug)
   const post = await fetchPost(slug)
 
-  return <>{post.content}</>
+  return (
+    <>
+      <Header></Header>
+      <main className={styles.main}>
+        <h1>{post.title}</h1>
+        <div className="postContent">{post.content}</div>
+      </main>
+      <Footer></Footer>
+    </>
+  )
 }
