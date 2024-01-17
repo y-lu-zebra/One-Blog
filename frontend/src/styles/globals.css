@@ -10,3 +10,7 @@
 }
 @tailwind components;
 @tailwind utilities;
+
+.main .mainContainer {
+  @apply p-4 m-auto container;
+}

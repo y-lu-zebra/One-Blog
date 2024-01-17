@@ -1,12 +1,17 @@
 import React from 'react'
+import Markdown from 'react-markdown'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import remarkGfm from 'remark-gfm'
 
 import Footer from '@/components/footer'
 import Header from '@/components/header'
 import { fetchPost } from '@/lib/api'
-import styles from '@/styles/home.module.css'
+import styles from '@/styles/post.module.css'
 
 interface PostProps {
   params: { slug: number }
+  children: React.ReactElement
 }
 
 export default async function Post(props: PostProps) {
@@ -17,9 +22,35 @@ export default async function Post(props: PostProps) {
   return (
     <>
       <Header></Header>
-      <main className={styles.main}>
-        <h1>{post.title}</h1>
-        <div className="postContent">{post.content}</div>
+      <main className="main">
+        <div className="mainContainer">
+          <h1 className={styles.postTitle}>{post.title}</h1>
+          <div className={styles.postContent}>
+            <Markdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                code(props) {
+                  const { children, className } = props
+                  const match = /language-(\w+)/.exec(className || '')
+                  return match ? (
+                    <SyntaxHighlighter
+                      PreTag="div"
+                      language={match[1]}
+                      style={tomorrow}
+                      showLineNumbers={true}
+                    >
+                      {String(children).replace(/\n$/, '')}
+                    </SyntaxHighlighter>
+                  ) : (
+                    <code className={className}>{children}</code>
+                  )
+                },
+              }}
+            >
+              {post.content}
+            </Markdown>
+          </div>
+        </div>
       </main>
       <Footer></Footer>
     </>

@@ -1,4 +1,3 @@
-.main {
-  @apply m-auto
-  container;
+.listLink {
+  @apply font-bold;
 }

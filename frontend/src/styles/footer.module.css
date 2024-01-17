@@ -1,6 +1,6 @@
 .footer {
   @apply text-center
-    bg-neutral-50
+    /*bg-neutral-50*/
     dark:bg-neutral-700;
 }
 

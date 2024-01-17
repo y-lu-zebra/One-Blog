@@ -1,4 +1,4 @@
-import { CategoryType } from '@/types/categoryType'
+import { CategoryType } from '@/types/category-type'
 
 /**
  * カテゴリーインターフェイス
