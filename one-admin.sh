@@ -79,7 +79,7 @@ case $1 in
 
     # 言語パッケージをコンパイル
     echo " Compiling messages"
-    python backend/manage.py compilemessages > /dev/null
+    python manage.py compilemessages > /dev/null
     printResult $?
 
     # フロントエンドの依存パッケージをインストール
@@ -94,7 +94,7 @@ case $1 in
     ;;
   # ユーザー作成
   "${process[1]}" )
-    cd ../backend || exit
+    cd backend || exit
     python manage.py createsuperuser
     ;;
   # 開発環境の起動
@@ -110,6 +110,8 @@ case $1 in
     if coverage run manage.py test; then
       coverage report;coverage html
     fi
+    cd ../frontend || exit
+    npm run test
     ;;
   # 言語メッセージ更新
   "${process[5]}" )
