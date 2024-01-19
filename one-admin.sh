@@ -72,18 +72,19 @@ case $1 in
 
     # マイグレーション
     echo " Running database migrations"
-    python backend/manage.py makemigrations > /dev/null
-    python backend/manage.py migrate > /dev/null
+    cd backend || exit
+    python manage.py makemigrations > /dev/null
+    python manage.py migrate > /dev/null
     printResult $?
 
     # 言語パッケージをコンパイル
     echo " Compiling messages"
-    python backend/manage.py compilemessages > /dev/null
+    python manage.py compilemessages > /dev/null
     printResult $?
 
     # フロントエンドの依存パッケージをインストール
     echo " Installing npm requirements"
-    cd frontend || exit
+    cd ../frontend || exit
     if [ "$2" = "${mode[1]}" ] || [ "$2" = "" ]; then
       npm install --production > /dev/null
     else
@@ -109,6 +110,8 @@ case $1 in
     if coverage run manage.py test; then
       coverage report;coverage html
     fi
+    cd ../frontend || exit
+    npm run test
     ;;
   # 言語メッセージ更新
   "${process[5]}" )

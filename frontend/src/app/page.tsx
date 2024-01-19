@@ -1,26 +1,34 @@
-'use client'
+import Link from 'next/link'
+import React from 'react'
 
-import * as http from 'http'
-import Image from 'next/legacy/image'
-import { useEffect } from 'react'
+import Footer from '@/components/footer'
+import Header from '@/components/header'
+import { fetchPosts } from '@/lib/api'
+import styles from '@/styles/home.module.css'
 
-export default function Home() {
-  useEffect(() => {
-    http.get(`${process.env.API_URL}/users/`, (res) => {
-      console.log(res)
-    })
-  })
+export default async function HomePage() {
+  const posts: Post[] = (await fetchPosts()).results as Post[]
+  console.log('[slug]: ', posts)
+
   return (
     <>
-      <Image
-        src="/logo.svg"
-        alt="One Blog"
-        className="dark:invert"
-        width={48}
-        height={48}
-        priority
-      />
-      <h1>{process.env.APP_NAME}</h1>
+      <Header></Header>
+      <main className="main">
+        <div className="mainContainer">
+          <ul>
+            {posts.map((post: Post, idx: number) => {
+              return (
+                <li key={idx} className="py-5">
+                  <Link href={`/${post.id}`} className={styles.listLink}>
+                    {post.title}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </main>
+      <Footer></Footer>
     </>
   )
 }

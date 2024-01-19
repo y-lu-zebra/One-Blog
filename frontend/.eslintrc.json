@@ -15,5 +15,5 @@
     "simple-import-sort/exports": "error",
     "@typescript-eslint/no-misused-promises": "error"
   },
-  "ignorePatterns": ["*.config.js"]
+  "ignorePatterns": ["*.config.js", "**/*.test.ts", "**/*.test.tsx"]
 }
