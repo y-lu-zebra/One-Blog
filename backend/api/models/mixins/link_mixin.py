@@ -15,6 +15,7 @@ class LinkMixin(models.Model):
         max_length=100,
         blank=True,
         null=True,
+        unique=True,
         verbose_name=_("Alias"),
     )
     # URL
