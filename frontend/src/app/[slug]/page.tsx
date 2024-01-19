@@ -12,9 +12,10 @@ import styles from '@/styles/post.module.css'
 interface PostProps {
   params: { slug: number }
   children: React.ReactElement
+  className?: string
 }
 
-export default async function Post(props: PostProps) {
+export default async function PostPage(props: PostProps) {
   const slug: number = props.params.slug
   console.log('slug: ', slug)
   const post = await fetchPost(slug)
