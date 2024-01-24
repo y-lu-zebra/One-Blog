@@ -2,7 +2,7 @@
 # One Blog Management Shell
 # =========================
 
-# 処理名の配列（初期化 ユーザー作成 開発サーバー起動 リントチェック 単体試験 言語メッセージ更新 ビルド）
+# 処理名の配列（初期化 ユーザー作成 サーバーの起動 リントチェック 単体試験 言語メッセージ更新 ビルド）
 process=("init" "create-user" "start" "lint" "ut" "message" "build")
 # オプションの配列
 mode=("--dev" "--prod" "--back" "--front")
@@ -99,6 +99,13 @@ case $1 in
       echo " Compiling messages"
       python manage.py compilemessages > /dev/null
       printResult $?
+
+      # 静的ファイルを収集
+      if [ "$2" = "${mode[1]}" ]; then
+        echo " Collecting static files"
+        python manage.py collectstatic --noinput > /dev/null
+        printResult $?
+      fi
     fi
 
     # フロントエンド初期化
@@ -120,8 +127,18 @@ case $1 in
     cd backend || exit
     python manage.py createsuperuser
     ;;
-  # 開発環境の起動
+  # サーバーの起動
   "${process[2]}" )
+    if [ "$2" = "${mode[2]}" ]; then
+      cd backend || exit
+      gunicorn backend.wsgi:application --bind 0.0.0.0:8000
+    elif [ "$2" = "${mode[3]}" ]; then
+      cd front || exit
+    else
+      printError
+      printf "\033[31mUnknown option '%s'!\033[m\n" "$2"
+      exit 1
+    fi
     ;;
   # リントチェック
   "${process[3]}" )
