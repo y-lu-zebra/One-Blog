@@ -2,6 +2,7 @@
 URL 設定
 """
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import RedirectView
@@ -25,3 +26,4 @@ urlpatterns = [
     # バックエンドの favicon
     path("favicon.ico", RedirectView.as_view(url="static/favicon.ico")),
 ]
+urlpatterns += staticfiles_urlpatterns()

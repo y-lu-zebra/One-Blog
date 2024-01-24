@@ -130,6 +130,9 @@ LOCALE_PATHS = [constants.PATH_LOCALE]
 # 静的ファイルの場所（CSS, JavaScript, Images）
 STATICFILES_DIRS: list[str] = constants.PATH_STATIC_LIST
 
+# デプロイ用の静的ファイルの場所
+STATIC_ROOT: str = constants.PATH_STATIC
+
 # 静的ファイルの URL
 STATIC_URL: str = f"{env('API_STATIC_URL')}{constants.CODE_SEP_URL}"
 
