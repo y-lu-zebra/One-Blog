@@ -1,0 +1,69 @@
+version: '3.9'
+
+services:
+  one-db:
+    container_name: one-db
+    hostname: one-db
+    build:
+      context: .
+      dockerfile: containers/one-db/Dockerfile
+    platform: linux/x86_64
+    environment:
+      TZ: ${APP_TIME_ZONE}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_INITDB_ARGS: '--auth=md5'
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    healthcheck:
+      test: pg_isready -U "${DB_USER:-postgres}" || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    ports:
+      - '5432:5432'
+    restart: always
+    networks:
+      - one-net
+
+  one-api:
+    container_name: one-api
+    hostname: one-api
+    build:
+      context: .
+      dockerfile: containers/one-api/Dockerfile
+    environment:
+      TZ: Asia/Tokyo
+    restart: always
+    volumes:
+      - .:/code
+    command: >
+      sh -c "
+      cd /code &&
+      bash one-admin.sh init --prod --back &&
+      bash one-admin.sh start --back"
+    depends_on:
+      one-db:
+        condition: service_healthy
+    networks:
+      - one-net
+
+  one-server:
+    container_name: one-server
+    hostname: one-server
+    build:
+      context: .
+      dockerfile: containers/one-server/Dockerfile
+    volumes:
+      - ./backend/static:/static
+    ports:
+      - '80:80'
+    depends_on:
+      - one-api
+    networks:
+      - one-net
+
+networks:
+  one-net:
+    external: false

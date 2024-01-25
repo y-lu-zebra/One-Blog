@@ -1,4 +1,5 @@
 .env
 logs/
+db/
 
 /backend/static/
