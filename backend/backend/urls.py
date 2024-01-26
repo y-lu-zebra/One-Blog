@@ -5,7 +5,6 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import RedirectView
 
 from backend import settings
 
@@ -23,7 +22,5 @@ urlpatterns = [
     path(f"{settings.APP_URL_ADMIN}/", admin.site.urls),
     # 認証
     path("api-auth/", include("rest_framework.urls")),
-    # バックエンドの favicon
-    path("favicon.ico", RedirectView.as_view(url="static/favicon.ico")),
 ]
 urlpatterns += staticfiles_urlpatterns()
