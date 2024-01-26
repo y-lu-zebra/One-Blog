@@ -15,12 +15,24 @@ admin.site.index_title = _("Dashboard")
 
 urlpatterns = [
     # API アプリ
-    path("", include("api.urls")),
+    path(
+        f"{settings.URL_PREFIX}",
+        include("api.urls"),
+    ),
     # 管理サイトのドキュメント
-    path(f"{settings.APP_URL_ADMIN}/doc/", include("django.contrib.admindocs.urls")),
+    path(
+        f"{settings.URL_PREFIX}{settings.APP_URL_ADMIN}/doc/",
+        include("django.contrib.admindocs.urls"),
+    ),
     # 管理サイト
-    path(f"{settings.APP_URL_ADMIN}/", admin.site.urls),
+    path(
+        f"{settings.URL_PREFIX}{settings.APP_URL_ADMIN}/",
+        admin.site.urls,
+    ),
     # 認証
-    path("api-auth/", include("rest_framework.urls")),
+    path(
+        "{settings.URL_PREFIX}api-auth/",
+        include("rest_framework.urls"),
+    ),
 ]
 urlpatterns += staticfiles_urlpatterns()

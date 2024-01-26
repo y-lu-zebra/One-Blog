@@ -2,6 +2,7 @@
 One Blog バックエンドの設定
 """
 import os
+import re
 import sys
 
 import environ  # type: ignore
@@ -217,3 +218,7 @@ APP_NAME = env("APP_NAME")
 
 # API の管理画面の URL
 APP_URL_ADMIN = env("APP_URL_ADMIN")
+
+# URL プレフィックス
+m = re.findall(r"^http://.+?/(.*)$", env("API_URL"))
+URL_PREFIX = m[0] + constants.CODE_SEP_URL if len(m) > 0 else ""
