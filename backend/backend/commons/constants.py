@@ -1,6 +1,7 @@
 """
 バックエンドの定数定義
 """
+
 import os
 from pathlib import Path
 
@@ -37,6 +38,8 @@ PATH_ENV = os.path.join(PATH_PROJECT, FILE_ENV)
 PATH_ENV_TEST = os.path.join(PATH_PROJECT, FILE_ENV_TEST)
 # 静的ファイルのフォルダの絶対パス
 PATH_STATIC_LIST = [os.path.join(PATH_BACKEND, "admin_theme", DIR_STATIC)]
+# デプロイ用の静的ファイルのフォルダの絶対パス
+PATH_STATIC = os.path.join(PATH_BACKEND, DIR_STATIC)
 # 翻訳ファイルのフォルダの絶対パス
 PATH_LOCALE = os.path.join(PATH_BACKEND, DIR_LOCALE)
 # テンプレートのフォルダの絶対パス

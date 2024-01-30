@@ -6,6 +6,7 @@ import Header from '@/components/header'
 import { fetchPosts } from '@/lib/api'
 import styles from '@/styles/home.module.css'
 
+export const dynamic = 'force-dynamic'
 export default async function HomePage() {
   const posts: Post[] = (await fetchPosts()).results as Post[]
   console.log('[slug]: ', posts)

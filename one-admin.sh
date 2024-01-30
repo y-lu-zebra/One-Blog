@@ -2,16 +2,17 @@
 # One Blog Management Shell
 # =========================
 
-# 処理名の配列（初期化 ユーザー作成 開発サーバー起動 リントチェック 単体試験 言語メッセージ更新 ビルド）
+# 処理名の配列（初期化 ユーザー作成 サーバーの起動 リントチェック 単体試験 言語メッセージ更新 ビルド）
 process=("init" "create-user" "start" "lint" "ut" "message" "build")
 # オプションの配列
-mode=("--dev" "--prod")
+mode=("--dev" "--prod" "--back" "--front")
 
 # タイトルを出力する関数
 function printProcess {
   case $1 in
     "${process[0]}" )
-      printf "Initializing Application in \033[35m%s\033[m Mode\n" "$2";;
+      printf "Initializing\033[35m%s\033[m Application" "$3"
+      printf "in \033[35m%s\033[m Mode\n" "$2";;
   esac
 }
 
@@ -43,62 +44,109 @@ case $1 in
   # 初期化処理
   "${process[0]}" )
     # オプションバリデーション処理
-    if [ "$2" = "${mode[0]}" ]; then
-      printProcess "$1" "Development"
-    elif [ "$2" = "${mode[1]}" ] || [ "$2" = "" ]; then
-      printProcess "$1" "Production"
+    if [ "$2" = "${mode[0]}" ] || [ "$2" = "" ]; then
+      if [ "$3" != "" ]; then
+        printError
+        printf "\033[31mDon't need an option '%s'!\033[m\n" "$3"
+        exit 1
+      else
+        printProcess "$1" "Development"
+      fi
+
+    elif [ "$2" = "${mode[1]}" ]; then
+      if [ "$3" = "${mode[2]}" ] || [ "$3" = "" ]; then
+        printProcess "$1" "Production" " Backend"
+      elif [ "$3" = "${mode[3]}" ]; then
+        printProcess "$1" "Production" " Frontend"
+      else
+        printError
+        printf "\033[31mUnknown option '%s'!\033[m\n" "$3"
+        exit 1
+      fi
     else
       printError
       printf "\033[31mUnknown option '%s'!\033[m\n" "$2"
       exit 1
     fi
 
-    # バックエンドの依存パッケージをインストール
-    echo " Installing python requirements"
-    if [ "$2" = "" ]; then
-      file="prod"
-    else
-      file=${2:2}
-    fi
-    python -m pip install -r "backend/requirements/${file}.txt" > /dev/null
-    printResult $?
-
-    # Git プレコミットをインストール
-    if [ "$2" = "${mode[0]}" ]; then
-      echo " Installing pre-commit hook"
-      pre-commit install > /dev/null
+    # バックエンド初期化
+    if [ "$3" != "${mode[3]}" ]; then
+      # バックエンドの依存パッケージをインストール
+      echo " Installing python requirements"
+      if [ "$2" = "" ]; then
+        file="dev"
+      else
+        file=${2:2}
+      fi
+      python -m pip install -r "backend/requirements/${file}.txt" > /dev/null
       printResult $?
+
+      # Git プレコミットをインストール
+      if [ "$2" != "${mode[1]}" ]; then
+        echo " Installing pre-commit hook"
+        pre-commit install > /dev/null
+        printResult $?
+      fi
+
+      # マイグレーション
+      echo " Running database migrations"
+      cd backend || exit
+      python manage.py makemigrations --noinput > /dev/null
+      python manage.py migrate --noinput > /dev/null
+      printResult $?
+
+      # 言語パッケージをコンパイル
+      echo " Compiling messages"
+      python manage.py compilemessages > /dev/null
+      printResult $?
+
+      # 静的ファイルを収集
+      if [ "$2" = "${mode[1]}" ]; then
+        echo " Collecting static files"
+        python manage.py collectstatic --noinput > /dev/null
+        printResult $?
+      fi
     fi
 
-    # マイグレーション
-    echo " Running database migrations"
-    cd backend || exit
-    python manage.py makemigrations > /dev/null
-    python manage.py migrate > /dev/null
-    printResult $?
+    # フロントエンド初期化
+    if [ "$2" = "${mode[0]}" ] || [ "$2" = "" ] || [ "$3" = "${mode[3]}" ]; then
+      # フロントエンドの依存パッケージをインストール
+      echo " Installing npm requirements"
+      if [ "$3" = "${mode[3]}" ]; then
+        cd frontend || exit
+        npm install > /dev/null
+      else
+        cd ../frontend || exit
+        npm install > /dev/null
+      fi
+      printResult $?
 
-    # 言語パッケージをコンパイル
-    echo " Compiling messages"
-    python manage.py compilemessages > /dev/null
-    printResult $?
-
-    # フロントエンドの依存パッケージをインストール
-    echo " Installing npm requirements"
-    cd ../frontend || exit
-    if [ "$2" = "${mode[1]}" ] || [ "$2" = "" ]; then
-      npm install --production > /dev/null
-    else
-      npm install > /dev/null
+      # フロントエンドをビルド
+      if [ "$3" = "${mode[3]}" ]; then
+        echo " Building frontend application"
+        npm run build > /dev/null
+        printResult $?
+      fi
     fi
-    printResult $?
     ;;
   # ユーザー作成
   "${process[1]}" )
     cd backend || exit
     python manage.py createsuperuser
     ;;
-  # 開発環境の起動
+  # サーバーの起動
   "${process[2]}" )
+    if [ "$2" = "${mode[2]}" ]; then
+      cd backend || exit
+      gunicorn backend.wsgi:application --bind 0.0.0.0:8000
+    elif [ "$2" = "${mode[3]}" ]; then
+      cd frontend || exit
+      npm start
+    else
+      printError
+      printf "\033[31mUnknown option '%s'!\033[m\n" "$2"
+      exit 1
+    fi
     ;;
   # リントチェック
   "${process[3]}" )

@@ -1,7 +1,9 @@
 """
 One Blog バックエンドの設定
 """
+
 import os
+import re
 import sys
 
 import environ  # type: ignore
@@ -130,6 +132,9 @@ LOCALE_PATHS = [constants.PATH_LOCALE]
 # 静的ファイルの場所（CSS, JavaScript, Images）
 STATICFILES_DIRS: list[str] = constants.PATH_STATIC_LIST
 
+# デプロイ用の静的ファイルの場所
+STATIC_ROOT: str = constants.PATH_STATIC
+
 # 静的ファイルの URL
 STATIC_URL: str = f"{env('API_STATIC_URL')}{constants.CODE_SEP_URL}"
 
@@ -214,3 +219,7 @@ APP_NAME = env("APP_NAME")
 
 # API の管理画面の URL
 APP_URL_ADMIN = env("APP_URL_ADMIN")
+
+# URL プレフィックス
+m = re.findall(r"^http://.+?/(.*)$", env("API_URL"))
+URL_PREFIX = m[0] + constants.CODE_SEP_URL if len(m) > 0 else ""

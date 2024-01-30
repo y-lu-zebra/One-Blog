@@ -15,6 +15,8 @@ interface PostProps {
   className?: string
 }
 
+export const dynamic = 'force-dynamic'
+
 export default async function PostPage(props: PostProps) {
   const slug: number = props.params.slug
   console.log('slug: ', slug)
