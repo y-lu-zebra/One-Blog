@@ -4,9 +4,7 @@ on:
   workflow_dispatch:
   workflow_run:
     workflows: [Development]
-    types:
-      - completed
-    branches: [feature/automated-deployment]
+    types: [completed]
 
 jobs:
   deploy:
