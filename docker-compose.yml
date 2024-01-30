@@ -49,6 +49,28 @@ services:
     networks:
       - one-net
 
+  one-ui:
+    container_name: one-ui
+    hostname: one-ui
+    build:
+      context: .
+      dockerfile: containers/one-ui/Dockerfile
+    environment:
+      TZ: Asia/Tokyo
+    restart: always
+    volumes:
+      - .:/code
+    command: >
+      sh -c "
+      sleep 10 &&
+      cd /code &&
+      bash one-admin.sh init --prod --front &&
+      bash one-admin.sh start --front"
+    ports:
+      - '3000:3000'
+    networks:
+      - one-net
+
   one-server:
     container_name: one-server
     hostname: one-server

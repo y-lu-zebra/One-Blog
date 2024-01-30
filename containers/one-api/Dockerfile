@@ -13,5 +13,3 @@ RUN chmod +x one-admin.sh \
         && bash one-admin.sh init --prod --back
 
 EXPOSE 8000
-
-#CMD ["bash", "one-admin.sh", "start", "--back"]
