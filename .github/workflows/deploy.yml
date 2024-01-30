@@ -2,8 +2,9 @@ name: Deployment
 
 on:
   workflow_run:
-    workflows: [dev]
-    types: [completed]
+    workflows: [Development]
+    types:
+      - completed
 
 jobs:
   deploy:
