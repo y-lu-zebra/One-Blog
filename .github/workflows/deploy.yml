@@ -1,6 +1,9 @@
 name: Deployment
 
-on: [push, pull_request]
+on:
+  workflow_run:
+    workflows: ['Development']
+    types: [completed]
 
 jobs:
   deploy:
