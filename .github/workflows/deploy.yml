@@ -3,7 +3,7 @@ name: Deployment
 on: [push, pull_request]
 
 jobs:
-  lint-backend:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: executing remote ssh commands using password
