@@ -114,12 +114,19 @@ case $1 in
       echo " Installing npm requirements"
       if [ "$3" = "${mode[3]}" ]; then
         cd frontend || exit
-        npm install --omit=dev > /dev/null
+        npm install > /dev/null
       else
         cd ../frontend || exit
         npm install > /dev/null
       fi
       printResult $?
+
+      # フロントエンドをビルド
+      if [ "$3" = "${mode[3]}" ]; then
+        echo " Building frontend application"
+        npm run build > /dev/null
+        printResult $?
+      fi
     fi
     ;;
   # ユーザー作成
@@ -133,7 +140,8 @@ case $1 in
       cd backend || exit
       gunicorn backend.wsgi:application --bind 0.0.0.0:8000
     elif [ "$2" = "${mode[3]}" ]; then
-      cd front || exit
+      cd frontend || exit
+      npm start
     else
       printError
       printf "\033[31mUnknown option '%s'!\033[m\n" "$2"
