@@ -2,9 +2,8 @@ name: Deployment
 
 on:
   workflow_run:
-    workflows: [Development]
+    workflows: [dev]
     types: [completed]
-    branches: [feature/automated-deployment]
 
 jobs:
   deploy:
