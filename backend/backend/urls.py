@@ -35,5 +35,4 @@ urlpatterns = [
         "{settings.URL_PREFIX}api-auth/",
         include("rest_framework.urls"),
     ),
-]
-urlpatterns += staticfiles_urlpatterns()
+] + staticfiles_urlpatterns()
