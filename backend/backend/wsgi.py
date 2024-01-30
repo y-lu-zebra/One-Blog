@@ -1,6 +1,7 @@
 """
 WSGI 設定
 """
+
 import os
 
 from django.core.wsgi import get_wsgi_application
