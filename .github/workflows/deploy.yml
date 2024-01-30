@@ -5,6 +5,7 @@ on:
     workflows: [Development]
     types:
       - completed
+    branches: [feature/automated-deployment]
 
 jobs:
   deploy:
