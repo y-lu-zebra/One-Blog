@@ -7,6 +7,9 @@ services:
     build:
       context: .
       dockerfile: containers/one-db/Dockerfile
+      args:
+        - UID=${UID}
+        - GID=${GID}
     platform: linux/x86_64
     environment:
       TZ: ${APP_TIME_ZONE}
@@ -30,11 +33,16 @@ services:
   one-api:
     container_name: one-api
     hostname: one-api
+    user: ${UID}:${GID}
     build:
       context: .
       dockerfile: containers/one-api/Dockerfile
+      args:
+        - UID=${UID}
+        - GID=${GID}
+        - USERNAME=${USERNAME}
     environment:
-      TZ: Asia/Tokyo
+      TZ: ${APP_TIME_ZONE}
     restart: always
     volumes:
       - .:/code
@@ -56,13 +64,13 @@ services:
       context: .
       dockerfile: containers/one-ui/Dockerfile
     environment:
-      TZ: Asia/Tokyo
+      TZ: ${APP_TIME_ZONE}
     restart: always
     volumes:
       - .:/code
     command: >
       sh -c "
-      sleep 10 &&
+      sleep 5 &&
       cd /code &&
       bash one-admin.sh init --prod --front &&
       bash one-admin.sh start --front"
