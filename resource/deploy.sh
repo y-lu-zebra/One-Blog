@@ -2,7 +2,6 @@
 # One Blog Automated Deployment Shell
 # ===================================
 
-PASSWORD=github
 DATETIME="$(date '+%Y%m%d%H%M%S')"
 
 echo "===== Update source code =========================="
