@@ -102,27 +102,17 @@ services:
   one-server:
     container_name: one-server
     hostname: one-server
-    user: ${UID}:${GID}
     build:
       context: .
       dockerfile: containers/one-server/Dockerfile
-      args:
-        - UID=${UID}
-        - GID=${GID}
-        - USERNAME=${USERNAME}
     environment:
       - NGINX_HOST=foobar.com
       - NGINX_PORT=80
-    volumes:
-      - ./backend/static:/static
     logging:
       driver: json-file
       options:
         max-size: '512m'
         max-file: '30'
-    command: >
-      sh -c "
-      chown -R ${USERNAME}:${USERNAME} /static"
     ports:
       - '80:80'
     depends_on:
