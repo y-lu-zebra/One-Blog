@@ -13,7 +13,7 @@ docker-compose down --rmi all -v
 
 echo "===== Backup database ============================="
 mkdir -p ../bk
-tar zcf "../bk/db_${DATETIME}.tar.gz" db
+tar zcf "./bk/db_${DATETIME}.tar.gz" db
 rm -Rf front/.next
 
 echo "===== Create docker containers ===================="
