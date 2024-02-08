@@ -13,6 +13,6 @@ RUN usermod -u ${UID} nginx && \
     touch /var/run/nginx.pid && \
     chown -R nginx:nginx /var/run/nginx.pid && \
     chown -R nginx:nginx /var/cache/nginx && \
-    chown -R nginx:nginx /usr/share/nginx/static
+    chown -R nginx:nginx /usr/share/nginx/html
 
 CMD ["nginx"]
