@@ -1,5 +1,18 @@
 FROM nginx
 LABEL authors="Yu Lu"
 
-COPY backend/static /static
-COPY containers/one-server/conf.d/one.conf /etc/nginx/conf.d/default.conf
+ARG UID
+ARG GID
+
+ENV UID ${UID}
+ENV GID ${GID}
+
+RUN usermod -u ${UID} nginx && \
+    groupmod -g ${GID} nginx && \
+    adduser nginx sudo && \
+    touch /var/run/nginx.pid && \
+    chown -R nginx:nginx /var/run/nginx.pid && \
+    chown -R nginx:nginx /var/cache/nginx && \
+    chown -R nginx:nginx /usr/share/nginx/static
+
+CMD ["nginx"]

@@ -7,6 +7,7 @@ DATETIME="$(date '+%Y%m%d%H%M%S')"
 echo "===== Update source code =========================="
 cd One-Blog || exit
 git pull
+mkdir backend/static
 
 echo "===== Delete docker containers ===================="
 docker-compose down --rmi all -v
