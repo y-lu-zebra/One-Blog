@@ -177,6 +177,9 @@ LOGGING: dict = {
     },
 }
 
+# プロキシ SSL ヘッダー
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 # ========== Django REST framework 設定 =================================================
 
 REST_FRAMEWORK: dict = {
