@@ -12,6 +12,10 @@ const nextConfig = {
     APP_URL: process.env.APP_URL,
     // API の URL
     API_URL: process.env.API_URL,
+    // ディスクリプション
+    APP_DESCRIPTION: process.env.APP_DESCRIPTION,
+    // キーワード
+    APP_KEYWORDS: process.env.APP_KEYWORDS,
   },
 }
 
