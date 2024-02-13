@@ -59,3 +59,14 @@ export default async function PostPage(props: PostProps) {
     </>
   )
 }
+
+export async function generateMetadata(props: PostProps) {
+  const slug = props.params.slug
+  const post: Post = await fetchPost(slug)
+
+  return {
+    title: post.metaTitle || post.title,
+    description: post.metaDescription,
+    keywords: post.metaKeywords,
+  }
+}

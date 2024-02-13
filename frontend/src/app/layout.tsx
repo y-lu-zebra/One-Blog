@@ -5,8 +5,9 @@ import type { Metadata } from 'next'
 import React from 'react'
 
 export const metadata: Metadata = {
-  title: 'One Blog',
-  description: 'One Blog',
+  title: process.env.APP_NAME,
+  description: process.env.APP_DESCRIPTION,
+  keywords: process.env.APP_KEYWORDS,
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
