@@ -7,6 +7,9 @@ services:
     build:
       context: .
       dockerfile: containers/one-db/Dockerfile
+      args:
+        - UID=${UID}
+        - GID=${GID}
     platform: linux/x86_64
     environment:
       TZ: ${APP_TIME_ZONE}
@@ -21,6 +24,11 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: '512m'
+        max-file: '30'
     ports:
       - '5432:5432'
     restart: always
@@ -30,14 +38,24 @@ services:
   one-api:
     container_name: one-api
     hostname: one-api
+    user: ${UID}:${GID}
     build:
       context: .
       dockerfile: containers/one-api/Dockerfile
+      args:
+        - UID=${UID}
+        - GID=${GID}
+        - USERNAME=${USERNAME}
     environment:
-      TZ: Asia/Tokyo
+      TZ: ${APP_TIME_ZONE}
     restart: always
     volumes:
       - .:/code
+    logging:
+      driver: json-file
+      options:
+        max-size: '512m'
+        max-file: '30'
     command: >
       sh -c "
       cd /code &&
@@ -52,37 +70,60 @@ services:
   one-ui:
     container_name: one-ui
     hostname: one-ui
+    user: ${UID}:${GID}
     build:
       context: .
       dockerfile: containers/one-ui/Dockerfile
+      args:
+        - UID=${UID}
+        - GID=${GID}
+    platform: linux/x86_64
     environment:
-      TZ: Asia/Tokyo
-    restart: always
+      TZ: ${APP_TIME_ZONE}
     volumes:
       - .:/code
+    logging:
+      driver: json-file
+      options:
+        max-size: '512m'
+        max-file: '30'
     command: >
       sh -c "
-      sleep 10 &&
+      sleep 5 &&
       cd /code &&
       bash one-admin.sh init --prod --front &&
       bash one-admin.sh start --front"
     ports:
       - '3000:3000'
+    restart: always
     networks:
       - one-net
 
   one-server:
     container_name: one-server
     hostname: one-server
+    user: ${UID}:${GID}
     build:
       context: .
       dockerfile: containers/one-server/Dockerfile
+      args:
+        - UID=${UID}
+        - GID=${GID}
     volumes:
-      - ./backend/static:/static
+      - ./containers/one-server/nginx.conf:/etc/nginx/nginx.conf
+      - ./backend/static:/usr/share/nginx/static
+      - ./containers/one-server/ssl-cert:/etc/letsencrypt
+    logging:
+      driver: json-file
+      options:
+        max-size: '512m'
+        max-file: '30'
     ports:
       - '80:80'
+      - '443:443'
     depends_on:
       - one-api
+      - one-ui
     networks:
       - one-net
 
