@@ -10,6 +10,8 @@ from django.utils.translation import gettext_lazy as _
 from backend import settings
 
 # 管理サイト名変更
+admin.site.site_title = settings.APP_NAME + " " + _("Admin Site")
+# 管理サイトヘッダー変更
 admin.site.site_header = settings.APP_NAME + " " + _("Admin Site")
 # インデックスページタイトル変更
 admin.site.index_title = _("Dashboard")
