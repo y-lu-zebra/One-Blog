@@ -9,7 +9,6 @@ export default function GoogleAnalytics() {
 
   useEffect(() => {
     if (process.env.GA_TRACKING_ID) {
-      console.log('uuy')
       const url = pathname + searchParams.toString()
       ReactGA.initialize(process.env.GA_TRACKING_ID)
       ReactGA.send({ hitType: 'pageview', page: url })
