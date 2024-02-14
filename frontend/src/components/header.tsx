@@ -1,5 +1,5 @@
 import Image from 'next/legacy/image'
-// import Link from 'next/link'
+import Link from 'next/link'
 import React from 'react'
 
 import { constants } from '@/lib/constants'
@@ -30,7 +30,7 @@ export default function Header() {
           {/*  </ul>*/}
         </menu>
         <div className={styles.logoPanel}>
-          <a className="logoLink" href={constants.UI_URL_ROOT}>
+          <Link href={constants.UI_URL_ROOT} className="logoLink">
             <Image
               className="logoImg"
               src="/logo.svg"
@@ -39,7 +39,7 @@ export default function Header() {
               height={60}
               priority
             />
-          </a>
+          </Link>
         </div>
         <menu className={styles.menuPanel}>
           {/*  <ul className={`columns-${props.navItems.length}`}>*/}

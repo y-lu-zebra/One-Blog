@@ -16,6 +16,8 @@ const nextConfig = {
     APP_DESCRIPTION: process.env.APP_DESCRIPTION,
     // キーワード
     APP_KEYWORDS: process.env.APP_KEYWORDS,
+    // Google Analytics 測定 ID
+    GA_TRACKING_ID: process.env.GA_TRACKING_ID,
   },
 }
 
