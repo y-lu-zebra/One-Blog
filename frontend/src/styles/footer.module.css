@@ -1,0 +1,16 @@
+.footer {
+  @apply text-center
+    /*bg-neutral-50*/
+    dark:bg-neutral-700;
+}
+
+.footerContainer {
+  @apply p-4 m-auto
+    text-center text-neutral-700
+    container
+    dark:text-neutral-200;
+}
+
+.footerLink {
+  @apply p-1;
+}

@@ -1,0 +1,18 @@
+.header {
+  @apply text-center
+    dark:bg-neutral-700;
+}
+
+.headerContainer {
+  @apply p-4 m-auto
+    text-center
+    container
+    flex justify-between;
+}
+
+.logoPanel {
+}
+
+.menuPanel {
+  @apply w-1/2;
+}
