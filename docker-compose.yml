@@ -124,6 +124,7 @@ services:
     depends_on:
       - one-api
       - one-ui
+    restart: always
     networks:
       - one-net
 

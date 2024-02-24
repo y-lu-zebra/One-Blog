@@ -1,5 +1,5 @@
 .env
 logs/
 db/
-
+containers/one-server/nginx.conf
 /backend/static/
