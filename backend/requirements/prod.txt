@@ -1,2 +1,3 @@
-# requirements for production
--r common.txt
+# Requirements for Production.
+
+-c common.txt
