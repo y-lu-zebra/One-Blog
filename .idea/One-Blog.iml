@@ -22,7 +22,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PackageRequirementsSettings">
-    <option name="requirementsPath" value="$MODULE_DIR$/backend/requirements/dev.txt" />
+    <option name="requirementsPath" value="" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="NUMPY" />

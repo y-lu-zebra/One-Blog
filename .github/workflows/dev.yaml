@@ -1,6 +1,6 @@
 name: Development
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   lint-backend:
@@ -8,7 +8,7 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        python-version: ['3.11']
+        python-version: ["3.11"]
     steps:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
@@ -25,7 +25,7 @@ jobs:
         uses: isort/isort-action@v1
         with:
           configuration: --settings-file backend/pyproject.toml
-          requirements-files: 'backend/requirements/dev.txt'
+          requirements-files: "backend/requirements/dev.txt"
 
       - name: Run Flake8
         run: flake8 .
@@ -61,7 +61,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           workdir: frontend
-          eslint_flags: 'src/**/*.{ts,tsx}'
+          eslint_flags: "src/**/*.{ts,tsx}"
           fail_on_error: true
 
   ut-backend:
@@ -72,7 +72,7 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        python-version: ['3.11']
+        python-version: ["3.11"]
     steps:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5

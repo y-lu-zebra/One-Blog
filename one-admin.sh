@@ -138,7 +138,7 @@ case $1 in
   "${process[2]}" )
     if [ "$2" = "${mode[2]}" ]; then
       cd backend || exit
-      gunicorn backend.wsgi:application --bind 0.0.0.0:8000
+      gunicorn one.wsgi:application --bind 0.0.0.0:8000
     elif [ "$2" = "${mode[3]}" ]; then
       cd frontend || exit
       npm start
