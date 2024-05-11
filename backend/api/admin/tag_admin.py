@@ -9,9 +9,7 @@ from api.models import Tags
 
 @admin.register(Tags)
 class TagAdmin(OBAdmin):
-    """
-    タグ ADMIN
-    """
+    """タグ ADMIN．"""
 
     # 一覧画面に表示するフィールド
     list_display: list[Any] = [

@@ -12,14 +12,10 @@ from api.tests import data
 
 
 class AdminTests(TestCase):
-    """
-    ADMIN のテストケース
-    """
+    """ADMIN のテストケース．"""
 
     def setUp(self) -> None:
-        """
-        前処理
-        本テストケースで使用するテストデータを作成しておく。
+        """前処理 本テストケースで使用するテストデータを作成しておく．
 
         Returns
         -------
@@ -55,19 +51,21 @@ class AdminTests(TestCase):
         model: Any,
         test_data: dict,
     ) -> None:
-        """
-        OBAdmin のメソッド save_model のテスト
-        新規作成時に作成者も最終更新者も自動的に挿入されることを確認する。
+        """OBAdmin のメソッド save_model のテスト．
+
+        新規作成時に作成者も最終更新者も自動的に挿入されることを確認する．
 
         Parameters
         ----------
-        _           実行時一覧表示用のパターン名
-        model       モデルクラス
-        test_data   テストデータ
+        _ : str
+            実行時一覧表示用のパターン名
+        model : Any
+            モデルクラス
+        test_data : dict
+            テストデータ
 
         Returns
         -------
-
         """
 
         oba = OBAdmin(model, self.site)
@@ -109,19 +107,21 @@ class AdminTests(TestCase):
         model: Any,
         test_data: dict,
     ) -> None:
-        """
-        OBAdmin のメソッド save_model のテスト
-        新規作成時に作成者も最終更新者も自動的に挿入されることを確認する。
+        """OBAdmin のメソッド save_model のテスト．
+
+        新規作成時に作成者も最終更新者も自動的に挿入されることを確認する．
 
         Parameters
         ----------
-        _           実行時一覧表示用のパターン名
-        model       モデルクラス
-        test_data   テストデータ
+        _ : str
+            実行時一覧表示用のパターン名
+        model : Any
+            モデルクラス
+        test_data : dict
+            テストデータ
 
         Returns
         -------
-
         """
 
         m = model.objects.create(

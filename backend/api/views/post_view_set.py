@@ -7,9 +7,7 @@ from api.views.ob_view_set import OBViewSet
 
 
 class PostViewSet(OBViewSet):
-    """
-    投稿ビューセット
-    """
+    """投稿ビューセット．"""
 
     queryset = Posts.objects.filter(is_published=True).all()
     serializer_class = PostSerializer

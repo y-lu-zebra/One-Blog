@@ -4,9 +4,7 @@ from api.views.ob_view_set import OBViewSet
 
 
 class SeriesViewSet(OBViewSet):
-    """
-    シリーズビューセット
-    """
+    """シリーズビューセット．"""
 
     queryset = Series.objects.filter(is_published=True).all()
     serializer_class = SeriesSerializer

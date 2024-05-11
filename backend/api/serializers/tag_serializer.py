@@ -4,9 +4,7 @@ from api.serializers.user_serializer import UserSerializer
 
 
 class TagSerializer(OBSerializer):
-    """
-    タグシリアライザー
-    """
+    """タグシリアライザー．"""
 
     # 作成者
     user_created = UserSerializer(many=False, read_only=True)

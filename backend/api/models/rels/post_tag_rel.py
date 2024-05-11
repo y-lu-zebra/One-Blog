@@ -4,13 +4,11 @@ from django.utils.translation import gettext_lazy as _
 
 from api.models.posts import Posts
 from api.models.tags import Tags
-from backend.commons import constants
+from one.commons import constants
 
 
 class PostTagRel(models.Model):
-    """
-    「投稿・タグ」リレーション（中間）モデル
-    """
+    """「投稿・タグ」リレーション（中間）モデル．"""
 
     class Meta:
         db_table = constants.CODE_SEP_UNDERSCORE.join(

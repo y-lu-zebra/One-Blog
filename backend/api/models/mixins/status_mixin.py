@@ -3,9 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class StatusMixin(models.Model):
-    """
-    ステータスミックスイン抽象モデル
-    """
+    """ステータスミックスイン抽象モデル．"""
 
     class Meta:
         abstract = True

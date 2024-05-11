@@ -6,8 +6,7 @@ from api.tests import data
 
 
 def init_data() -> None:
-    """
-    試験データ作成
+    """試験データ作成．
 
     Returns
     -------

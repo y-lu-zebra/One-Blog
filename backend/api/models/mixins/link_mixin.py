@@ -3,9 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class LinkMixin(models.Model):
-    """
-    リンクミックスイン抽象モデル
-    """
+    """リンクミックスイン抽象モデル．"""
 
     class Meta:
         abstract = True

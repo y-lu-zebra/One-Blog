@@ -9,13 +9,11 @@ from api.models.mixins import (
     StatusMixin,
     UpdatedMixin,
 )
-from backend.commons import constants
+from one.commons import constants
 
 
 class Categories(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
-    """
-    カテゴリーモデル
-    """
+    """カテゴリーモデル．"""
 
     # カテゴリータイプの選択肢
     TYPE_CHOICES = [

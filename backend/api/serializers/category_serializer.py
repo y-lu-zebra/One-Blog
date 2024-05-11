@@ -4,9 +4,7 @@ from api.serializers.user_serializer import UserSerializer
 
 
 class CategorySerializer(OBSerializer):
-    """
-    カテゴリーシリアライザー
-    """
+    """カテゴリーシリアライザー．"""
 
     # 作成者
     user_created = UserSerializer(many=False, read_only=True)

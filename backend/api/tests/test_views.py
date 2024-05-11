@@ -11,14 +11,10 @@ from api.tests import data
 
 
 class ViewSetTests(APITestCase):
-    """
-    カテゴリービューセットのテストケース
-    """
+    """カテゴリービューセットのテストケース．"""
 
     def setUp(self) -> None:
-        """
-        前処理
-        本テストケースで使用するテストデータを作成しておく。
+        """前処理 本テストケースで使用するテストデータを作成しておく．
 
         Returns
         -------
@@ -58,8 +54,7 @@ class ViewSetTests(APITestCase):
         model,
         needs_user: bool = True,
     ) -> list:
-        """
-        辞書からモデルに変換する。
+        """辞書からモデルに変換する．
 
         Parameters
         ----------
@@ -221,22 +216,26 @@ class ViewSetTests(APITestCase):
         excepted_count: int,
         excepted_content,
     ) -> None:
-        """
-        一覧取得 API ビューのテスト
+        """一覧取得 API ビューのテスト．
 
         Parameters
         ----------
-        _                   実行時一覧表示用のパターン名
-        url                 対象 API の URL
-        field_key           検証用のフィールドのキー
-        excepted_status     レスポンスステータスの期待値
-        excepted_count      一致したデータ数の期待値
-        excepted_content    結果データの期待値
+        _
+            実行時一覧表示用のパターン名
+        url
+            対象 API の URL
+        field_key
+            検証用のフィールドのキー
+        excepted_status
+            レスポンスステータスの期待値
+        excepted_count
+            一致したデータ数の期待値
+        excepted_content
+            結果データの期待値
 
         Returns
         -------
             なし
-
         """
 
         # 試験対象を呼び出し
@@ -313,16 +312,20 @@ class ViewSetTests(APITestCase):
         excepted_status: int,
         excepted_data: Any,
     ) -> None:
-        """
-        新規追加 API ビューのテスト
+        """新規追加 API ビューのテスト．
 
         Parameters
         ----------
-        _               実行時一覧表示用のパターン名
-        url             対象 API の URL
-        test_data       テストデータ
-        excepted_status 一致したデータ数の期待値
-        excepted_data   レスポンスデータの期待値
+        _
+            実行時一覧表示用のパターン名
+        url
+            対象 API の URL
+        test_data
+            テストデータ
+        excepted_status
+            一致したデータ数の期待値
+        excepted_data
+            レスポンスデータの期待値
 
         Returns
         -------
@@ -402,16 +405,20 @@ class ViewSetTests(APITestCase):
         excepted_status: int,
         excepted_data: Any,
     ) -> None:
-        """
-        編集 API ビューのテスト
+        """編集 API ビューのテスト．
 
         Parameters
         ----------
-        _               実行時一覧表示用のパターン名
-        url             対象 API の URL
-        test_data       テストデータ
-        excepted_status 一致したデータ数の期待値
-        excepted_data   レスポンスデータの期待値
+        _
+            実行時一覧表示用のパターン名
+        url
+            対象 API の URL
+        test_data
+            テストデータ
+        excepted_status
+            一致したデータ数の期待値
+        excepted_data
+            レスポンスデータの期待値
 
         Returns
         -------
