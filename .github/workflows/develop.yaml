@@ -78,7 +78,7 @@ jobs:
           name: Backend-Coverage-Report
           path: backend/htmlcov
 
-  lint-frontend:
+  check-frontend:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -86,6 +86,20 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
+
+      - name: Initializing
+        run: |
+          cp .env.test .env
+          bash admin.sh init --dev --front
+
+      - name: Run ESLint
+        uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          workdir: frontend
+          eslint_flags: 'src/**/*.{ts,tsx}'
+          fail_on_error: true
 
       - name: Run Prettier
         id: prettier-run
@@ -99,29 +113,6 @@ jobs:
         run: |
           echo "The following files are not formatted:"
           echo "${{steps.prettier-run.outputs.prettier_output}}"
-
-      - name: Run ESLint
-        uses: reviewdog/action-eslint@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          workdir: frontend
-          eslint_flags: 'src/**/*.{ts,tsx}'
-          fail_on_error: true
-
-  ut-frontend:
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    needs: lint-frontend
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v4
-
-      - name: Install Dependencies
-        run: |
-          cd frontend
-          npm install
 
       - name: Run Tests
         run: |

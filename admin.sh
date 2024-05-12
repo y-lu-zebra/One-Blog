@@ -181,8 +181,8 @@ case $1 in
     if coverage run manage.py test; then
       coverage report;coverage html
     fi
-#    cd ../frontend || exit
-#    npm run test
+    cd ../frontend || exit
+    npm run test
     ;;
 
 #  # ビルド
