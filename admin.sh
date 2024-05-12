@@ -30,12 +30,16 @@ function printProcess {
         esac
       fi
       ;;
+
+    "${process[1]}" )
+      printf "Create a new super user\n"
+
   esac
 }
 
 # 処理結果（成功・失敗）を出力する関数
 function printResult {
-  printf "\t"
+  printf "  "
   printf ".%0.s" {0..30}
   if [ "$1" -eq 0 ]; then
     printf "\033[32m Success \033[m\n"
@@ -96,61 +100,58 @@ case $1 in
       else
         file="dev"
       fi
-      printf "\tInstalling python requirements\n"
+      printf "  Installing python requirements\n"
       cd backend || exit
       python -m pip install --upgrade pip > /dev/null
       python -m pip install -r "requirements/${file}.txt" > /dev/null
       printResult $?
 
       # マイグレーション
-      printf "\tRunning database migrations\n"
+      printf "  Running database migrations\n"
       python manage.py makemigrations --noinput > /dev/null
       python manage.py migrate --noinput > /dev/null
       printResult $?
 
       # 言語パッケージをコンパイル
-      printf "\tCompiling messages\n"
+      printf "  Compiling messages\n"
       python manage.py compilemessages > /dev/null
       printResult $?
 
       # 開発モードのみで実行する処理
       if [ "$is_prod" = "" ]; then
         # 静的ファイルを収集
-        printf "\tCollecting static files\n"
+        printf "  Collecting static files\n"
         python manage.py collectstatic --noinput > /dev/null
         printResult $?
 
         # Git プレコミットをインストール
-        printf "\tInstalling pre-commit hooks\n"
+        printf "  Installing pre-commit hooks\n"
         pre-commit install > /dev/null
         printResult $?
       fi
+
+      cd .. || exit
     fi
 
-#    # フロントエンド初期化
-#    if [ "$2" = "${mode[0]}" ] || [ "$2" = "" ] || [ "$3" = "${mode[3]}" ]; then
-#      # フロントエンドの依存パッケージをインストール
-#      echo " Installing npm requirements"
-#      if [ "$3" = "${mode[3]}" ]; then
-#        cd frontend || exit
-#        npm install > /dev/null
-#      else
-#        cd ../frontend || exit
-#        npm install > /dev/null
-#      fi
-#      printResult $?
-#
-#      # フロントエンドをビルド
-#      if [ "$3" = "${mode[3]}" ]; then
-#        echo " Building frontend application"
-#        npm run build > /dev/null
-#        printResult $?
-#      fi
-#    fi
+    # フロントエンドの初期化
+    if [ $init_front -eq 1 ]; then
+      # フロントエンドの依存パッケージをインストール
+      printf "  Installing npm requirements\n"
+      cd frontend || exit
+      if [ "$is_prod" ]; then
+        npm install --omit=dev > /dev/null
+      else
+        npm install > /dev/null
+      fi
+      printResult $?
+
+      cd .. || exit
+    fi
     ;;
 
   # ユーザー作成
   "${process[1]}" )
+    printProcess "$1"
     cd backend || exit
     python manage.py createsuperuser
     ;;
