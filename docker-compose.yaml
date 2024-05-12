@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 
 services:
   one-db:
@@ -16,7 +16,7 @@ services:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
-      POSTGRES_INITDB_ARGS: "--auth=md5"
+      POSTGRES_INITDB_ARGS: '--auth=md5'
     volumes:
       - ./db:/var/lib/postgresql/data
     healthcheck:
@@ -27,10 +27,10 @@ services:
     logging:
       driver: json-file
       options:
-        max-size: "512m"
-        max-file: "30"
+        max-size: '512m'
+        max-file: '30'
     ports:
-      - "5432:5432"
+      - '5432:5432'
     restart: always
     networks:
       - one-net
@@ -54,8 +54,8 @@ services:
     logging:
       driver: json-file
       options:
-        max-size: "512m"
-        max-file: "30"
+        max-size: '512m'
+        max-file: '30'
     command: >
       sh -c "
       cd /code &&
@@ -85,8 +85,8 @@ services:
     logging:
       driver: json-file
       options:
-        max-size: "512m"
-        max-file: "30"
+        max-size: '512m'
+        max-file: '30'
     command: >
       sh -c "
       sleep 5 &&
@@ -94,7 +94,7 @@ services:
       bash one-admin.sh init --prod --front &&
       bash one-admin.sh start --front"
     ports:
-      - "3000:3000"
+      - '3000:3000'
     restart: always
     networks:
       - one-net
@@ -116,11 +116,11 @@ services:
     logging:
       driver: json-file
       options:
-        max-size: "512m"
-        max-file: "30"
+        max-size: '512m'
+        max-file: '30'
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80'
+      - '443:443'
     depends_on:
       - one-api
       - one-ui

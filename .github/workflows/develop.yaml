@@ -8,7 +8,7 @@ jobs:
     strategy:
       max-parallel: 2
       matrix:
-        python-version: ["3.11"]
+        python-version: ['3.11']
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
         uses: isort/isort-action@v1
         with:
           configuration: --settings-file backend/pyproject.toml
-          requirements-files: "backend/requirements/dev.txt"
+          requirements-files: 'backend/requirements/dev.txt'
 
       - name: Run mypy
         uses: sasanquaneuf/mypy-github-action@releases/v1.3
@@ -106,7 +106,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           workdir: frontend
-          eslint_flags: "src/**/*.{ts,tsx}"
+          eslint_flags: 'src/**/*.{ts,tsx}'
           fail_on_error: true
 
   ut-frontend:
