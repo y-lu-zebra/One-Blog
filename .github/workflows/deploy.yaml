@@ -1,12 +1,14 @@
 name: Deployment
 
-on: [pull_request]
-#  pull_request:
-#    types:
-#      - closed
-#  workflow_run:
-#    workflows: [Development]
-#    types: [completed]
+on:
+  - pull_request
+##  pull_request:
+##    types:
+##      - closed
+##  workflow_run:
+##    workflows: [Development]
+##    types: [completed]
+#
 
 jobs:
   deploy:
