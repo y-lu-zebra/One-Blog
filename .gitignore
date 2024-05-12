@@ -1,5 +1,11 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# One-Blog
 .env
+data/
 logs/
-db/
+backend/static
 containers/one-server/nginx.conf
-/backend/static/

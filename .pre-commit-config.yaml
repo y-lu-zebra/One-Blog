@@ -88,6 +88,6 @@ repos:
         name: Test backend source code
         stages:
           - pre-push
-        entry: bash one-admin.sh ut
+        entry: bash admin.sh ut
         language: system
         pass_filenames: false
