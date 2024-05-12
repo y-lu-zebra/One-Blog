@@ -36,7 +36,7 @@ jobs:
           requirements-files: 'backend/requirements/dev.txt'
 
       - name: Run mypy
-        run: mypy --config-file backend/pyproject.toml backend
+        uses: sasanquaneuf/mypy-github-action@releases/v1.3
 
       - name: Run docformatter
         run: docformatter -r backend
