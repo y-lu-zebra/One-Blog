@@ -4,9 +4,9 @@ on:
   pull_request:
     types:
       - closed
-  workflow_run:
-    workflows: [Development]
-    types: [completed]
+#  workflow_run:
+#    workflows: [Development]
+#    types: [completed]
 
 jobs:
   deploy:
