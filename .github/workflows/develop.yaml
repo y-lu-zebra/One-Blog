@@ -21,7 +21,7 @@ jobs:
       - name: Initializing
         run: |
           cp .env.test .env
-          bash admin.sh --dev --back
+          bash admin.sh init --dev --back
 
       - name: Run Flake8
         run: flake8 --config backend/setup.cfg
