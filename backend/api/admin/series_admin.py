@@ -9,9 +9,7 @@ from api.models import Series
 
 @admin.register(Series)
 class SeriesAdmin(OBAdmin):
-    """
-    シリーズ ADMIN
-    """
+    """シリーズ ADMIN．"""
 
     # 一覧画面に表示するフィールド
     list_display: list[Any] = [

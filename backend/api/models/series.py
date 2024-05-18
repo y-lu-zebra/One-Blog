@@ -9,13 +9,11 @@ from api.models.mixins import (
     StatusMixin,
     UpdatedMixin,
 )
-from backend.commons import constants
+from one.commons import constants
 
 
 class Series(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
-    """
-    シリーズモデル
-    """
+    """シリーズモデル．"""
 
     class Meta:
         db_table = constants.CODE_SEP_UNDERSCORE.join(

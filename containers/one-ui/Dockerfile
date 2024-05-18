@@ -12,7 +12,7 @@ ENV GID ${GID}
 
 RUN usermod -u ${UID} node && \
     groupmod -g ${GID} node && \
-    chmod +x one-admin.sh && \
-    bash one-admin.sh init --prod --front
+    chmod +x admin.sh && \
+    bash admin.sh init --prod --front
 
 EXPOSE 3000

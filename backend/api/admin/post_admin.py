@@ -10,9 +10,7 @@ from api.models import Posts
 
 @admin.register(Posts)
 class PostAdmin(OBAdmin):
-    """
-    投稿 ADMIN
-    """
+    """投稿 ADMIN．"""
 
     # 一覧画面に表示するフィールド
     list_display: list[Any] = [

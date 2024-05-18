@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.test import TestCase
 from parameterized import parameterized  # type: ignore
 
@@ -8,14 +10,10 @@ from api.tests.functions import init_data
 
 
 class ModelsTests(TestCase):
-    """
-    カテゴリーモデルのテストケース
-    """
+    """カテゴリーモデルのテストケース．"""
 
     def setUp(self) -> None:
-        """
-        前処理
-        本テストケースで使用するテストデータを作成しておく。
+        """前処理 本テストケースで使用するテストデータを作成しておく．
 
         Returns
         -------
@@ -71,19 +69,22 @@ class ModelsTests(TestCase):
     def test_str(
         self,
         _: str,
-        model: str,
-        excepted: str,
+        model: Any,
+        excepted: Any,
         msg: str,
     ) -> None:
-        """
-        モデルのメソッド __str__ のテスト
+        """モデルのメソッド __str__ のテスト．
 
         Parameters
         ----------
-        _           実行時一覧表示用のパターン名
-        model       モデルクラス
-        excepted    期待値
-        msg         説明メッセージ
+        _ : str
+            実行時一覧表示用のパターン名
+        model: Any
+            モデルクラス
+        excepted : Any
+            期待値
+        msg : str
+            説明メッセージ
 
         Returns
         -------

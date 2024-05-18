@@ -10,9 +10,7 @@ from api.serializers.user_serializer import UserSerializer
 
 
 class PostSerializer(OBSerializer):
-    """
-    投稿シリアライザー
-    """
+    """投稿シリアライザー．"""
 
     # カテゴリー
     category = serializers.SerializerMethodField("get_category")
@@ -46,14 +44,13 @@ class PostSerializer(OBSerializer):
         read_only_fields = OBSerializer.READ_ONLY_FIELDS
 
     def get_category(self, obj) -> dict:
-        """
-        カテゴリー取得処理
-        （公開済みのカテゴリーデータのみ）
+        """カテゴリー取得処理（公開済みのカテゴリーデータのみ）．
 
         Parameters
         ----------
         obj
             投稿オブジェクト
+
         Returns
         -------
             投稿と紐付きのカテゴリー
@@ -66,14 +63,13 @@ class PostSerializer(OBSerializer):
         return rst
 
     def get_series(self, obj) -> dict:
-        """
-        シリーズ取得処理
-        （公開済みのシリーズデータのみ）
+        """シリーズ取得処理（公開済みのシリーズデータのみ）．
 
         Parameters
         ----------
         obj
             投稿オブジェクト
+
         Returns
         -------
             投稿と紐付きのシリーズの辞書
@@ -86,14 +82,13 @@ class PostSerializer(OBSerializer):
         ).data
 
     def get_tags(self, obj) -> dict:
-        """
-        タグ取得処理
-        （公開済みのタグデータのみ）
+        """タグ取得処理（公開済みのタグデータのみ）．
 
         Parameters
         ----------
         obj
             投稿オブジェクト
+
         Returns
         -------
             投稿と紐付きのタグの辞書

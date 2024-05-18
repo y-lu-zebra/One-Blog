@@ -4,9 +4,7 @@ from api.serializers.ob_serializer import OBSerializer
 
 
 class UserSerializer(OBSerializer):
-    """
-    ユーザーシリアライザー
-    """
+    """ユーザーシリアライザー．"""
 
     class Meta:
         model = User
