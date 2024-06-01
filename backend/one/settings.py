@@ -206,6 +206,8 @@ REST_FRAMEWORK: dict = {
     ),
     # テストリクエストフォーマット
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
+    # 例外ハンドラー
+    "EXCEPTION_HANDLER": "one.commons.handlers.one_exception_handler",
 }
 
 # ========== CORS 設定 ==================================================================

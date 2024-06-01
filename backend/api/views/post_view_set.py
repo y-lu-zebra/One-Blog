@@ -13,4 +13,4 @@ class PostViewSet(OBViewSet):
     serializer_class = PostSerializer
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ["title", "overview", "content"]
-    filterset_fields = ["category", "series", "tags"]
+    filterset_fields = ["category", "series", "tags", "language"]

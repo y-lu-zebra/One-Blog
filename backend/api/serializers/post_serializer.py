@@ -22,6 +22,8 @@ class PostSerializer(OBSerializer):
     user_created = UserSerializer(many=False, read_only=True)
     # 最終更新者
     user_updated = UserSerializer(many=False, read_only=True)
+    # 言語
+    language: Any = serializers.StringRelatedField()
 
     class Meta:
         model = Posts

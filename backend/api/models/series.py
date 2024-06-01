@@ -2,6 +2,7 @@ from django.apps import apps
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from api.models.languages import Languages
 from api.models.mixins import (
     CreatedMixin,
     LinkMixin,
@@ -36,6 +37,15 @@ class Series(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
         null=True,
         on_delete=models.CASCADE,
         verbose_name=_("Parent Series"),
+    )
+    # 言語
+    language: models.ForeignKey = models.ForeignKey(
+        Languages,
+        blank=False,
+        null=False,
+        on_delete=models.PROTECT,
+        related_name="language_%(class)s_set",
+        verbose_name=_("Language"),
     )
 
     def __str__(self) -> str:

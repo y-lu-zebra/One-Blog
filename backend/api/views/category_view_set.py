@@ -1,3 +1,5 @@
+from django_filters.rest_framework import DjangoFilterBackend  # type: ignore
+
 from api.filters import CategoryFilter
 from api.models import Categories
 from api.serializers import CategorySerializer
@@ -9,4 +11,5 @@ class CategoryViewSet(OBViewSet):
 
     queryset = Categories.objects.filter(is_published=True).all()
     serializer_class = CategorySerializer
+    filter_backends = [DjangoFilterBackend]
     filterset_class = CategoryFilter
