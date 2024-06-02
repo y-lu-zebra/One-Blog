@@ -24,6 +24,8 @@ class OBSerializer(serializers.ModelSerializer):
         "meta_description",
         # メタキーワード
         "meta_keywords",
+        # 言語
+        "language",
         # 作成者
         "user_created",
         # 作成日時

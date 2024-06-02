@@ -1,21 +1,19 @@
 from django_filters import rest_framework as filters  # type: ignore
 
-from api.models import Categories
+from api.models import Series
 
 
-class CategoryFilter(filters.FilterSet):
-    """カテゴリーフィルター．"""
+class SeriesFilter(filters.FilterSet):
+    """シリーズフィルター．"""
 
-    # カテゴリー名（あいまい検索）
+    # シリーズ名（あいまい検索）
     name = filters.CharFilter(field_name="name", lookup_expr="icontains")
 
     class Meta:
-        model = Categories
+        model = Series
         fields = [
-            # カテゴリー名
+            # シリーズ名
             "name",
-            # タイプ
-            "type",
             # 親カテゴリー
             "parent",
             # 言語

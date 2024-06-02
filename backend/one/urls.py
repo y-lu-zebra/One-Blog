@@ -3,12 +3,12 @@
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 
 from one import settings
 
 # 管理サイト名変更
-admin.site.site_title = f"{settings.APP_NAME} {_('Admin Site')}"
+admin.site.site_title = settings.APP_NAME + " " + _("Admin Site")
 # 管理サイトヘッダー変更
 admin.site.site_header = admin.site.site_title
 # インデックスページタイトル変更

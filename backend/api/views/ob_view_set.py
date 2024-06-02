@@ -3,7 +3,7 @@ import logging
 from rest_framework import viewsets
 
 
-class OBViewSet(viewsets.ModelViewSet):
+class OBViewSet(viewsets.ReadOnlyModelViewSet):
     """基底ビューセット．"""
 
     # ロガー

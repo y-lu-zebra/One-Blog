@@ -1,3 +1,8 @@
+# 言語のテストでーた
+TEST_LANGUAGES_DATA = [
+    {"code": "en", "name": "English"},
+    {"code": "ja", "name": "日本語"},
+]
 # ユーザーのテストデータ
 TEST_USERS_DATA = [
     {

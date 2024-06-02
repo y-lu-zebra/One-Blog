@@ -13,6 +13,9 @@ class OBAdmin(admin.ModelAdmin):
         "sort_order",
         # 公開フラグ
         "is_published",
+    ]
+    # 操作履歴の共通表示フィールド
+    HISTORY_LIST_DISPLAY_FIELDS = [
         # 作成者
         "user_created",
         # 作成日時
@@ -24,7 +27,17 @@ class OBAdmin(admin.ModelAdmin):
     ]
     # 共通フィールドセット
     COMMON_FIELDSETS = [
-        # オプション
+        # 言語オプション
+        (
+            _("Language options"),
+            {
+                "classes": ["collapse"],
+                "fields": [
+                    "language",
+                ],
+            },
+        ),
+        # アドバンスオプション
         (
             _("Advanced options"),
             {
