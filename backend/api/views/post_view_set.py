@@ -2,6 +2,7 @@ from django_filters.rest_framework import DjangoFilterBackend  # type: ignore
 from rest_framework import filters
 
 from api.models import Posts
+from api.paginators import OnePaginator
 from api.serializers import PostSerializer
 from api.views.ob_view_set import OBViewSet
 
@@ -11,6 +12,7 @@ class PostViewSet(OBViewSet):
 
     queryset = Posts.objects.filter(is_published=True).all()
     serializer_class = PostSerializer
+    pagination_class = OnePaginator
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ["title", "overview", "content"]
     filterset_fields = ["category", "series", "tags", "language"]
