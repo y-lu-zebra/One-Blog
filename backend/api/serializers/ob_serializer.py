@@ -4,9 +4,7 @@ from rest_framework import serializers
 
 
 class OBSerializer(serializers.ModelSerializer):
-    """
-    基底シリアライザー
-    """
+    """基底シリアライザー．"""
 
     # ミックスインフィールド
     MIXIN_FIELDS = [
@@ -26,6 +24,8 @@ class OBSerializer(serializers.ModelSerializer):
         "meta_description",
         # メタキーワード
         "meta_keywords",
+        # 言語
+        "language",
         # 作成者
         "user_created",
         # 作成日時

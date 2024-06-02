@@ -1,21 +1,19 @@
+from typing import Any
+
 from django.test import TestCase
 from parameterized import parameterized  # type: ignore
 
-from api.models import Categories, Posts, Series, Tags
+from api.models import Categories, Languages, Posts, Series, Tags
 from api.models.rels import PostSeriesRel, PostTagRel
 from api.tests import data
 from api.tests.functions import init_data
 
 
 class ModelsTests(TestCase):
-    """
-    カテゴリーモデルのテストケース
-    """
+    """カテゴリーモデルのテストケース．"""
 
     def setUp(self) -> None:
-        """
-        前処理
-        本テストケースで使用するテストデータを作成しておく。
+        """前処理 本テストケースで使用するテストデータを作成しておく．
 
         Returns
         -------
@@ -26,6 +24,12 @@ class ModelsTests(TestCase):
 
     @parameterized.expand(
         [
+            (
+                "Languages.__str__()",
+                "Languages",
+                data.TEST_LANGUAGES_DATA[0]["name"],
+                "言語モデルの文字列変換",
+            ),
             (
                 "Categories.__str__()",
                 "Categories",
@@ -71,27 +75,34 @@ class ModelsTests(TestCase):
     def test_str(
         self,
         _: str,
-        model: str,
-        excepted: str,
+        model: Any,
+        excepted: Any,
         msg: str,
     ) -> None:
-        """
-        モデルのメソッド __str__ のテスト
+        """モデルのメソッド __str__ のテスト．
 
         Parameters
         ----------
-        _           実行時一覧表示用のパターン名
-        model       モデルクラス
-        excepted    期待値
-        msg         説明メッセージ
+        _ : str
+            実行時一覧表示用のパターン名
+        model: Any
+            モデルクラス
+        excepted : Any
+            期待値
+        msg : str
+            説明メッセージ
 
         Returns
         -------
             なし
         """
 
-        model_obj: Categories | Series | Tags | Posts | PostTagRel | PostSeriesRel
-        if model == "Categories":
+        model_obj: (
+            Languages | Categories | Series | Tags | Posts | PostTagRel | PostSeriesRel
+        )
+        if model == "Languages":
+            model_obj = Languages.objects.get(pk=1)
+        elif model == "Categories":
             model_obj = Categories.objects.get(pk=1)
         elif model == "Series":
             model_obj = Series.objects.get(pk=1)

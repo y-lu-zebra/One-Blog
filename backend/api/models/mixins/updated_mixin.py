@@ -4,9 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class UpdatedMixin(models.Model):
-    """
-    情報更新ミックスイン抽象モデル
-    """
+    """情報更新ミックスイン抽象モデル．"""
 
     class Meta:
         abstract = True

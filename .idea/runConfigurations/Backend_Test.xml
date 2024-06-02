@@ -7,7 +7,7 @@
     <envs>
       <env name="PYTHONUNBUFFERED" value="1" />
     </envs>
-    <option name="SDK_HOME" value="$PROJECT_DIR$/.venv/bin/python" />
+    <option name="SDK_HOME" value="$PROJECT_DIR$/backend/venv/bin/python" />
     <option name="SDK_NAME" value="Python 3.11 (One-Blog)" />
     <option name="WORKING_DIRECTORY" value="" />
     <option name="IS_MODULE_SDK" value="false" />

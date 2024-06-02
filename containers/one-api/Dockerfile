@@ -18,7 +18,7 @@ ENV USERNAME ${USERNAME}
 
 RUN groupadd -g ${GID} ${USERNAME} && \
     useradd -u ${UID} -g ${USERNAME} -m ${USERNAME} && \
-    chmod +x one-admin.sh && \
-    bash one-admin.sh init --prod --back
+    chmod +x admin.sh && \
+    bash admin.sh init --prod --back
 
 EXPOSE 8000
