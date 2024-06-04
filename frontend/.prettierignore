@@ -1,0 +1,5 @@
+.next
+.gitignore
+node_modules
+backend
+coverage

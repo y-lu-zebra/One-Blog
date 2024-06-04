@@ -1,18 +1,16 @@
-"""
-ファイル操作ユーティリティ関数定義
-"""
+"""ファイル操作ユーティリティ関数定義."""
 
 import os
 
 
 def is_path_exists(path: str) -> bool:
-    """
-    指定されたパスが存在するかチェックする。
+    """指定されたパスが存在するかチェックする．
 
     Parameters
     ----------
-    path
+    path : str
         チェックしたいパスの文字列
+
     Returns
     -------
         チェック結果
@@ -22,13 +20,13 @@ def is_path_exists(path: str) -> bool:
 
 
 def make_dir(path: str) -> None:
-    """
-    指定されたディレクトリが存在しない場合に、再帰的に作成する。
+    """指定されたディレクトリが存在しない場合に，再帰的に作成する．
 
     Parameters
     ----------
-    path
+    path : str
         作成したいディレクトリ
+
     Returns
     -------
         なし

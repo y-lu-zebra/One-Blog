@@ -10,15 +10,17 @@ from api.models import Posts
 
 @admin.register(Posts)
 class PostAdmin(OBAdmin):
-    """
-    投稿 ADMIN
-    """
+    """投稿 ADMIN．"""
 
     # 一覧画面に表示するフィールド
-    list_display: list[Any] = [
-        # タイトル
-        "title",
-    ] + OBAdmin.COMMON_LIST_DISPLAY_FIELDS
+    list_display: list[Any] = (
+        [
+            # タイトル
+            "title",
+        ]
+        + OBAdmin.COMMON_LIST_DISPLAY_FIELDS
+        + OBAdmin.HISTORY_LIST_DISPLAY_FIELDS
+    )
     # 一覧画面にリンクで表示するフィールド
     list_display_links = [
         # タイトル

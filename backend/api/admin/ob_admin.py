@@ -3,9 +3,7 @@ from django.utils.translation import gettext as _
 
 
 class OBAdmin(admin.ModelAdmin):
-    """
-    基底 ADMIN
-    """
+    """基底 ADMIN．"""
 
     # 一覧画面用の共通表示フィールド
     COMMON_LIST_DISPLAY_FIELDS = [
@@ -15,6 +13,9 @@ class OBAdmin(admin.ModelAdmin):
         "sort_order",
         # 公開フラグ
         "is_published",
+    ]
+    # 操作履歴の共通表示フィールド
+    HISTORY_LIST_DISPLAY_FIELDS = [
         # 作成者
         "user_created",
         # 作成日時
@@ -26,7 +27,17 @@ class OBAdmin(admin.ModelAdmin):
     ]
     # 共通フィールドセット
     COMMON_FIELDSETS = [
-        # オプション
+        # 言語オプション
+        (
+            _("Language options"),
+            {
+                "classes": ["collapse"],
+                "fields": [
+                    "language",
+                ],
+            },
+        ),
+        # アドバンスオプション
         (
             _("Advanced options"),
             {
@@ -52,15 +63,18 @@ class OBAdmin(admin.ModelAdmin):
     ]
 
     def save_model(self, request, instance, form, change):
-        """
-        作成者と最終更新者の自動追加
+        """作成者と最終更新者の自動追加．
 
         Parameters
         ----------
-        request     リクエスト
-        instance    インスタンス
-        form        フォーム
-        change      変更
+        request
+            リクエスト
+        instance
+            インスタンス
+        form
+            フォーム
+        change
+            変更
 
         Returns
         -------

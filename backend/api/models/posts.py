@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from api.models.categories import Categories
+from api.models.languages import Languages
 from api.models.mixins import (
     CreatedMixin,
     LinkMixin,
@@ -12,13 +13,11 @@ from api.models.mixins import (
 )
 from api.models.series import Series
 from api.models.tags import Tags
-from backend.commons import constants
+from one.commons import constants
 
 
 class Posts(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
-    """
-    投稿モデル
-    """
+    """投稿モデル．"""
 
     class Meta:
         db_table = constants.CODE_SEP_UNDERSCORE.join(
@@ -63,6 +62,15 @@ class Posts(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
     tags: models.ManyToManyField = models.ManyToManyField(
         Tags,
         through="PostTagRel",
+    )
+    # 言語
+    language: models.ForeignKey = models.ForeignKey(
+        Languages,
+        blank=False,
+        null=False,
+        on_delete=models.PROTECT,
+        related_name="language_%(class)s_set",
+        verbose_name=_("Language"),
     )
 
     def __str__(self) -> str:

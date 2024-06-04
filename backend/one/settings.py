@@ -1,6 +1,4 @@
-"""
-One Blog バックエンドの設定
-"""
+"""One Blog バックエンドの設定．"""
 
 import os
 import re
@@ -15,10 +13,10 @@ env = environ.Env(DEBUG=(bool, False))
 
 # 環境設定ファイルから設定項目を読み込み
 if sys.argv[1:2] == [constants.CODE_MODE_TEST]:
-    """テストモードの場合"""
+    """テストモードの場合."""
     environ.Env.read_env(constants.PATH_ENV_TEST)
 else:
-    """本番モードの場合"""
+    """本番モードの場合."""
     environ.Env.read_env(constants.PATH_ENV)
 
 # ========== Django 設定 ================================================================
@@ -63,7 +61,7 @@ MIDDLEWARE: list[str] = [
 ]
 
 # ルート URLconf
-ROOT_URLCONF: str = "backend.urls"
+ROOT_URLCONF: str = "one.urls"
 
 # テンプレート
 TEMPLATES: list[dict] = [
@@ -83,7 +81,7 @@ TEMPLATES: list[dict] = [
 ]
 
 # WSGI アプリケーション
-WSGI_APPLICATION = "backend.wsgi.application"
+WSGI_APPLICATION = "one.wsgi.application"
 
 # データベース
 DATABASES: dict = {
@@ -208,6 +206,8 @@ REST_FRAMEWORK: dict = {
     ),
     # テストリクエストフォーマット
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
+    # 例外ハンドラー
+    "EXCEPTION_HANDLER": "one.commons.handlers.one_exception_handler",
 }
 
 # ========== CORS 設定 ==================================================================
