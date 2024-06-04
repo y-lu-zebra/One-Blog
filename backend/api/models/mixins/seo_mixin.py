@@ -3,9 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class SEOMixin(models.Model):
-    """
-    SEO ミックスイン抽象モデル
-    """
+    """SEO ミックスイン抽象モデル．"""
 
     class Meta:
         abstract = True

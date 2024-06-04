@@ -9,15 +9,17 @@ from api.models import Tags
 
 @admin.register(Tags)
 class TagAdmin(OBAdmin):
-    """
-    タグ ADMIN
-    """
+    """タグ ADMIN．"""
 
     # 一覧画面に表示するフィールド
-    list_display: list[Any] = [
-        # カテゴリー名
-        "name",
-    ] + OBAdmin.COMMON_LIST_DISPLAY_FIELDS
+    list_display: list[Any] = (
+        [
+            # カテゴリー名
+            "name",
+        ]
+        + OBAdmin.COMMON_LIST_DISPLAY_FIELDS
+        + OBAdmin.HISTORY_LIST_DISPLAY_FIELDS
+    )
     # 一覧画面にリンクで表示するフィールド
     list_display_links = [
         # カテゴリー名

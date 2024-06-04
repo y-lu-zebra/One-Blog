@@ -4,9 +4,7 @@ from api.models import Categories
 
 
 class CategoryFilter(filters.FilterSet):
-    """
-    カテゴリーフィルター
-    """
+    """カテゴリーフィルター．"""
 
     # カテゴリー名（あいまい検索）
     name = filters.CharFilter(field_name="name", lookup_expr="icontains")
@@ -20,4 +18,6 @@ class CategoryFilter(filters.FilterSet):
             "type",
             # 親カテゴリー
             "parent",
+            # 言語
+            "language",
         ]

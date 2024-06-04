@@ -4,13 +4,11 @@ import shutil
 from django.test import TestCase
 from parameterized import parameterized  # type: ignore
 
-from backend.utils import files
+from one.utils import files
 
 
 class FilesTests(TestCase):
-    """
-    ファイル操作ユーティリティ関数のテストケース
-    """
+    """ファイル操作ユーティリティ関数のテストケース．"""
 
     # カレントディレクトリ
     CUR_DIR = os.path.dirname(__file__)
@@ -22,9 +20,7 @@ class FilesTests(TestCase):
     RECURSION_DIR = os.path.join(TMP_DIR, "level_1", "level_2")
 
     def setUp(self) -> None:
-        """
-        前処理
-        本テストケースで使用するディレクトリ・ファイルを事前に準備する。
+        """前処理 本テストケースで使用するディレクトリ・ファイルを事前に準備する．
 
         Returns
         -------
@@ -36,9 +32,7 @@ class FilesTests(TestCase):
             os.makedirs(self.TMP_DIR)
 
     def tearDown(self) -> None:
-        """
-        後処理
-        本テストケースで使用したディレクトリ・ファイルのゴミを片付ける。
+        """後処理 本テストケースで使用したディレクトリ・ファイルのゴミを片付ける．
 
         Returns
         -------
@@ -72,8 +66,7 @@ class FilesTests(TestCase):
         excepted: bool,
         msg: str,
     ) -> None:
-        """
-        関数 is_path_exists のテスト
+        """関数 is_path_exists のテスト．
 
         Parameters
         ----------
@@ -126,8 +119,7 @@ class FilesTests(TestCase):
         excepted_after: bool,
         msg: str,
     ) -> None:
-        """
-        関数 make_dir のテスト
+        """関数 make_dir のテスト．
 
         Parameters
         ----------
