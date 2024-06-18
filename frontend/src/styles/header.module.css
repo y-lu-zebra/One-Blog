@@ -4,7 +4,7 @@
 
 /* 通常ヘッダー */
 .pageHeader {
-  @apply w-[100%] h-28 bg-white fixed transition-all;
+  @apply w-[100%] h-24 bg-white fixed overflow-hidden transition-all;
 }
 .pageHeader .logoImage {
   @apply w-72 transition-all;
@@ -12,11 +12,24 @@
 
 /* 下へスクロールした後縮小されたヘッダー */
 .smallHeader {
-  @apply h-16 bg-white transition-all;
+  @apply h-14 bg-white transition-all;
 }
 .smallHeader .smallContainer {
-  @apply py-0 transition-all;
+  @apply py-1.5 transition-all;
 }
 .smallHeader .logoImage {
-  @apply w-60 transition-all;
+  @apply w-48 transition-all;
+}
+
+/* 座右の銘 */
+.aMotto {
+  @apply bg-neutral-900 text-sm;
+}
+.aMottoMessage {
+  @apply text-neutral-100 text-end;
+}
+.aMottoMessage::after {
+  content: '';
+  @apply border-l-8 border-r-8 rounded border-neutral-100
+    animate-ping ease-in-out;
 }

@@ -4,6 +4,7 @@
 require('dotenv').config({ path: '../.env' })
 
 const nextConfig = {
+  reactStrictMode: false,
   // 環境設定
   env: {
     // アプリ名称
