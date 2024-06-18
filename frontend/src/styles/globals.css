@@ -6,7 +6,7 @@
 @layer base {
   /* 通常モード */
   html {
-    @apply font-sans text-neutral-800;
+    @apply font-sans text-neutral-900;
   }
 
   body {

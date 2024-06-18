@@ -26,6 +26,7 @@ const Header = () => {
 
   useEffect(() => {
     typing(aMottos[getRandomNum(aMottos.length)])
+    toggleSmallMode()
     window.addEventListener('scroll', toggleSmallMode)
     return () => {
       window.removeEventListener('scroll', toggleSmallMode)

@@ -1,16 +1,14 @@
-.footer {
-  @apply text-center
-    /*bg-neutral-50*/
-    dark:bg-neutral-700;
+/**
+ * フッター・スタイル
+ */
+
+/* フッター */
+.pageFooter {
+  @apply bg-white;
 }
 
-.footerContainer {
-  @apply p-4 m-auto
-    text-center text-neutral-700
-    container
+/* コピーライト */
+.copyright {
+  @apply py-4 text-center text-sm
     dark:text-neutral-200;
-}
-
-.footerLink {
-  @apply p-1;
 }
