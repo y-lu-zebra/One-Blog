@@ -1,18 +1,22 @@
-.header {
-  @apply text-center
-    dark:bg-neutral-700;
+/**
+ * ヘッダー・スタイル
+ */
 
-  .headerContainer {
-    @apply p-4 m-auto
-    text-center
-    container
-    flex justify-between;
-  }
+/* 通常ヘッダー */
+.pageHeader {
+  @apply w-[100%] h-28 bg-white fixed transition-all;
+}
+.pageHeader .logoImage {
+  @apply w-72 transition-all;
 }
 
-.logoPanel {
+/* 下へスクロールした後縮小されたヘッダー */
+.smallHeader {
+  @apply h-16 bg-white transition-all;
 }
-
-.menuPanel {
-  @apply w-1/2;
+.smallHeader .smallContainer {
+  @apply py-0 transition-all;
+}
+.smallHeader .logoImage {
+  @apply w-60 transition-all;
 }
