@@ -65,8 +65,8 @@ export async function generateMetadata(props: PostProps) {
   const post: Post = await fetchPost(slug)
 
   return {
-    title: post.metaTitle || post.title,
-    description: post.metaDescription,
-    keywords: post.metaKeywords,
+    title: post.meta_title || post.title,
+    description: post.meta_description,
+    keywords: post.meta_keywords,
   }
 }

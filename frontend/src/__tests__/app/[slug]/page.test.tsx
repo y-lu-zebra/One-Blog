@@ -11,9 +11,9 @@ jest.mock(
           resolve({
             title: 'test',
             content: '```python\n```\n',
-            metaTitle: 'meta title',
-            metaDescription: 'meta description',
-            metaKeywords: 'meta keywords',
+            meta_title: 'meta title',
+            meta_description: 'meta description',
+            meta_keywords: 'meta keywords',
           })
         )
       } else {
@@ -21,9 +21,9 @@ jest.mock(
           resolve({
             title: 'test',
             content: '```python\n```\n',
-            metaTitle: '',
-            metaDescription: 'meta description',
-            metaKeywords: 'meta keywords',
+            meta_title: '',
+            meta_description: 'meta description',
+            meta_keywords: 'meta keywords',
           })
         )
       }

@@ -15,11 +15,11 @@ interface Category {
   // URL
   url: string
   // メタタイトル
-  metaTitle: string
+  meta_title: string
   // メタディスクリプション
-  metaDescription: string
+  meta_description: string
   // メタキーワード
-  metaKeywords: string
+  meta_keywords: string
   // 子カテゴリー
   children: Category[]
 }
