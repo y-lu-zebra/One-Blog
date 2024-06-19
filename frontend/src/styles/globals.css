@@ -15,7 +15,8 @@
 
   /* コンテナー */
   .pageContainer {
-    @apply m-auto p-4 container;
+    @apply m-auto p-2
+      sm:m-auto sm:p-4 sm:container;
   }
 
   /* ダークモード */

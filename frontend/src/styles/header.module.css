@@ -7,7 +7,7 @@
   @apply w-[100%] h-24 bg-white fixed overflow-hidden transition-all;
 }
 .pageHeader .logoImage {
-  @apply w-72 transition-all;
+  @apply w-72 inline-block transition-all;
 }
 
 /* 下へスクロールした後縮小されたヘッダー */

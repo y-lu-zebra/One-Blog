@@ -1,3 +1,50 @@
-.listLink {
-  @apply font-bold;
+/**
+ * ホーム・スタイル
+ */
+
+/* 記事一覧 */
+.postList {
+  @apply py-8 grid grid-cols-1 gap-4
+    md:grid-cols-2
+    lg:grid-cols-3
+    2xl:grid-cols-4;
+}
+
+/* 記事カード */
+.postList .postCard {
+  @apply border border-white rounded overflow-hidden cursor-pointer transition-all;
+}
+.postList .postCard .shutter {
+  @apply p-4 pb-1 relative transition-all;
+}
+.postList .postCard .shutter::after {
+  @apply w-[100%] h-0 absolute top-0 left-0 bg-black -z-10
+    content-[''] transition-all;
+}
+.postList .postCard .date {
+  @apply ps-5 bg-[url('/icon-clock-outline.svg')] bg-no-repeat bg-left
+    text-sm transition-all;
+}
+.postList .postCard h3 {
+  @apply mt-2 text-black text-justify transition-all;
+}
+.postList .postCard .overview {
+  @apply p-4 pt-1 text-neutral-300 text-justify transition-all;
+}
+
+/* 記事カード（マウスオーバー時） */
+.postList .postCard:hover {
+  @apply border border-black shadow transition-all;
+}
+.postList .postCard:hover .shutter::after {
+  @apply h-[100%] transition-all;
+}
+.postList .postCard:hover .date {
+  @apply invert transition-all;
+}
+.postList .postCard:hover h3 {
+  @apply invert transition-all;
+}
+.postList .postCard:hover .overview {
+  @apply text-black transition-all;
 }

@@ -13,19 +13,28 @@ export default async function HomePage() {
   return (
     <>
       <Header></Header>
-      <main className="main">
-        <div className="mainContainer">
-          <ul>
+      <main>
+        <div className="pageContainer">
+          <div className={styles.postList}>
             {posts.map((post: Post, idx: number) => {
+              const dateUpdated = new Date(post.date_updated)
+              const dateUpdatedStr = `${dateUpdated.getFullYear()}.${(
+                '0' +
+                ((dateUpdated.getMonth() % 12) + 1)
+              ).slice(-2)}.${dateUpdated.getDate()}`
+              console.log(post)
               return (
-                <li key={idx} className="py-5">
-                  <Link href={`/${post.id}`} className={styles.listLink}>
-                    {post.title}
-                  </Link>
-                </li>
+                <Link key={idx} href={`/${post.id}`} className={styles.postCard}>
+                  <div className={styles.shutter}>
+                    <span className={styles.date}>{dateUpdatedStr}</span>
+                    <h3>{post.title}</h3>
+                  </div>
+                  <p className={styles.overview}>{post.overview}</p>
+                </Link>
               )
             })}
-          </ul>
+          </div>
+          <ul></ul>
         </div>
       </main>
       <Footer></Footer>

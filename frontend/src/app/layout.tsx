@@ -2,10 +2,13 @@ import 'tw-elements-react/dist/css/tw-elements-react.min.css'
 import '@/styles/globals.css'
 
 import type { Metadata } from 'next'
+import { Kosugi_Maru } from 'next/font/google'
 import { Suspense } from 'react'
 import React from 'react'
 
 import GoogleAnalytics from '@/components/ga'
+
+const oneFont = Kosugi_Maru({ weight: '400', subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: process.env.APP_NAME,
@@ -16,7 +19,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja">
-      <body>
+      <body className={oneFont.className}>
         <Suspense>
           <GoogleAnalytics />
         </Suspense>
