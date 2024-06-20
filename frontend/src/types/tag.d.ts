@@ -1,19 +1,13 @@
-import { CategoryType } from '@/types/category-type'
-
 /**
- * カテゴリーインターフェイス
+ * タグインターフェイス
  */
-interface Category {
-  // カテゴリー ID
+interface Tag {
+  // タグ ID
   id: number
-  // カテゴリー名
+  // タグ名
   name: string
-  // タイプ
-  type: CategoryType
-  // カテゴリー別名
+  // タグ別名
   alias: string
-  // URL
-  url: string
   // メタタイトル
   metaTitle: string
   // メタディスクリプション

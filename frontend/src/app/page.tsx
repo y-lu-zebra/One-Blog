@@ -5,6 +5,7 @@ import Footer from '@/components/footer'
 import Header from '@/components/header'
 import { fetchPosts } from '@/lib/api'
 import styles from '@/styles/home.module.css'
+import { Post } from '@/types/post'
 
 export const dynamic = 'force-dynamic'
 export default async function HomePage() {
@@ -17,7 +18,7 @@ export default async function HomePage() {
         <div className="pageContainer">
           <div className={styles.postList}>
             {posts.map((post: Post, idx: number) => {
-              const dateUpdated: Date = new Date(post.date_updated)
+              const dateUpdated: Date = new Date(post.dateUpdated)
               const dateUpdatedStr: string = `${dateUpdated.getFullYear()}.${(
                 '0' +
                 ((dateUpdated.getMonth() % 12) + 1)
@@ -30,10 +31,23 @@ export default async function HomePage() {
                   scroll={false}
                 >
                   <div className={styles.shutter}>
-                    <span className={styles.date}>{dateUpdatedStr}</span>
+                    <div className={styles.meta}>
+                      <div className={styles.date}>
+                        <span>{dateUpdatedStr}</span>
+                      </div>
+                      <div className={styles.category}>
+                        {post.category.name && <span>{post.category.name}</span>}
+                      </div>
+                    </div>
                     <h3>{post.title}</h3>
                   </div>
-                  <p className={styles.overview}>{post.overview}</p>
+                  {post.overview && (
+                    <p className={styles.overview}>
+                      {post.overview.length > 80
+                        ? post.overview.substring(0, 80) + '...'
+                        : post.overview}
+                    </p>
+                  )}
                 </Link>
               )
             })}

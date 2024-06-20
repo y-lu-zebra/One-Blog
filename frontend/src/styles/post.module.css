@@ -4,12 +4,11 @@
 
 /* ページタイトルパネル */
 .pageTitlePanel {
-  @apply bg-gradient-radial from-neutral-500 to-neutral-900 to-10%
-    bg-[length:0.5em_0.5em]
-    bg-neutral-900 relative overflow-hidden text-4xl text-white text-center;
-
-  /*background-image: radial-gradient(#ffc107 2px, #ffffff 2px);*/
-  /*background-size: 20px 20px;*/
+  @apply bg-gradient-radial from-neutral-300 to-neutral-900 to-10%
+    bg-[length:0.5em_0.5em] bg-neutral-900 relative overflow-hidden z-0
+    text-2xl text-white text-center
+    md:from-neutral-500
+    md:text-4xl;
 }
 .pageTitlePanel::before,
 .pageTitlePanel::after {
@@ -17,13 +16,13 @@
 }
 .pageTitlePanel::before {
   @apply w-[70vmax] h-[70vmax] -left-[20vmin] -top-[20vmin]
-    bg-gradient-to-r from-[#02E1BA4C] via-[#26C9F24C] to-[#D911F24C]
+    bg-gradient-to-r from-[#02E1BA4C] via-[#26C9F24C] to-[#D911F24C] -z-10
     animate-[morph_15s_linear_infinite_alternate,spin_36s_linear_infinite]
     origin-[55%_55%];
 }
 .pageTitlePanel::after {
   @apply w-[70vmin] h-[70vmin] -right-[10vmin] bottom-0
-    bg-gradient-to-b from-[#26C9F24C] via-[#D911F24C] to-[#FFA0794C]
+    bg-gradient-to-b from-[#26C9F24C] via-[#D911F24C] to-[#FFA0794C] -z-10
     animate-[morph_10s_linear_infinite_alternate,spin_26s_linear_infinite_reverse]
     origin-[20%_20%];
 }
@@ -43,7 +42,8 @@
   }
 }
 .pageTitlePanel .pageTitle {
-  @apply py-6 z-10 leading-normal;
+  @apply py-2 z-10 leading-normal
+    md:py-6;
 }
 
 .pageContent {
@@ -51,9 +51,28 @@
 .pageContent .pageMeta {
   @apply py-8;
 }
-.pageContent .pageMeta .date {
-  @apply ps-5 bg-[url('/icon-clock-outline.svg')] bg-no-repeat bg-left
+.pageContent .pageMeta .dateCreated,
+.pageContent .pageMeta .dateUpdated,
+.pageContent .pageMeta .category,
+.pageContent .pageMeta .pageTags {
+  @apply ps-5 bg-no-repeat bg-left
     text-sm transition-all;
+}
+.pageContent .pageMeta .dateCreated {
+  @apply bg-[url('/icon-clock-outline.svg')];
+}
+.pageContent .pageMeta .dateUpdated {
+  @apply ml-6 bg-[url('/icon-arrow-path-rounded-square-outline.svg')];
+}
+.pageContent .pageMeta .category {
+  @apply ml-6 bg-[url('/icon-squares-plus-outline.svg')];
+}
+.pageContent .pageMeta .pageTags {
+  @apply ml-6 bg-[url('/icon-tag-outline.svg')];
+}
+.pageContent .pageOverview {
+  @apply mb-12 pl-3.5 border-s-8 border-neutral-900
+    text-sm text-neutral-500 text-justify;
 }
 
 /* 投稿内容 */
@@ -62,7 +81,8 @@
 .postContent > ol,
 .postContent > p,
 .postContent > blockquote {
-  @apply mb-10 text-justify leading-8;
+  @apply mb-6 text-justify leading-8
+    md:mb-10;
 }
 .postContent > table {
   @apply w-full border-collapse rounded-md text-base;
@@ -90,16 +110,20 @@
 .postContent > h1,
 .postContent > h2,
 .postContent > h3 {
-  @apply mb-6;
+  @apply mb-4
+    md:mb-6;
 }
 .postContent > h1 {
-  @apply mt-24 pb-2 font-bold text-4xl border-b-2 border-b-neutral-300;
+  @apply mt-12 pb-2 font-bold text-2xl border-b-2 border-b-neutral-900
+    md:mt-24 md:text-4xl;
 }
 .postContent > h2 {
-  @apply mt-12 pb-2 font-bold text-3xl border-b border-b-neutral-300;
+  @apply mt-12 pb-2 font-bold text-2xl border-b border-b-neutral-300
+    md:text-3xl;
 }
 .postContent > h3 {
-  @apply mt-12 text-2xl;
+  @apply mt-12 text-xl
+    md:text-2xl;
 }
 .postContent > *:first-child {
   @apply mt-0;
@@ -112,8 +136,8 @@
 }
 .postContent > p code,
 .postContent li > p code {
-  @apply px-1.5 py-0.5 border border-dashed border-neutral-900 rounded /*bg-neutral-700*/
-    align-bottom;
+  @apply px-1.5 py-0.5 border border-dashed border-neutral-900 rounded
+    text-sm leading-8 align-bottom;
 }
 .postContent > ul,
 .postContent > ol {
@@ -138,7 +162,7 @@
 .postContent kbd {
   @apply px-1.5 py-0.5 border border-b-2 border-neutral-300 rounded
     bg-neutral-100 shadow-white shadow-inner
-    align-bottom;
+    text-sm leading-8 align-bottom;
 }
 .postContent del {
   @apply opacity-60;
@@ -172,5 +196,5 @@
   @apply p-4 rounded-md bg-neutral-100;
 }
 .postContent hr {
-  @apply my-12 border-neutral-300;
+  @apply my-12 border-neutral-900;
 }

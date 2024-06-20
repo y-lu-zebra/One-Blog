@@ -23,7 +23,7 @@
 
 /* 座右の銘 */
 .aMotto {
-  @apply bg-neutral-900 text-sm;
+  @apply bg-neutral-900 shadow-inner text-sm;
 }
 .aMottoMessage {
   @apply text-neutral-100 text-end;

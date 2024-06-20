@@ -15,7 +15,7 @@
 
   /* コンテナー */
   .pageContainer {
-    @apply m-auto p-2
+    @apply m-auto px-2 p-4
       sm:m-auto sm:p-4 sm:container;
   }
 

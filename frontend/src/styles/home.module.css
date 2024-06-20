@@ -21,9 +21,25 @@
   @apply w-[100%] h-0 absolute top-0 left-0 bg-neutral-900 -z-10
     content-[''] transition-all;
 }
-.postList .postCard .date {
-  @apply ps-5 bg-[url('/icon-clock-outline.svg')] bg-no-repeat bg-left
+.postList .postCard .meta {
+  @apply flex;
+}
+.postList .postCard .meta .date {
+  @apply flex-none;
+}
+.postList .postCard .meta .category {
+  @apply flex-1 text-right;
+}
+.postList .postCard .meta .date span,
+.postList .postCard .meta .category span {
+  @apply ps-5 bg-[url('/icon-arrow-path-rounded-square-outline.svg')] bg-no-repeat bg-left
     text-sm transition-all;
+}
+.postList .postCard .meta .date span {
+  @apply flex-none bg-[url('/icon-arrow-path-rounded-square-outline.svg')];
+}
+.postList .postCard .meta .category span {
+  @apply flex-1 bg-[url('/icon-squares-plus-outline.svg')];
 }
 .postList .postCard h3 {
   @apply mt-2 text-black text-justify transition-all;
@@ -39,7 +55,7 @@
 .postList .postCard:hover .shutter::after {
   @apply h-[100%] transition-all;
 }
-.postList .postCard:hover .date {
+.postList .postCard:hover .meta {
   @apply invert transition-all;
 }
 .postList .postCard:hover h3 {
