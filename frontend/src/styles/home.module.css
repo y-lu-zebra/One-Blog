@@ -2,7 +2,7 @@
  * ホーム・スタイル
  */
 
-/* 記事一覧 */
+/* 投稿一覧 */
 .postList {
   @apply py-8 grid grid-cols-1 gap-4
     md:grid-cols-2
@@ -10,15 +10,15 @@
     2xl:grid-cols-4;
 }
 
-/* 記事カード */
+/* 投稿カード */
 .postList .postCard {
-  @apply border border-white rounded overflow-hidden cursor-pointer transition-all;
+  @apply border border-white rounded-md overflow-hidden cursor-pointer transition-all;
 }
 .postList .postCard .shutter {
   @apply p-4 pb-1 relative transition-all;
 }
 .postList .postCard .shutter::after {
-  @apply w-[100%] h-0 absolute top-0 left-0 bg-black -z-10
+  @apply w-[100%] h-0 absolute top-0 left-0 bg-neutral-900 -z-10
     content-[''] transition-all;
 }
 .postList .postCard .date {
@@ -32,9 +32,9 @@
   @apply p-4 pt-1 text-neutral-300 text-justify transition-all;
 }
 
-/* 記事カード（マウスオーバー時） */
+/* 投稿カード（マウスオーバー時） */
 .postList .postCard:hover {
-  @apply border border-black shadow transition-all;
+  @apply border border-neutral-900 shadow-md transition-all;
 }
 .postList .postCard:hover .shutter::after {
   @apply h-[100%] transition-all;

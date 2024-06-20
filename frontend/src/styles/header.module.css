@@ -4,7 +4,7 @@
 
 /* 通常ヘッダー */
 .pageHeader {
-  @apply w-[100%] h-24 bg-white fixed overflow-hidden transition-all;
+  @apply w-[100%] h-24 bg-white fixed overflow-hidden z-10 transition-all;
 }
 .pageHeader .logoImage {
   @apply w-72 inline-block transition-all;
@@ -12,7 +12,7 @@
 
 /* 下へスクロールした後縮小されたヘッダー */
 .smallHeader {
-  @apply h-14 bg-white transition-all;
+  @apply h-14 bg-white shadow-md transition-all;
 }
 .smallHeader .smallContainer {
   @apply py-1.5 transition-all;

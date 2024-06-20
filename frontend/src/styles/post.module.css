@@ -1,53 +1,176 @@
-.postTitle {
-  @apply py-4 font-bold text-4xl text-center;
+/**
+ * 投稿スタイル
+ */
+
+/* ページタイトルパネル */
+.pageTitlePanel {
+  @apply bg-gradient-radial from-neutral-500 to-neutral-900 to-10%
+    bg-[length:0.5em_0.5em]
+    bg-neutral-900 relative overflow-hidden text-4xl text-white text-center;
+
+  /*background-image: radial-gradient(#ffc107 2px, #ffffff 2px);*/
+  /*background-size: 20px 20px;*/
+}
+.pageTitlePanel::before,
+.pageTitlePanel::after {
+  @apply content-[''] absolute will-change-[border-radius,transform];
+}
+.pageTitlePanel::before {
+  @apply w-[70vmax] h-[70vmax] -left-[20vmin] -top-[20vmin]
+    bg-gradient-to-r from-[#02E1BA4C] via-[#26C9F24C] to-[#D911F24C]
+    animate-[morph_15s_linear_infinite_alternate,spin_36s_linear_infinite]
+    origin-[55%_55%];
+}
+.pageTitlePanel::after {
+  @apply w-[70vmin] h-[70vmin] -right-[10vmin] bottom-0
+    bg-gradient-to-b from-[#26C9F24C] via-[#D911F24C] to-[#FFA0794C]
+    animate-[morph_10s_linear_infinite_alternate,spin_26s_linear_infinite_reverse]
+    origin-[20%_20%];
+}
+/* 変形アニメーション */
+@keyframes morph {
+  0% {
+    border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
+  }
+  100% {
+    border-radius: 40% 60%;
+  }
+}
+/* 自転アニメーション */
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+.pageTitlePanel .pageTitle {
+  @apply py-6 z-10 leading-normal;
 }
 
-.postContent {
-  @apply py-4;
+.pageContent {
+}
+.pageContent .pageMeta {
+  @apply py-8;
+}
+.pageContent .pageMeta .date {
+  @apply ps-5 bg-[url('/icon-clock-outline.svg')] bg-no-repeat bg-left
+    text-sm transition-all;
 }
 
-.postContent > * {
-  @apply my-6;
-}
-
-.postContent > h1 {
-  @apply pb-2 font-bold text-3xl border-b-2 border-b-gray-200;
-}
-
-.postContent > h2 {
-  @apply pb-2 text-3xl border-b border-b-gray-200;
-}
-
-.postContent > h3 {
-  @apply text-2xl;
-}
-
-.postContent > h4 {
-  @apply text-xl;
-}
-
-.postContent > h1:not(:first-of-type),
-.postContent > h2:not(:first-of-type) {
-  @apply mt-20;
-}
-
-.postContent > table {
-  @apply w-full border border-collapse border-b-gray-500 rounded;
-}
-
-.postContent > table th,
-.postContent > table td {
-  @apply p-2 border-b border-slate-300;
-}
-
-.postContent > p code {
-  @apply px-1.5 text-neutral-800 rounded bg-gray-200;
-}
-
-.postContent > pre > div {
-  @apply rounded;
-}
-
+/* 投稿内容 */
+.postContent > table,
+.postContent > ul,
+.postContent > ol,
+.postContent > p,
 .postContent > blockquote {
-  @apply px-4 py-2 bg-gray-100;
+  @apply mb-10 text-justify leading-8;
+}
+.postContent > table {
+  @apply w-full border-collapse rounded-md text-base;
+}
+.postContent > table tr {
+  @apply transition-all;
+}
+.postContent > table tr:not(:has(th)):hover {
+  @apply bg-neutral-100 transition-all;
+}
+.postContent > table th {
+  @apply p-2 /*bg-neutral-900 text-white*/　border-b-2 border-b-neutral-500
+    [&:first-child]:rounded-tl-md
+    [&:last-child]:rounded-tr-md;
+}
+.postContent > table td {
+  @apply p-2 border-b border-neutral-300 box-content transition-all;
+}
+.postContent pre {
+  @apply mb-10 rounded-md overflow-hidden;
+}
+.postContent pre > div {
+  @apply !m-0;
+}
+.postContent > h1,
+.postContent > h2,
+.postContent > h3 {
+  @apply mb-6;
+}
+.postContent > h1 {
+  @apply mt-24 pb-2 font-bold text-4xl border-b-2 border-b-neutral-300;
+}
+.postContent > h2 {
+  @apply mt-12 pb-2 font-bold text-3xl border-b border-b-neutral-300;
+}
+.postContent > h3 {
+  @apply mt-12 text-2xl;
+}
+.postContent > *:first-child {
+  @apply mt-0;
+}
+.postContent > p:has(+ table),
+.postContent > p:has(+ ul),
+.postContent > p:has(+ ol),
+.postContent > p:has(+ pre) {
+  @apply mb-2;
+}
+.postContent > p code,
+.postContent li > p code {
+  @apply px-1.5 py-0.5 border border-dashed border-neutral-900 rounded /*bg-neutral-700*/
+    align-bottom;
+}
+.postContent > ul,
+.postContent > ol {
+  @apply ml-4;
+}
+.postContent > ul > li:not(:has(> input)) {
+  @apply pl-6
+    bg-[url('/icon-arrow-right-circle-outline.svg')]
+    bg-[length:1em_1em] bg-no-repeat bg-[left_0.5em];
+}
+.postContent > ol {
+  @apply ml-10 list-[decimal-leading-zero];
+}
+.postContent input[type='checkbox'] {
+  @apply w-4 h-4 bg-[url('/icon-check-circle-outline.svg')]
+    align-text-bottom
+    appearance-none opacity-30 transition-all;
+}
+.postContent input[type='checkbox']:checked {
+  @apply opacity-100 transition-all;
+}
+.postContent kbd {
+  @apply px-1.5 py-0.5 border border-b-2 border-neutral-300 rounded
+    bg-neutral-100 shadow-white shadow-inner
+    align-bottom;
+}
+.postContent del {
+  @apply opacity-60;
+}
+.postContent a {
+  @apply pl-5 py-0.5 border-b border-dashed border-neutral-900
+    bg-[url('/icon-link-outline.svg')]
+    bg-[length:1em_1em] bg-no-repeat bg-left
+    align-bottom opacity-60 transition-all;
+}
+.postContent a:hover {
+  @apply border-solid opacity-100 transition-all;
+}
+.postContent sup {
+  @apply -top-2.5;
+}
+.postContent sup a {
+  @apply p-0 border-none bg-none;
+}
+.postContent strong {
+  @apply bg-[length:100%_0.4em] bg-no-repeat bg-bottom
+    bg-gradient-to-r from-[#02E1BA4C] via-[#26C9F24C] to-[#D911F24C]
+    transition-all;
+}
+.postContent strong:hover {
+  @apply bg-[length:100%_0.5em]
+    bg-gradient-to-r from-[#02E1BA76] via-[#26C9F276] to-[#D911F276]
+    transition-all;
+}
+.postContent > blockquote {
+  @apply p-4 rounded-md bg-neutral-100;
+}
+.postContent hr {
+  @apply my-12 border-neutral-300;
 }

@@ -62,7 +62,7 @@ const Header = () => {
       <header className={`${styles.pageHeader} ${isSmallMode && styles.smallHeader}`}>
         <div className={`pageContainer ${isSmallMode && styles.smallContainer}`}>
           {/* LOGO リンク */}
-          <Link href={constants.UI_URL_ROOT}>
+          <Link href={constants.UI_URL_ROOT} scroll={false}>
             <div className={styles.logoImage}>
               <Image
                 src="/logo.png"

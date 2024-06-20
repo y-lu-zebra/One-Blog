@@ -12,19 +12,23 @@ export default async function HomePage() {
 
   return (
     <>
-      <Header></Header>
+      <Header />
       <main>
         <div className="pageContainer">
           <div className={styles.postList}>
             {posts.map((post: Post, idx: number) => {
-              const dateUpdated = new Date(post.date_updated)
-              const dateUpdatedStr = `${dateUpdated.getFullYear()}.${(
+              const dateUpdated: Date = new Date(post.date_updated)
+              const dateUpdatedStr: string = `${dateUpdated.getFullYear()}.${(
                 '0' +
                 ((dateUpdated.getMonth() % 12) + 1)
               ).slice(-2)}.${dateUpdated.getDate()}`
-              console.log(post)
               return (
-                <Link key={idx} href={`/${post.id}`} className={styles.postCard}>
+                <Link
+                  key={idx}
+                  href={`/${post.id}`}
+                  className={styles.postCard}
+                  scroll={false}
+                >
                   <div className={styles.shutter}>
                     <span className={styles.date}>{dateUpdatedStr}</span>
                     <h3>{post.title}</h3>
@@ -37,7 +41,7 @@ export default async function HomePage() {
           <ul></ul>
         </div>
       </main>
-      <Footer></Footer>
+      <Footer />
     </>
   )
 }
