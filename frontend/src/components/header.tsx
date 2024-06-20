@@ -80,7 +80,7 @@ const Header = () => {
       <div className={`transition-all ${isSmallMode ? 'h-14' : 'h-24'}`}></div>
       {/* 座右の銘 */}
       <div className={styles.aMotto}>
-        <div className="m-auto px-4 py-1 container shadow-inner">
+        <div className="pageContainer py-1 shadow-inner">
           <div ref={aMottoRef} className={styles.aMottoMessage}></div>
         </div>
       </div>
