@@ -99,7 +99,7 @@ class ViewSetTests(APITestCase):
             ),
             (
                 "categories order, published and page 2",
-                "/categories/?page=2",
+                "/categories/?offset=5",
                 "name",
                 200,
                 7,
@@ -166,7 +166,7 @@ class ViewSetTests(APITestCase):
             ),
             (
                 "series order, published and page 2",
-                "/series/?page=2",
+                "/series/?offset=5",
                 "name",
                 200,
                 6,
@@ -204,7 +204,7 @@ class ViewSetTests(APITestCase):
             ),
             (
                 "posts order, published and page 2",
-                "/posts/?page=2",
+                "/posts/?offset=5",
                 "title",
                 200,
                 6,
