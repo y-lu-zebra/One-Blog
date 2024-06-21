@@ -167,7 +167,8 @@ case $1 in
       gunicorn one.wsgi:application --bind 0.0.0.0:8000
     elif [ "$2" = "${mode[3]}" ]; then
       cd frontend || exit
-      npm start
+      npm run build
+      npm run start
     else
       printError
       printf "\033[31mUnknown option '%s'!\033[m\n" "$2"
