@@ -1,17 +1,21 @@
+from typing import Any
+
+from rest_framework import serializers
+
 from api.models import Categories
 from api.serializers.ob_serializer import OBSerializer
 from api.serializers.user_serializer import UserSerializer
 
 
 class CategorySerializer(OBSerializer):
-    """
-    カテゴリーシリアライザー
-    """
+    """カテゴリーシリアライザー．"""
 
     # 作成者
     user_created = UserSerializer(many=False, read_only=True)
     # 最終更新者
     user_updated = UserSerializer(many=False, read_only=True)
+    # 言語
+    language: Any = serializers.StringRelatedField()
 
     class Meta:
         model = Categories

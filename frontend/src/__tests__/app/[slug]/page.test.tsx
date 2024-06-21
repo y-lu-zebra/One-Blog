@@ -14,6 +14,8 @@ jest.mock(
             metaTitle: 'meta title',
             metaDescription: 'meta description',
             metaKeywords: 'meta keywords',
+            category: { name: 'category1' },
+            tags: [],
           })
         )
       } else {
@@ -24,12 +26,16 @@ jest.mock(
             metaTitle: '',
             metaDescription: 'meta description',
             metaKeywords: 'meta keywords',
+            category: { name: 'category1' },
+            tags: [],
           })
         )
       }
     },
   })
 )
+
+window.scroll = jest.fn()
 
 describe('Post Page', () => {
   it('Post Page Render', async () => {

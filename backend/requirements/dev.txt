@@ -1,12 +1,14 @@
-# requirements for development
+# Requirements for Development.
+
 -r common.txt
 
-black==23.12.0
-coverage==7.3.4
-django-stubs==4.2.7
-djangorestframework-stubs==3.14.5
-flake8==6.1.0
-isort==5.13.1
-mypy==1.7.1
+black==24.4.2
+coverage==7.5.3
+django-stubs==5.0.2
+djangorestframework-stubs==3.15.0
+docformatter==1.7.5
+flake8==7.1.0
+isort==5.13.2
+mypy==1.10.0
 parameterized==0.9.0
-pre-commit==3.6.0
+pre-commit==3.7.1

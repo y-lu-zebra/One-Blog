@@ -1,4 +1,5 @@
-import Link from 'next/link'
+'use client'
+
 import React from 'react'
 
 import styles from '@/styles/footer.module.css'
@@ -8,16 +9,14 @@ import styles from '@/styles/footer.module.css'
  *
  * @constructor
  */
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.footerContainer}>
-        &copy;
-        <Link className={styles.footerLink} href={''}>
-          Yu Lu
-        </Link>
-        All Rights Reserved.
+    <footer className={styles.pageFooter}>
+      <div className="pageContainer">
+        <div className={styles.copyright}>&copy; Yu Lu All Rights Reserved.</div>
       </div>
     </footer>
   )
 }
+
+export default Footer
