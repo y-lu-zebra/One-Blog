@@ -11,9 +11,11 @@ jest.mock(
           resolve({
             title: 'test',
             content: '```python\n```\n',
-            meta_title: 'meta title',
-            meta_description: 'meta description',
-            meta_keywords: 'meta keywords',
+            metaTitle: 'meta title',
+            metaDescription: 'meta description',
+            metaKeywords: 'meta keywords',
+            category: { name: 'category1' },
+            tags: [],
           })
         )
       } else {
@@ -21,15 +23,19 @@ jest.mock(
           resolve({
             title: 'test',
             content: '```python\n```\n',
-            meta_title: '',
-            meta_description: 'meta description',
-            meta_keywords: 'meta keywords',
+            metaTitle: '',
+            metaDescription: 'meta description',
+            metaKeywords: 'meta keywords',
+            category: { name: 'category1' },
+            tags: [],
           })
         )
       }
     },
   })
 )
+
+window.scroll = jest.fn()
 
 describe('Post Page', () => {
   it('Post Page Render', async () => {

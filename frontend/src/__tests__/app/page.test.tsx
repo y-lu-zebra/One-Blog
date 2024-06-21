@@ -11,12 +11,15 @@ jest.mock(
           results: [
             {
               title: 'test',
+              category: { name: 'category1' },
             },
           ],
         })
       ),
   })
 )
+
+window.scroll = jest.fn()
 
 describe('Home Page', () => {
   it('Home Page Render', async () => {
