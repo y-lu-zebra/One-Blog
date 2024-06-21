@@ -2,11 +2,16 @@ name: Deployment
 
 on:
   pull_request:
+    branches:
+      - develop
     types:
       - closed
+
   workflow_run:
-    workflows: [Development]
-    types: [completed]
+    workflows:
+      - Development
+    types:
+      - completed
 
 jobs:
   deploy:
