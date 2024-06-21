@@ -112,7 +112,7 @@ services:
     volumes:
       - ./containers/one-server/nginx.conf:/etc/nginx/nginx.conf
       - ./one/static:/usr/share/nginx/static
-    #      - ./containers/one-server/ssl-cert:/etc/letsencrypt
+      - ./containers/one-server/ssl-cert:/etc/letsencrypt
     logging:
       driver: json-file
       options:
