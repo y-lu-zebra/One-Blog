@@ -2,8 +2,8 @@
 # One Blog Management Shell
 # ======================================================================================
 
-# 処理名の配列（初期化 ユーザー作成 サーバーの起動 リントチェック 単体試験 ビルド）
-process=("init" "adduser" "start" "lint" "ut" "build")
+# 処理名の配列（初期化 ユーザー作成 サーバーの起動 リントチェック 単体試験 ビルド デプロイ）
+process=("init" "adduser" "start" "lint" "ut" "build" "deploy")
 # オプションの配列
 mode=("--dev" "--prod" "--back" "--front")
 
@@ -33,7 +33,11 @@ function printProcess {
 
     "${process[1]}" )
       printf "Create a new super user\n"
+      ;;
 
+    "${process[6]}" )
+      printf "Start Deployment\n"
+      ;;
   esac
 }
 
@@ -196,4 +200,27 @@ case $1 in
 #    printError
 #    printf "\033[31mUnknown process '%s'!\033[m\n" "$1"
 #    ;;
+
+  # デプロイ
+  "${process[6]}" )
+    printProcess "$1"
+
+    DATETIME="$(date '+%Y%m%d%H%M%S')"
+
+    printf "  Update Source Code\n"
+    git fetch
+    git pull
+    mkdir -p backend/static
+
+    printf "  Delete Docker Containers\n"
+    docker-compose down --rmi all -v
+
+    printf "  Backup database\n"
+    mkdir -p ../bk
+    tar zcf "../bk/db_${DATETIME}.tar.gz" db
+    rm -Rf front/.next
+
+    printf "  Create docker containers\n"
+    docker-compose up -d
+    ;;
 esac
