@@ -1,16 +1,26 @@
 @tailwind base;
-@layer base {
-  html {
-    @apply text-neutral-800;
-  }
-  html.dark {
-    @apply text-neutral-50;
-    @apply bg-neutral-800;
-  }
-}
 @tailwind components;
 @tailwind utilities;
 
-.main .mainContainer {
-  @apply p-4 m-auto container;
+/* グローバル・スタイル */
+@layer base {
+  /* 通常モード */
+  html {
+    @apply font-sans text-neutral-900;
+  }
+
+  body {
+    @apply bg-white;
+  }
+
+  /* コンテナー */
+  .pageContainer {
+    @apply m-auto px-2 p-4
+      sm:m-auto sm:p-4 sm:container;
+  }
+
+  /* ダークモード */
+  html.dark {
+    @apply bg-neutral-800 text-neutral-50;
+  }
 }

@@ -5,6 +5,7 @@ import Footer from '@/components/footer'
 import Header from '@/components/header'
 import { fetchPosts } from '@/lib/api'
 import styles from '@/styles/home.module.css'
+import { Post } from '@/types/post'
 
 export const dynamic = 'force-dynamic'
 export default async function HomePage() {
@@ -12,23 +13,49 @@ export default async function HomePage() {
 
   return (
     <>
-      <Header></Header>
-      <main className="main">
-        <div className="mainContainer">
-          <ul>
+      <Header />
+      <main>
+        <div className="pageContainer">
+          <div className={styles.postList}>
             {posts.map((post: Post, idx: number) => {
+              const dateUpdated: Date = new Date(post.dateUpdated)
+              const dateUpdatedStr: string = `${dateUpdated.getFullYear()}.${(
+                '0' +
+                ((dateUpdated.getMonth() % 12) + 1)
+              ).slice(-2)}.${dateUpdated.getDate()}`
               return (
-                <li key={idx} className="py-5">
-                  <Link href={`/${post.id}`} className={styles.listLink}>
-                    {post.title}
-                  </Link>
-                </li>
+                <Link
+                  key={idx}
+                  href={`/${post.id}`}
+                  className={styles.postCard}
+                  scroll={false}
+                >
+                  <div className={styles.shutter}>
+                    <div className={styles.meta}>
+                      <div className={styles.date}>
+                        <span>{dateUpdatedStr}</span>
+                      </div>
+                      <div className={styles.category}>
+                        {post.category.name && <span>{post.category.name}</span>}
+                      </div>
+                    </div>
+                    <h3>{post.title}</h3>
+                  </div>
+                  {post.overview && (
+                    <p className={styles.overview}>
+                      {post.overview.length > 80
+                        ? post.overview.substring(0, 80) + '...'
+                        : post.overview}
+                    </p>
+                  )}
+                </Link>
               )
             })}
-          </ul>
+          </div>
+          <ul></ul>
         </div>
       </main>
-      <Footer></Footer>
+      <Footer />
     </>
   )
 }

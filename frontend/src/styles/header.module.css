@@ -1,18 +1,35 @@
-.header {
-  @apply text-center
-    dark:bg-neutral-700;
+/**
+ * ヘッダー・スタイル
+ */
 
-  .headerContainer {
-    @apply p-4 m-auto
-    text-center
-    container
-    flex justify-between;
-  }
+/* 通常ヘッダー */
+.pageHeader {
+  @apply w-[100%] h-24 bg-white fixed overflow-hidden z-10 transition-all;
+}
+.pageHeader .logoImage {
+  @apply w-72 inline-block transition-all;
 }
 
-.logoPanel {
+/* 下へスクロールした後縮小されたヘッダー */
+.smallHeader {
+  @apply h-14 bg-white shadow-md transition-all;
+}
+.smallHeader .smallContainer {
+  @apply py-1.5 transition-all;
+}
+.smallHeader .logoImage {
+  @apply w-48 transition-all;
 }
 
-.menuPanel {
-  @apply w-1/2;
+/* 座右の銘 */
+.aMotto {
+  @apply bg-neutral-900 shadow-inner text-sm;
+}
+.aMottoMessage {
+  @apply text-neutral-100 text-end;
+}
+.aMottoMessage::after {
+  content: '';
+  @apply border-l-8 border-r-8 rounded border-neutral-100
+    animate-ping ease-in-out;
 }

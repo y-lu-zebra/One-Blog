@@ -4,7 +4,7 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
     '^@/(.*)$': '<rootDir>/src/$1',
-    '(react-markdown|remark-gfm|react-syntax-highlighter/.*$)':
+    '(react-markdown|rehype-raw|remark-gfm|react-syntax-highlighter/.*$)':
       '<rootDir>/src/__tests__/__mocks__/markdownMock.tsx',
   },
   transform: {
@@ -24,10 +24,10 @@ module.exports = {
   collectCoverageFrom: ['src/**/*.tsx'],
   coverageThreshold: {
     global: {
-      branches: 10,
-      functions: 10,
-      lines: 60,
-      statements: 60,
+      statements: 80,
+      branches: 40,
+      functions: 80,
+      lines: 80,
     },
   },
 }

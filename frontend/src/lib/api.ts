@@ -1,3 +1,5 @@
+import { Post } from '@/types/post'
+
 export const fetchCategories = async (): Promise<ListResponse> => {
   const res: Response = await fetch(`${process.env.API_URL}/categories/?limit=4`)
   return (await res.json()) as Promise<ListResponse>
