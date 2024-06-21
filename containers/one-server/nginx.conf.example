@@ -27,7 +27,7 @@ http {
         charset     utf-8;
 
         location / {
-            proxy_pass http://one-ui;
+            proxy_pass http://one-ui/$1$is_args$args;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -37,7 +37,7 @@ http {
         }
 
         location /api {
-            proxy_pass http://one-api;
+            proxy_pass http://one-api/$1$is_args$args;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -71,7 +71,7 @@ http {
         add_header Strict-Transport-Security "max-age=2592000" always;
 
         location / {
-            proxy_pass http://one-ui;
+            proxy_pass http://one-ui/$1$is_args$args;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -81,7 +81,7 @@ http {
         }
 
         location /api {
-            proxy_pass http://one-api;
+            proxy_pass http://one-api/$1$is_args$args;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
