@@ -24,4 +24,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: ./admin.sh deploy
+          script: |
+            cd One-Blog
+            ./admin.sh deploy
