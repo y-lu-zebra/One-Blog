@@ -121,13 +121,13 @@ case $1 in
       python manage.py compilemessages > /dev/null
       printResult $?
 
+      # 静的ファイルを収集
+      printf "  Collecting static files\n"
+      python manage.py collectstatic --noinput > /dev/null
+      printResult $?
+
       # 開発モードのみで実行する処理
       if [ "$is_prod" = "" ]; then
-        # 静的ファイルを収集
-        printf "  Collecting static files\n"
-        python manage.py collectstatic --noinput > /dev/null
-        printResult $?
-
         # Git プレコミットをインストール
         printf "  Installing pre-commit hooks\n"
         pre-commit install > /dev/null
