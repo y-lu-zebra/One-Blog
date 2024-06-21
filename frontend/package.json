@@ -15,6 +15,7 @@
   "dependencies": {
     "@types/react-scroll": "^1.8.10",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "autoprefixer": "^10.4.19",
     "dotenv": "^16.4.5",
     "next": "^14.2.3",
     "react": "^18.3.1",
@@ -25,6 +26,7 @@
     "react-syntax-highlighter": "^15.5.0",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.0",
+    "tailwindcss": "^3.4.4",
     "tw-elements-react": "^1.0.0-alpha2"
   },
   "devDependencies": {
@@ -36,7 +38,6 @@
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
-    "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",
@@ -46,7 +47,6 @@
     "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
     "prettier": "3.1.1",
-    "tailwindcss": "^3.4.4",
     "ts-jest": "^29.1.1",
     "typescript": "^5"
   }
