@@ -160,20 +160,21 @@ case $1 in
     python manage.py createsuperuser
     ;;
 
-#  # サーバーの起動
-#  "${process[2]}" )
-#    if [ "$2" = "${mode[2]}" ]; then
-#      cd backend || exit
-#      gunicorn one.wsgi:application --bind 0.0.0.0:8000
-#    elif [ "$2" = "${mode[3]}" ]; then
-#      cd frontend || exit
-#      npm start
-#    else
-#      printError
-#      printf "\033[31mUnknown option '%s'!\033[m\n" "$2"
-#      exit 1
-#    fi
-#    ;;
+  # サーバーの起動
+  "${process[2]}" )
+    if [ "$2" = "${mode[2]}" ]; then
+      cd backend || exit
+      gunicorn one.wsgi:application --bind 0.0.0.0:8000
+    elif [ "$2" = "${mode[3]}" ]; then
+      cd frontend || exit
+      npm start
+    else
+      printError
+      printf "\033[31mUnknown option '%s'!\033[m\n" "$2"
+      exit 1
+    fi
+    ;;
+
 #  # リントチェック
 #  "${process[3]}" )
 #    pre-commit run --all-files
