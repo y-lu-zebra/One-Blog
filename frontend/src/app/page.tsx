@@ -7,7 +7,8 @@ import { fetchPosts } from '@/lib/api'
 import styles from '@/styles/home.module.css'
 import { Post } from '@/types/post'
 
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
+
 export default async function HomePage() {
   const posts: Post[] = (await fetchPosts()).results as Post[]
 

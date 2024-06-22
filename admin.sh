@@ -169,7 +169,7 @@ case $1 in
     elif [ "$2" = "${mode[3]}" ]; then
       cd frontend || exit
       npm run build
-      npm run start
+      npm start
     else
       printError
       printf "\033[31mUnknown option '%s'!\033[m\n" "$2"
@@ -210,25 +210,26 @@ case $1 in
 
     DATETIME="$(date '+%Y%m%d_%H%M%S')"
 
-    printf "  Deleting Docker Containers...\n"
+    printf "  Deleting Docker Containers ...\n"
     docker-compose down --rmi all -v
 
-    printf "  Backup database...\n"
+    printf "  Backup data ...\n"
     mkdir -p "../bk/${DATETIME}"
     mv containers/one-server/nginx.conf "../bk/${DATETIME}/"
+    mv .env "../bk/${DATETIME}/"
     tar zcf "../bk/${DATETIME}/db.tar.gz" db
     rm -Rf front/.next
 
-    printf "  Updating Source Code...\n"
+    printf "  Updating Source Code ...\n"
     git fetch
     git pull
     mkdir -p backend/static
 
-    printf "  Setting environment...\n"
+    printf "  Setting environment ...\n"
     cp containers/one-server/nginx.conf.example containers/one-server/nginx.conf
     sed -i "s/<server_name>/$2/" containers/one-server/nginx.conf
 
-    printf "  Creating docker containers...\n"
+    printf "  Creating docker containers ...\n"
     docker-compose up -d
     ;;
 esac
