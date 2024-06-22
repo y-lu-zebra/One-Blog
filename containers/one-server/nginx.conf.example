@@ -23,7 +23,7 @@ http {
 
     server {
         listen 80;
-        server_name <サーバードメイン>;
+        server_name <server_name>;
         charset     utf-8;
 
         location / {
@@ -52,7 +52,7 @@ http {
     }
 
     server {
-        server_name <サーバードメイン>;
+        server_name <server_name>;
 
         listen 443 ssl http2;
         listen [::]:443 ssl http2;

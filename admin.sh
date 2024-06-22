@@ -112,6 +112,7 @@ case $1 in
 
       # マイグレーション
       printf "  Running database migrations\n"
+      python manage.py makemigrations api --noinput > /dev/null
       python manage.py makemigrations --noinput > /dev/null
       python manage.py migrate --noinput > /dev/null
       printResult $?
@@ -207,22 +208,27 @@ case $1 in
   "${process[6]}" )
     printProcess "$1"
 
-    DATETIME="$(date '+%Y%m%d%H%M%S')"
+    DATETIME="$(date '+%Y%m%d_%H%M%S')"
 
-    printf "  Update Source Code\n"
+    printf "  Deleting Docker Containers...\n"
+    docker-compose down --rmi all -v
+
+    printf "  Backup database...\n"
+    mkdir -p "../bk/${DATETIME}"
+    mv containers/one-server/nginx.conf "../bk/${DATETIME}/"
+    tar zcf "../bk/${DATETIME}/db.tar.gz" db
+    rm -Rf front/.next
+
+    printf "  Updating Source Code...\n"
     git fetch
     git pull
     mkdir -p backend/static
 
-    printf "  Delete Docker Containers\n"
-    docker-compose down --rmi all -v
+    printf "  Setting environment...\n"
+    cp containers/one-server/nginx.conf.example containers/one-server/nginx.conf
+    sed -i "s/<server_name>/$2/" containers/one-server/nginx.conf
 
-    printf "  Backup database\n"
-    mkdir -p ../bk
-    tar zcf "../bk/db_${DATETIME}.tar.gz" db
-    rm -Rf front/.next
-
-    printf "  Create docker containers\n"
+    printf "  Creating docker containers...\n"
     docker-compose up -d
     ;;
 esac

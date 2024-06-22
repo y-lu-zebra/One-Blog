@@ -26,4 +26,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd One-Blog
-            ./admin.sh deploy
+            ./admin.sh deploy ${{ vars.HOST_NAME }}
