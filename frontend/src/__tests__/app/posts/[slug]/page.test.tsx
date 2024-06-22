@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react'
-import PostPage, { generateMetadata } from '../../../app/[slug]/page'
+import PostPage, { generateMetadata } from '../../../../app/posts/[slug]/page'
 
 jest.mock(
-  '../../../lib/api',
+  '../../../../lib/api',
 
   () => ({
     fetchPost: (postId: number) => {

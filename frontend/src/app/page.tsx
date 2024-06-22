@@ -27,7 +27,7 @@ export default async function HomePage() {
               return (
                 <Link
                   key={idx}
-                  href={`/${post.id}`}
+                  href={`/posts/${post.id}`}
                   className={styles.postCard}
                   scroll={false}
                 >
