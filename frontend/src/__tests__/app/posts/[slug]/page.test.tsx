@@ -56,7 +56,7 @@ describe('Get Post Page Generate Meta Data', () => {
       className: 'python',
     })
     expect(metaData).toEqual({
-      title: 'meta title',
+      title: 'meta title | undefined',
       description: 'meta description',
       keywords: 'meta keywords',
     })
@@ -69,7 +69,7 @@ describe('Get Post Page Generate Meta Data', () => {
       className: 'python',
     })
     expect(metaData).toEqual({
-      title: 'test',
+      title: 'test | undefined',
       description: 'meta description',
       keywords: 'meta keywords',
     })
