@@ -216,7 +216,7 @@ case $1 in
     printf "  Backup data ...\n"
     mkdir -p "../bk/${DATETIME}"
     mv containers/one-server/nginx.conf "../bk/${DATETIME}/"
-    mv .env "../bk/${DATETIME}/"
+    cp -p .env "../bk/${DATETIME}/"
     tar zcf "../bk/${DATETIME}/db.tar.gz" db
     rm -Rf front/.next
 
