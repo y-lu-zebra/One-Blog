@@ -25,7 +25,7 @@ export const generateMetadata = async (props: PostProps) => {
   const post: Post = await fetchPost(slug)
 
   return {
-    title: post.metaTitle || post.title,
+    title: (post.metaTitle || post.title) + ' | ' + process.env.APP_NAME,
     description: post.metaDescription,
     keywords: post.metaKeywords,
   }
