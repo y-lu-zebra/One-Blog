@@ -1,7 +1,9 @@
 name: Development
 
 on:
-  - pull_request
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   check-backend:
