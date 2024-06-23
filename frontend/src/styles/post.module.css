@@ -49,7 +49,7 @@
 .pageContent {
 }
 .pageContent .pageMeta {
-  @apply py-8;
+  @apply py-8 leading-9;
 }
 .pageContent .pageMeta .dateCreated,
 .pageContent .pageMeta .dateUpdated,
@@ -59,16 +59,19 @@
     text-sm transition-all;
 }
 .pageContent .pageMeta .dateCreated {
-  @apply bg-[url('/icon-clock-outline.svg')];
+  @apply mr-6 bg-[url('/icon-clock-outline.svg')];
 }
 .pageContent .pageMeta .dateUpdated {
-  @apply ml-6 bg-[url('/icon-arrow-path-rounded-square-outline.svg')];
+  @apply mr-6 bg-[url('/icon-arrow-path-rounded-square-outline.svg')];
 }
 .pageContent .pageMeta .category {
-  @apply ml-6 bg-[url('/icon-squares-plus-outline.svg')];
+  @apply mr-6 bg-[url('/icon-squares-plus-outline.svg')];
 }
 .pageContent .pageMeta .pageTags {
-  @apply ml-6 bg-[url('/icon-tag-outline.svg')];
+  @apply bg-[url('/icon-tag-outline.svg')];
+}
+.pageContent .pageMeta br {
+  @apply md:hidden;
 }
 .pageContent .pageOverview {
   @apply mb-12 pl-3.5 border-s-8 border-neutral-900
@@ -135,6 +138,7 @@
   @apply mb-2;
 }
 .postContent > p code,
+.postContent > table code,
 .postContent li > p code {
   @apply px-1.5 py-0.5 border border-dashed border-neutral-900 rounded
     text-sm leading-8 align-bottom;

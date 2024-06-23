@@ -62,6 +62,7 @@ const PostPage = async (props: PostProps) => {
               {post.category.name && (
                 <span className={styles.category}>{post.category.name}</span>
               )}
+              <br />
               {post.tags.length > 0 && (
                 <span className={styles.pageTags}>
                   {post.tags.map((tag: Tag, idx: number) => (
