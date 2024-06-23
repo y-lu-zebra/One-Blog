@@ -14,6 +14,13 @@ export const metadata: Metadata = {
   title: process.env.APP_NAME,
   description: process.env.APP_DESCRIPTION,
   keywords: process.env.APP_KEYWORDS,
+  openGraph: {
+    title: process.env.APP_NAME,
+    description: process.env.APP_DESCRIPTION,
+    images: process.env.APP_URL + '/ogp.png',
+    locale: 'ja_JP',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

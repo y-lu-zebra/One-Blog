@@ -5,7 +5,8 @@
 
 # One-Blog
 .env
-data/
+db/
 logs/
 backend/static
 containers/one-server/nginx.conf
+containers/one-server/ssl-cert/*.pem

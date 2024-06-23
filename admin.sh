@@ -2,8 +2,8 @@
 # One Blog Management Shell
 # ======================================================================================
 
-# 処理名の配列（初期化 ユーザー作成 サーバーの起動 リントチェック 単体試験 ビルド）
-process=("init" "adduser" "start" "lint" "ut" "build")
+# 処理名の配列（初期化 ユーザー作成 サーバーの起動 リントチェック 単体試験 ビルド デプロイ）
+process=("init" "adduser" "start" "lint" "ut" "build" "deploy")
 # オプションの配列
 mode=("--dev" "--prod" "--back" "--front")
 
@@ -33,7 +33,11 @@ function printProcess {
 
     "${process[1]}" )
       printf "Create a new super user\n"
+      ;;
 
+    "${process[6]}" )
+      printf "Start Deployment\n"
+      ;;
   esac
 }
 
@@ -108,6 +112,7 @@ case $1 in
 
       # マイグレーション
       printf "  Running database migrations\n"
+      python manage.py makemigrations api --noinput > /dev/null
       python manage.py makemigrations --noinput > /dev/null
       python manage.py migrate --noinput > /dev/null
       printResult $?
@@ -117,13 +122,13 @@ case $1 in
       python manage.py compilemessages > /dev/null
       printResult $?
 
+      # 静的ファイルを収集
+      printf "  Collecting static files\n"
+      python manage.py collectstatic --noinput > /dev/null
+      printResult $?
+
       # 開発モードのみで実行する処理
       if [ "$is_prod" = "" ]; then
-        # 静的ファイルを収集
-        printf "  Collecting static files\n"
-        python manage.py collectstatic --noinput > /dev/null
-        printResult $?
-
         # Git プレコミットをインストール
         printf "  Installing pre-commit hooks\n"
         pre-commit install > /dev/null
@@ -156,20 +161,22 @@ case $1 in
     python manage.py createsuperuser
     ;;
 
-#  # サーバーの起動
-#  "${process[2]}" )
-#    if [ "$2" = "${mode[2]}" ]; then
-#      cd backend || exit
-#      gunicorn one.wsgi:application --bind 0.0.0.0:8000
-#    elif [ "$2" = "${mode[3]}" ]; then
-#      cd frontend || exit
-#      npm start
-#    else
-#      printError
-#      printf "\033[31mUnknown option '%s'!\033[m\n" "$2"
-#      exit 1
-#    fi
-#    ;;
+  # サーバーの起動
+  "${process[2]}" )
+    if [ "$2" = "${mode[2]}" ]; then
+      cd backend || exit
+      gunicorn one.wsgi:application --bind 0.0.0.0:8000
+    elif [ "$2" = "${mode[3]}" ]; then
+      cd frontend || exit
+      npm run build
+      npm start
+    else
+      printError
+      printf "\033[31mUnknown option '%s'!\033[m\n" "$2"
+      exit 1
+    fi
+    ;;
+
 #  # リントチェック
 #  "${process[3]}" )
 #    pre-commit run --all-files
@@ -196,4 +203,33 @@ case $1 in
 #    printError
 #    printf "\033[31mUnknown process '%s'!\033[m\n" "$1"
 #    ;;
+
+  # デプロイ
+  "${process[6]}" )
+    printProcess "$1"
+
+    DATETIME="$(date '+%Y%m%d_%H%M%S')"
+
+    printf "  Deleting Docker Containers ...\n"
+    docker-compose down --rmi all -v
+
+    printf "  Backup data ...\n"
+    mkdir -p "../bk/${DATETIME}"
+    mv containers/one-server/nginx.conf "../bk/${DATETIME}/"
+    cp -p .env "../bk/${DATETIME}/"
+    tar zcf "../bk/${DATETIME}/db.tar.gz" db
+    rm -Rf front/.next
+
+    printf "  Updating Source Code ...\n"
+    git fetch
+    git pull
+    mkdir -p backend/static
+
+    printf "  Setting environment ...\n"
+    cp containers/one-server/nginx.conf.example containers/one-server/nginx.conf
+    sed -i "s/<server_name>/$2/" containers/one-server/nginx.conf
+
+    printf "  Creating docker containers ...\n"
+    docker-compose up -d
+    ;;
 esac

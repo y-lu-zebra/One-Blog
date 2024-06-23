@@ -1,6 +1,9 @@
 name: Development
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   check-backend:
