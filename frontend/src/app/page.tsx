@@ -23,7 +23,7 @@ export default async function HomePage() {
               const dateUpdatedStr: string = `${dateUpdated.getFullYear()}.${(
                 '0' +
                 ((dateUpdated.getMonth() % 12) + 1)
-              ).slice(-2)}.${dateUpdated.getDate()}`
+              ).slice(-2)}.${('0' + dateUpdated.getDate()).slice(-2)}`
               return (
                 <Link
                   key={idx}

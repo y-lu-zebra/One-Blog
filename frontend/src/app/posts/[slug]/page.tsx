@@ -38,12 +38,12 @@ const PostPage = async (props: PostProps) => {
   const dateCreatedStr: string = `${dateCreated.getFullYear()}.${(
     '0' +
     ((dateCreated.getMonth() % 12) + 1)
-  ).slice(-2)}.${dateCreated.getDate()}`
+  ).slice(-2)}.${('0' + dateCreated.getDate()).slice(-2)}`
   const dateUpdated: Date = new Date(post.dateUpdated)
   const dateUpdatedStr: string = `${dateUpdated.getFullYear()}.${(
     '0' +
     ((dateUpdated.getMonth() % 12) + 1)
-  ).slice(-2)}.${dateUpdated.getDate()}`
+  ).slice(-2)}.${('0' + dateUpdated.getDate()).slice(-2)}`
 
   return (
     <>
