@@ -139,7 +139,7 @@
 }
 .postContent > p code,
 .postContent > table code,
-.postContent li > p code {
+.postContent li > code {
   @apply px-1.5 py-0.5 border border-dashed border-neutral-900 rounded
     text-sm leading-8 align-bottom;
 }
