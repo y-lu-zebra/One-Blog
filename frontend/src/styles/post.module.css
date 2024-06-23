@@ -102,7 +102,7 @@
     [&:last-child]:rounded-tr-md;
 }
 .postContent > table td {
-  @apply p-2 border-b border-neutral-300 box-content transition-all;
+  @apply p-2 border-b border-neutral-300 box-content leading-8 transition-all;
 }
 .postContent pre {
   @apply mb-10 rounded-md overflow-hidden;
