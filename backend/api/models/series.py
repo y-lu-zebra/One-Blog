@@ -21,7 +21,7 @@ class Series(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
             [apps.get_app_config("api").name, "series"]
         )
         verbose_name = verbose_name_plural = _("Series")
-        ordering = ["-sort_order", "-date_updated"]
+        ordering = ["-sort_order", "-date_created"]
 
     # シリーズ名
     name: models.CharField = models.CharField(

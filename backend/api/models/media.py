@@ -13,46 +13,44 @@ from api.models.mixins import (
 from one.commons import constants
 
 
-class Categories(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
-    """カテゴリーモデル．"""
-
-    # カテゴリータイプの選択肢
-    TYPE_CHOICES = [
-        ("CAT", _("Category")),
-        ("SGL", _("Single Page")),
-        ("EXT", _("External Page")),
-    ]
+class Media(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
+    """メディアモデル．"""
 
     class Meta:
         db_table = constants.CODE_SEP_UNDERSCORE.join(
-            [apps.get_app_config("api").name, "categories"]
+            [apps.get_app_config("api").name, "media"]
         )
-        verbose_name = verbose_name_plural = _("Categories")
+        verbose_name = verbose_name_plural = _("Media")
         ordering = ["-sort_order", "-date_created"]
 
-    # カテゴリー名
+    # ファイル名
     name: models.CharField = models.CharField(
-        max_length=100,
+        max_length=255,
         blank=False,
         null=False,
-        verbose_name=_("Category Name"),
+        verbose_name=_("File Name"),
     )
-    # タイプ
-    type: models.CharField = models.CharField(
-        max_length=3,
+    # 縮小画像のパス
+    thumb: models.FilePathField = models.FilePathField()
+    # ファイルパス
+    file: models.FileField = models.FileField(
+        upload_to=constants.DIR_UPLOAD,
         blank=False,
         null=False,
-        default=TYPE_CHOICES[0][0],
-        choices=TYPE_CHOICES,
-        verbose_name=_("Category Type"),
+        verbose_name=_("Media File Path"),
     )
-    # 親カテゴリー
-    parent: models.ForeignKey = models.ForeignKey(
-        "self",
+    # タイトル
+    title: models.CharField = models.CharField(
+        max_length=255,
+        blank=False,
+        null=False,
+        verbose_name=_("Media Title"),
+    )
+    # 概要
+    overview: models.TextField = models.TextField(
         blank=True,
         null=True,
-        on_delete=models.CASCADE,
-        verbose_name=_("Parent Category"),
+        verbose_name=_("Media Overview"),
     )
     # 言語
     language: models.ForeignKey = models.ForeignKey(
@@ -65,4 +63,4 @@ class Categories(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
     )
 
     def __str__(self) -> str:
-        return str(self.name)
+        return str(self.title)

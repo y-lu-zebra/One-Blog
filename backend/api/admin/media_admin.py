@@ -3,14 +3,12 @@ from typing import Any
 from django.contrib import admin
 
 from api.admin.ob_admin import OBAdmin
-from api.admin.post_series_rel_inline import PostSeriesRelInline
-from api.admin.post_tag_rel_inline import PostTagRelInline
-from api.models import Posts
+from api.models import Media
 
 
-@admin.register(Posts)
-class PostAdmin(OBAdmin):
-    """投稿 ADMIN．"""
+@admin.register(Media)
+class MediaAdmin(OBAdmin):
+    """メディア ADMIN．"""
 
     # 一覧画面に表示するフィールド
     list_display: list[Any] = (
@@ -36,12 +34,8 @@ class PostAdmin(OBAdmin):
                     "title",
                     # 概要
                     "overview",
-                    # 内容
-                    "content",
-                    # アルバム画像
-                    "album",
                     # カテゴリー
-                    "category",
+                    "file",
                     # 並び順
                     "sort_order",
                     # 公開フラグ
@@ -51,4 +45,4 @@ class PostAdmin(OBAdmin):
         ),
     ] + OBAdmin.COMMON_FIELDSETS
     # 中間モデルを利用
-    inlines = [PostTagRelInline, PostSeriesRelInline]
+    # inlines = [PostTagRelInline, PostSeriesRelInline]

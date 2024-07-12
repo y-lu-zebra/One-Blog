@@ -21,7 +21,7 @@ class Tags(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
             [apps.get_app_config("api").name, "tags"]
         )
         verbose_name = verbose_name_plural = _("Tags")
-        ordering = ["-sort_order", "-date_updated"]
+        ordering = ["-sort_order", "-date_created"]
 
     # タグ名
     name: models.CharField = models.CharField(

@@ -14,7 +14,7 @@ class Languages(CreatedMixin, UpdatedMixin):
             [apps.get_app_config("api").name, "languages"]
         )
         verbose_name = verbose_name_plural = _("Languages")
-        ordering = ["-date_updated"]
+        ordering = ["-date_created"]
 
     # 言語名
     name: models.CharField = models.CharField(

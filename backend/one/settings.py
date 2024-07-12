@@ -136,6 +136,10 @@ STATIC_ROOT: str = constants.PATH_STATIC
 # 静的ファイルの URL
 STATIC_URL: str = f"{env('API_STATIC_URL')}{constants.CODE_SEP_URL}"
 
+MEDIA_ROOT = constants.PATH_MEDIA
+
+MEDIA_URL = "/"
+
 # 主キーフィールドのデフォルトタイプ
 DEFAULT_AUTO_FIELD: str = "django.db.models.BigAutoField"
 

@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from api.models.categories import Categories
 from api.models.languages import Languages
+from api.models.media import Media
 from api.models.mixins import (
     CreatedMixin,
     LinkMixin,
@@ -24,7 +25,7 @@ class Posts(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
             [apps.get_app_config("api").name, "posts"]
         )
         verbose_name = verbose_name_plural = _("Posts")
-        ordering = ["-sort_order", "-date_updated"]
+        ordering = ["-sort_order", "-date_created"]
 
     # タイトル
     title: models.CharField = models.CharField(
@@ -44,6 +45,14 @@ class Posts(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
         blank=True,
         null=True,
         verbose_name=_("Post Content"),
+    )
+    # アルバム画像
+    album: models.ForeignKey = models.ForeignKey(
+        Media,
+        blank=True,
+        null=True,
+        on_delete=models.PROTECT,
+        verbose_name=_("Media"),
     )
     # カテゴリー
     category: models.ForeignKey = models.ForeignKey(
