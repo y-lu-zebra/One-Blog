@@ -143,6 +143,9 @@
   @apply px-1.5 py-0.5 border border-dashed border-neutral-900 rounded
     text-sm leading-8 align-bottom;
 }
+.postContent li > pre {
+  @apply mb-4;
+}
 .postContent > ul,
 .postContent > ol {
   @apply ml-4;
