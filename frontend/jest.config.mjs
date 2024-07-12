@@ -1,4 +1,4 @@
-module.exports = {
+const jestConfig = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   moduleNameMapper: {
@@ -31,3 +31,5 @@ module.exports = {
     },
   },
 }
+
+export default jestConfig
