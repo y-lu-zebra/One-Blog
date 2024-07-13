@@ -66,12 +66,10 @@ const PostPage = async (props: PostProps) => {
               {post.tags.length > 0 && (
                 <span className={styles.pageTags}>
                   {post.tags.map((tag: Tag, idx: number) => (
-                    <>
-                      <Link key={idx} href="">
-                        {tag.name}
-                      </Link>
+                    <span key={idx}>
+                      <Link href="">{tag.name}</Link>
                       {post.tags.length - idx !== 1 && ' , '}
-                    </>
+                    </span>
                   ))}
                 </span>
               )}

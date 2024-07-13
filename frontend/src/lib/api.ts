@@ -13,7 +13,7 @@ export const fetchPosts = async (): Promise<ListResponse> => {
 }
 
 export const fetchPost = async (postId: number): Promise<Post> => {
-  const res: Response = await fetch(`${process.env.API_URL}/posts/${postId}`, {
+  const res: Response = await fetch(`${process.env.API_URL}/posts/${postId}/`, {
     cache: 'no-store',
   })
   return (await res.json()) as Promise<Post>

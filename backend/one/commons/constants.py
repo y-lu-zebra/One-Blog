@@ -20,6 +20,10 @@ DIR_STATIC = "static"
 DIR_LOCALE = "locale"
 # テンプレートのフォルダ名
 DIR_TEMPLATE = "templates"
+# メディアのフォルダ名
+DIR_MEDIA = "media"
+# アップロードファイルのフォルダ名
+DIR_UPLOAD = "uploads/%Y/%m/%d/"
 
 # プロジェクトのルートパス
 PATH_PROJECT = str(Path(__file__).resolve().parent.parent.parent.parent)
@@ -37,6 +41,8 @@ PATH_STATIC = os.path.join(PATH_BACKEND, DIR_STATIC)
 PATH_LOCALE = os.path.join(PATH_BACKEND, DIR_LOCALE)
 # テンプレートのフォルダの絶対パス
 PATH_TEMPLATE_LIST = [os.path.join(PATH_BACKEND, "admin_theme", DIR_TEMPLATE)]
+# アップロードファイルのフォルダの絶対パス
+PATH_MEDIA = os.path.join(PATH_BACKEND, DIR_MEDIA)
 
 # ========== 各種コード関連の定数 ===========================================================
 # 単体テストモードの文字列

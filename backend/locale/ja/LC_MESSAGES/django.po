@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 22:51+0900\n"
+"POT-Creation-Date: 2024-07-13 14:13+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr "アドバンスオプション"
 msgid "SEO Information"
 msgstr "SEO 情報"
 
-#: api/models/categories.py:21 api/models/posts.py:54
+#: api/models/categories.py:21 api/models/posts.py:63
 msgid "Category"
 msgstr "カテゴリー"
 
@@ -58,8 +58,8 @@ msgstr "カテゴリータイプ"
 msgid "Parent Category"
 msgstr "親カテゴリー"
 
-#: api/models/categories.py:64 api/models/posts.py:73 api/models/series.py:48
-#: api/models/tags.py:40
+#: api/models/categories.py:64 api/models/media.py:62 api/models/posts.py:82
+#: api/models/series.py:48 api/models/tags.py:40
 msgid "Language"
 msgstr "言語"
 
@@ -74,6 +74,31 @@ msgstr "言語名"
 #: api/models/languages.py:31
 msgid "Language Code"
 msgstr "言語コード"
+
+#: api/models/media.py:23 api/models/posts.py:55
+msgid "Media"
+msgstr "メディア"
+
+#: api/models/media.py:31
+msgid "File Name"
+msgstr "ファイル名"
+
+#: api/models/media.py:38
+#| msgid "Media File Path"
+msgid "Media File Name"
+msgstr "メディアファイル名"
+
+#: api/models/media.py:45
+msgid "Media File Path"
+msgstr "メディアファイルパス"
+
+#: api/models/media.py:48
+msgid "Thumbnail Path"
+msgstr "sアルバム画像ファイルパス"
+
+#: api/models/media.py:53
+msgid "Media Overview"
+msgstr "概要"
 
 #: api/models/mixins/created_mixin.py:19
 msgid "Created User"
@@ -133,20 +158,20 @@ msgstr "最終更新者"
 msgid "Updated Date"
 msgstr "最終更新日時"
 
-#: api/models/posts.py:26 api/models/rels/post_series_rel.py:24
+#: api/models/posts.py:27 api/models/rels/post_series_rel.py:24
 #: api/models/rels/post_tag_rel.py:24
 msgid "Posts"
 msgstr "投稿"
 
-#: api/models/posts.py:34
+#: api/models/posts.py:35
 msgid "Post Title"
 msgstr "タイトル"
 
-#: api/models/posts.py:40
+#: api/models/posts.py:41
 msgid "Post Overview"
 msgstr "概要"
 
-#: api/models/posts.py:46
+#: api/models/posts.py:47
 msgid "Post Content"
 msgstr "内容"
 
@@ -178,11 +203,11 @@ msgstr "親シリーズ"
 msgid "Tag Name"
 msgstr "タグ名"
 
-#: one/urls.py:11
+#: one/urls.py:12
 msgid "Admin Site"
 msgstr "管理"
 
-#: one/urls.py:15
+#: one/urls.py:16
 msgid "Dashboard"
 msgstr "ダッシュボード"
 

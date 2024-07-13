@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 
+import dotenv from 'dotenv'
+
 // 環境設定ファイル変更
-require('dotenv').config({ path: '../.env' })
+dotenv.config({ path: '../.env' })
 
 const nextConfig = {
   reactStrictMode: false,
@@ -20,6 +22,20 @@ const nextConfig = {
     // Google Analytics 測定 ID
     GA_TRACKING_ID: process.env.GA_TRACKING_ID,
   },
+  // images: {
+  //   // remotePatterns: [
+  //   //   {
+  //   //     protocol: 'http',
+  //   //     hostname: 'localhost',
+  //   //     port: '8000',
+  //   //   },
+  //   //   {
+  //   //     protocol: 'https',
+  //   //     hostname: 'localhost',
+  //   //     port: '8000',
+  //   //   },
+  //   // ],
+  // },
 }
 
-module.exports = nextConfig
+export default nextConfig

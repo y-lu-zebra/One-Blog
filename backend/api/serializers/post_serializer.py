@@ -3,6 +3,8 @@ from typing import Any
 from rest_framework import serializers
 
 from api.models import Posts
+from api.serializers.category_serializer import CategorySerializer
+from api.serializers.media_serializer import MediaSerializer
 from api.serializers.ob_serializer import OBSerializer
 from api.serializers.series_serializer import SeriesSerializer
 from api.serializers.tag_serializer import TagSerializer
@@ -12,6 +14,8 @@ from api.serializers.user_serializer import UserSerializer
 class PostSerializer(OBSerializer):
     """投稿シリアライザー．"""
 
+    # アルバム画像
+    album = serializers.SerializerMethodField("get_media")
     # カテゴリー
     category = serializers.SerializerMethodField("get_category")
     # シリーズ
@@ -31,6 +35,8 @@ class PostSerializer(OBSerializer):
         fields = [
             # タイトル
             "title",
+            # アルバム画像
+            "album",
             # 概要
             "overview",
             # 内容
@@ -44,6 +50,25 @@ class PostSerializer(OBSerializer):
         ] + OBSerializer.MIXIN_FIELDS
         # 読み取り専用フィールド
         read_only_fields = OBSerializer.READ_ONLY_FIELDS
+
+    def get_media(self, obj) -> dict:
+        """アルバム画像取得処理（公開済みのカテゴリーデータのみ）．
+
+        Parameters
+        ----------
+        obj
+            投稿オブジェクト
+
+        Returns
+        -------
+            投稿と紐付きのアルバム画像
+        """
+
+        rst: dict[Any, Any] = {}
+        if obj.album and obj.album.is_published:
+            rst = MediaSerializer(instance=obj.album, context=self.context).data
+
+        return rst
 
     def get_category(self, obj) -> dict:
         """カテゴリー取得処理（公開済みのカテゴリーデータのみ）．
@@ -60,7 +85,7 @@ class PostSerializer(OBSerializer):
 
         rst: dict[Any, Any] = {}
         if obj.category and obj.category.is_published:
-            rst = SeriesSerializer(instance=obj.category, context=self.context).data
+            rst = CategorySerializer(instance=obj.category, context=self.context).data
 
         return rst
 
