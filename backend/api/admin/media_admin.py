@@ -13,16 +13,16 @@ class MediaAdmin(OBAdmin):
     # 一覧画面に表示するフィールド
     list_display: list[Any] = (
         [
-            # タイトル
-            "title",
+            # メディア名
+            "name",
         ]
         + OBAdmin.COMMON_LIST_DISPLAY_FIELDS
         + OBAdmin.HISTORY_LIST_DISPLAY_FIELDS
     )
     # 一覧画面にリンクで表示するフィールド
     list_display_links = [
-        # タイトル
-        "title",
+        # メディア名
+        "name",
     ]
     # 新規作成画面に表示するフィールド構成
     fieldsets: list[tuple] = [
@@ -30,11 +30,11 @@ class MediaAdmin(OBAdmin):
             None,
             {
                 "fields": [
-                    # タイトル
-                    "title",
+                    # メディア名
+                    "name",
                     # 概要
                     "overview",
-                    # カテゴリー
+                    # ファイルパス
                     "file",
                     # 並び順
                     "sort_order",

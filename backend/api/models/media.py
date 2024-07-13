@@ -23,15 +23,20 @@ class Media(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
         verbose_name = verbose_name_plural = _("Media")
         ordering = ["-sort_order", "-date_created"]
 
-    # ファイル名
+    # メディア名
     name: models.CharField = models.CharField(
         max_length=255,
         blank=False,
         null=False,
         verbose_name=_("File Name"),
     )
-    # 縮小画像のパス
-    thumb: models.FilePathField = models.FilePathField()
+    # ファイル名
+    file_name: models.CharField = models.CharField(
+        max_length=255,
+        blank=False,
+        null=False,
+        verbose_name=_("Media File Name"),
+    )
     # ファイルパス
     file: models.FileField = models.FileField(
         upload_to=constants.DIR_UPLOAD,
@@ -39,13 +44,8 @@ class Media(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
         null=False,
         verbose_name=_("Media File Path"),
     )
-    # タイトル
-    title: models.CharField = models.CharField(
-        max_length=255,
-        blank=False,
-        null=False,
-        verbose_name=_("Media Title"),
-    )
+    # 縮小画像のパス
+    thumb: models.FilePathField = models.FilePathField(verbose_name=_("Thumbnail Path"))
     # 概要
     overview: models.TextField = models.TextField(
         blank=True,
@@ -63,4 +63,4 @@ class Media(LinkMixin, SEOMixin, StatusMixin, CreatedMixin, UpdatedMixin):
     )
 
     def __str__(self) -> str:
-        return str(self.title)
+        return str(self.name)

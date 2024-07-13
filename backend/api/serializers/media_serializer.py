@@ -21,8 +21,8 @@ class MediaSerializer(OBSerializer):
         model = Media
         depth = 1
         fields = [
-            # タイトル
-            "title",
+            # メディア名
+            "name",
             # ファイルパス
             "file",
         ] + OBSerializer.MIXIN_FIELDS
