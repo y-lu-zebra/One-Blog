@@ -1,0 +1,31 @@
+.barcodeForm {
+  @apply pt-2;
+}
+.barcodeImg {
+  @apply h-32;
+}
+.barcodeForm .barcodeInput {
+  @apply pt-2;
+}
+.barcodeInput textarea {
+  @apply w-[100%];
+}
+.barcodeOptions {
+  @apply grid grid-cols-5;
+}
+.barcodeOptions .radioSet * {
+  @apply align-middle;
+}
+.barcodeOptions .radioSet label {
+  @apply ps-1;
+}
+.barcodeOptions input[type='button'] {
+  @apply px-3.5 w-[100%] border border-solid border-neutral-600
+    bg-[length:1em_1em] bg-center
+    bg-no-repeat bg-[url('/icon-arrow-down-tray-outline.svg')]
+    cursor-pointer opacity-30 transition-all
+    [&:not(:first-child)]:ms-1;
+}
+.barcodeOptions input[type='button']:hover {
+  @apply shadow opacity-100 transition-all;
+}
