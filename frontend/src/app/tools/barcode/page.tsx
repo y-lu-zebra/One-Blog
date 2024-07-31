@@ -13,6 +13,8 @@ import styles from '@/styles/barcode.module.css'
  * @constructor
  */
 const BarCodeTool = () => {
+  // バーコード・ジェネレーターの数
+  const [generatorNum, setGeneratorNum] = React.useState<number>(3)
   // バーコード生成
   // const [testXml, setTestXml] = useState<string>()
 
@@ -61,6 +63,9 @@ const BarCodeTool = () => {
 
   return (
     <>
+      <title>{`バーコード作成ツール | ${process.env.APP_NAME}`}</title>
+      <meta name="description" content="バーコードを自うどう作成できます。" />
+      <meta name="keywords" content="バーコード" />
       <Header />
       <main>
         <div className="pageContainer">
@@ -70,17 +75,21 @@ const BarCodeTool = () => {
               <div>コード値</div>
               <div>バーコード</div>
             </div>
-            <div className={styles.generatorBody}>
-              <div className={styles.generatorNo}>1</div>
-              <BarcodeGenerator />
-            </div>
-            <div className={styles.generatorBody}>
-              <div className={styles.generatorNo}>2</div>
-              <BarcodeGenerator />
-            </div>
-            <div className={styles.generatorBody}>
-              <div className={styles.generatorNo}>3</div>
-              <BarcodeGenerator />
+            {Array(generatorNum)
+              .fill(0)
+              .map((v, idx) => (
+                <div key={idx} className={styles.generatorBody}>
+                  <div className={styles.generatorNo}>{idx + 1}</div>
+                  <BarcodeGenerator />
+                </div>
+              ))}
+            <div className={styles.generatorFoot}>
+              <div
+                onClick={() => {
+                  setGeneratorNum((value) => ++value)
+                }}
+                className={styles.addGenerator}
+              ></div>
             </div>
           </div>
         </div>

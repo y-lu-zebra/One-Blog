@@ -5,7 +5,7 @@ import { downloadWithATag } from '@/lib/functions'
 import styles from '@/styles/barCodeGenerator.module.css'
 
 /**
- * バーコード生成器
+ * バーコード・ジェネレーター
  *
  * @constructor
  */
