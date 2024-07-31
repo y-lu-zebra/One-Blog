@@ -8,5 +8,6 @@
 db/
 logs/
 backend/static
+backend/media
 containers/one-server/nginx.conf
 containers/one-server/ssl-cert/*.pem

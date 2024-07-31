@@ -1,0 +1,40 @@
+/**
+ * バーコード作成ツールのスタイル
+ */
+.generatorList {
+  /*@apply;*/
+}
+.generatorList .generatorHead,
+.generatorList .generatorBody {
+  @apply py-2 border-b border-b-neutral-200 grid grid-cols-1 gap-4
+    md:grid-cols-[40px_300px_minmax(200px,_1fr)];
+}
+.generatorList .generatorHead {
+  @apply border-b-2 border-b-neutral-500;
+}
+.generatorList .generatorHead > div:first-child {
+  @apply text-end;
+}
+.generatorList .generatorBody > div:first-child {
+  @apply py-4 text-end;
+}
+.generatorList .generatorFoot {
+  @apply py-2;
+}
+.generatorList .generatorFoot .addGenerator {
+  @apply w-[100%] h-32 rounded-md
+    /*mix-blend-difference*/
+    bg-[length:64px_64px]
+    bg-neutral-100 bg-[url('/icon-plus-outline.svg')]
+    bg-no-repeat bg-center opacity-45 cursor-pointer transition-all;
+}
+.generatorList .generatorFoot .addGenerator:hover {
+  @apply opacity-70 transition-all;
+}
+
+/*.downloadButton {*/
+/*  @apply bg-no-repeat bg-[url('/icon-arrow-down-tray-outline.svg')];*/
+/*}*/
+/*.settingButton {*/
+/*  @apply bg-no-repeat bg-[url('/icon-cog-6-tooth-outline.svg')];*/
+/*}*/
